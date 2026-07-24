@@ -1,5 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
+import NavBar from '@/components/nav-bar';
+import WhatsAppCta from '@/components/whatsapp-cta';
 
 export const metadata: Metadata = {
   title: 'Goodman Consulting',
@@ -14,7 +16,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <NavBar />
+        {children}
+        <WhatsAppCta />
+      </body>
     </html>
   );
 }
