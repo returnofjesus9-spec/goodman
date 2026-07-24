@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import SiteFooter from '@/components/site-footer';
 
-export default async function WorkDetailPage({ params }: { params: { slug: string } }) {
+export default async function WorkDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-  const res = await fetch(`${apiUrl}/api/case-studies/${params.slug}`, { cache: 'no-store' });
+  const res = await fetch(`${apiUrl}/api/case-studies/${slug}`, { cache: 'no-store' });
 
   if (!res.ok) {
     return (
