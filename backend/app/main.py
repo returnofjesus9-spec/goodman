@@ -146,9 +146,11 @@ initialize_database()
 
 
 # Public endpoints
-@app.get("/health")
+# Public endpoints
+@app.route("/health", methods=["GET", "HEAD"])
 def health() -> dict[str, str]:
     return {"status": "ok"}
+
 
 
 @app.post("/api/leads", status_code=status.HTTP_201_CREATED)
