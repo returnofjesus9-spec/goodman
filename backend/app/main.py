@@ -2,6 +2,7 @@ import os
 from datetime import datetime, timedelta
 from typing import Annotated
 
+import bcrypt
 import jwt
 from dotenv import load_dotenv
 from fastapi import Depends, FastAPI, Header, HTTPException, Request, status
@@ -64,6 +65,19 @@ app.add_middleware(
 )
 
 
+# Password hashing helpers
+
+def hash_password(plain: str) -> str:
+    return bcrypt.hashpw(plain.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+
+
+def verify_password(plain: str, hashed: str) -> bool:
+    try:
+        return bcrypt.checkpw(plain.encode("utf-8"), hashed.encode("utf-8"))
+    except ValueError:
+        return False
+
+
 # Dependency
 
 def get_db() -> Session:
@@ -98,7 +112,8 @@ def seed_initial_data() -> None:
     db = SessionLocal()
     try:
         if not db.query(User).filter(User.email == "admin@goodmanconsulting.com").first():
-            admin = User(email="admin@goodmanconsulting.com", password_hash="admin")
+            admin_password = os.getenv("ADMIN_INITIAL_PASSWORD", "admin")
+            admin = User(email="admin@goodmanconsulting.com", password_hash=hash_password(admin_password))
             db.add(admin)
 
         if not db.query(CaseStudy).filter(CaseStudy.slug == "retail-analytics-dashboard").first():
@@ -221,7 +236,7 @@ def list_pricing(db: Session = Depends(get_db)) -> list[PricingTierPublic]:
 @app.post("/api/auth/login", response_model=AuthLoginResponse)
 def login(payload: AuthLoginRequest, db: Session = Depends(get_db)) -> AuthLoginResponse:
     user = db.query(User).filter(User.email == payload.email).first()
-    if not user or user.password_hash != payload.password:
+    if not user or not verify_password(payload.password, user.password_hash):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
 
     expires_at = datetime.utcnow() + timedelta(hours=8)
