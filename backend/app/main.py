@@ -146,10 +146,11 @@ initialize_database()
 
 
 # Public endpoints
-# Public endpoints
-@app.route("/health", methods=["GET", "HEAD"])
+@app.get("/health")
+@app.head("/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
+
 
 
 
