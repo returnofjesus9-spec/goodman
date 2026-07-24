@@ -111,9 +111,10 @@ def get_current_admin(authorization: Annotated[str | None, Header()] = None, db:
 def seed_initial_data() -> None:
     db = SessionLocal()
     try:
-        if not db.query(User).filter(User.email == "admin@goodmanconsulting.com").first():
-            admin_password = os.getenv("ADMIN_INITIAL_PASSWORD", "admin")
-            admin = User(email="admin@goodmanconsulting.com", password_hash=hash_password(admin_password))
+        admin_email = os.getenv("ADMIN_INITIAL_EMAIL")
+        admin_password = os.getenv("ADMIN_INITIAL_PASSWORD")
+        if admin_email and admin_password and not db.query(User).filter(User.email == admin_email).first():
+            admin = User(email=admin_email, password_hash=hash_password(admin_password))
             db.add(admin)
 
         if not db.query(CaseStudy).filter(CaseStudy.slug == "retail-analytics-dashboard").first():
