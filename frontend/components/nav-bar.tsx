@@ -21,9 +21,10 @@ export default function NavBar() {
   const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-stone-200 bg-white/90 backdrop-blur">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 md:px-8 lg:px-12">
-        <Link href="/" className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-900">
+        <Link href="/" className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-ink">
+          <span className="h-2 w-2 bg-gold" />
           Goodman Consulting
         </Link>
 
@@ -33,7 +34,7 @@ export default function NavBar() {
               key={link.href}
               href={link.href}
               className={`text-sm font-medium transition-colors ${
-                isActive(link.href) ? 'text-slate-900' : 'text-slate-500 hover:text-slate-900'
+                isActive(link.href) ? 'text-ink' : 'text-stone-500 hover:text-ink'
               }`}
             >
               {link.label}
@@ -41,7 +42,7 @@ export default function NavBar() {
           ))}
           <a
             href="https://wa.me/919999999999"
-            className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700"
+            className="rounded-sm bg-ink px-4 py-2 text-sm font-semibold text-white hover:bg-stone-800"
           >
             WhatsApp
           </a>
@@ -50,7 +51,7 @@ export default function NavBar() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="flex items-center justify-center rounded-lg border border-slate-300 p-2 md:hidden"
+          className="flex items-center justify-center rounded-lg border border-stone-300 p-2 md:hidden"
           aria-label="Toggle menu"
           aria-expanded={open}
         >
@@ -65,7 +66,7 @@ export default function NavBar() {
       </nav>
 
       {open ? (
-        <div className="border-t border-slate-200 bg-white px-4 py-4 md:hidden">
+        <div className="border-t border-stone-200 bg-white px-4 py-4 md:hidden">
           <div className="flex flex-col gap-1">
             {links.map((link) => (
               <Link
@@ -73,7 +74,7 @@ export default function NavBar() {
                 href={link.href}
                 onClick={() => setOpen(false)}
                 className={`rounded-lg px-3 py-2 text-sm font-medium ${
-                  isActive(link.href) ? 'bg-slate-100 text-slate-900' : 'text-slate-600 hover:bg-slate-50'
+                  isActive(link.href) ? 'bg-stone-100 text-ink' : 'text-stone-600 hover:bg-stone-50'
                 }`}
               >
                 {link.label}
@@ -82,7 +83,7 @@ export default function NavBar() {
             <a
               href="https://wa.me/919999999999"
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-lg bg-slate-900 px-3 py-2 text-center text-sm font-semibold text-white"
+              className="mt-2 rounded-lg bg-ink px-3 py-2 text-center text-sm font-semibold text-white"
             >
               Chat on WhatsApp
             </a>

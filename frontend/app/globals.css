@@ -4,13 +4,17 @@
 
 :root {
   color-scheme: light;
-  font-family: Inter, Arial, sans-serif;
+  font-family: var(--font-body), Arial, sans-serif;
 }
 
 body {
-  @apply bg-slate-50 text-slate-800 antialiased;
+  @apply bg-white text-ink antialiased;
 }
 
 main {
   @apply min-h-screen;
+}
+
+h1, h2, h3 {
+  @apply font-heading tracking-tight;
 }

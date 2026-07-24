@@ -37,21 +37,21 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-      <label className="block text-sm font-semibold text-slate-900">Business name</label>
-      <input className="mt-2 w-full rounded-lg border border-slate-300 px-3 py-2" name="business_name" />
-      <label className="mt-4 block text-sm font-semibold text-slate-900">Service interest</label>
-      <input className="mt-2 w-full rounded-lg border border-slate-300 px-3 py-2" name="service_interest" />
-      <label className="mt-4 block text-sm font-semibold text-slate-900">Budget range</label>
-      <input className="mt-2 w-full rounded-lg border border-slate-300 px-3 py-2" name="budget_range" />
-      <label className="mt-4 block text-sm font-semibold text-slate-900">Contact email</label>
-      <input className="mt-2 w-full rounded-lg border border-slate-300 px-3 py-2" name="contact_email" />
-      <label className="mt-4 block text-sm font-semibold text-slate-900">Message</label>
-      <textarea className="mt-2 w-full rounded-lg border border-slate-300 px-3 py-2" name="message" rows={4} />
-      <button disabled={isSubmitting} className="mt-6 rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white disabled:opacity-60">
+    <form onSubmit={handleSubmit} className="rounded-lg border border-stone-200 bg-white p-8">
+      <label className="block text-sm font-semibold text-ink">Business name</label>
+      <input className="mt-2 w-full rounded-sm border border-stone-300 px-3 py-2 focus:border-ink focus:outline-none focus:ring-1 focus:ring-gold" name="business_name" />
+      <label className="mt-4 block text-sm font-semibold text-ink">Service interest</label>
+      <input className="mt-2 w-full rounded-sm border border-stone-300 px-3 py-2 focus:border-ink focus:outline-none focus:ring-1 focus:ring-gold" name="service_interest" />
+      <label className="mt-4 block text-sm font-semibold text-ink">Budget range</label>
+      <input className="mt-2 w-full rounded-sm border border-stone-300 px-3 py-2 focus:border-ink focus:outline-none focus:ring-1 focus:ring-gold" name="budget_range" />
+      <label className="mt-4 block text-sm font-semibold text-ink">Contact email</label>
+      <input className="mt-2 w-full rounded-sm border border-stone-300 px-3 py-2 focus:border-ink focus:outline-none focus:ring-1 focus:ring-gold" name="contact_email" />
+      <label className="mt-4 block text-sm font-semibold text-ink">Message</label>
+      <textarea className="mt-2 w-full rounded-sm border border-stone-300 px-3 py-2 focus:border-ink focus:outline-none focus:ring-1 focus:ring-gold" name="message" rows={4} />
+      <button disabled={isSubmitting} className="mt-6 rounded-sm bg-ink px-5 py-3 text-sm font-semibold text-white disabled:opacity-60">
         {isSubmitting ? 'Sending…' : 'Send request'}
       </button>
-      {status ? <p className="mt-4 text-sm text-slate-600">{status}</p> : null}
+      {status ? <p className="mt-4 text-sm text-stone-600">{status}</p> : null}
     </form>
   );
 }
