@@ -21,8 +21,8 @@ type PricingTier = { id: number; name: string; price: string; description: strin
 
 export default function AdminPage() {
   const [token, setToken] = useState('');
-  const [email, setEmail] = useState('admin@goodmanconsulting.com');
-  const [password, setPassword] = useState('admin');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [leads, setLeads] = useState<Lead[]>([]);
   const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([]);
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
