@@ -50,9 +50,8 @@ npm run dev
 
 ## Admin panel
 
-Use the admin login at /admin with:
+Use the admin login at /admin with the admin email and password you configured on the backend.
 
-- Email: admin@goodmanconsulting.com
-- Password: admin
+On first run, the backend seeds one admin account using the `ADMIN_INITIAL_EMAIL` and `ADMIN_INITIAL_PASSWORD` environment variables (set these to your own values before first deploy — there is no built-in default password). Change the password after first login if you ever used a temporary value.
 
 Update case studies, blog posts, and pricing from the admin panel once the backend is running.
