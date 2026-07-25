@@ -17,10 +17,10 @@ export default function ContactPage() {
             <h1 className="mt-2 text-3xl font-semibold text-ink">Talk to us about your next project</h1>
             <p className="mt-4 text-stone-600">Call or WhatsApp us directly for a quick conversation.</p>
             <div className="mt-6 space-y-3 text-sm text-stone-600">
-              <a href="https://wa.me/919999999999" className="block font-semibold text-ink">WhatsApp: +91 99999 99999</a>
-              <a href="tel:+919999999999" className="block font-semibold text-ink">Call: +91 99999 99999</a>
-              <a href="mailto:hello@goodmanconsulting.com" className="block font-semibold text-ink">
-                Email: hello@goodmanconsulting.com
+              <a href="https://wa.me/919777262734" className="block font-semibold text-ink">WhatsApp: +91 97772 62734</a>
+              <a href="tel:+919777262734" className="block font-semibold text-ink">Call: +91 97772 62734</a>
+              <a href="mailto:help@goodmanconsulting.in" className="block font-semibold text-ink">
+                Email: help@goodmanconsulting.in
               </a>
             </div>
           </div>

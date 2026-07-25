@@ -99,6 +99,33 @@ class BlogPostPublic(BaseModel):
         from_attributes = True
 
 
+class TestimonialCreate(BaseModel):
+    author_name: str
+    author_business: Optional[str] = None
+    quote: str
+    published: bool = True
+
+
+class TestimonialUpdate(BaseModel):
+    author_name: Optional[str] = None
+    author_business: Optional[str] = None
+    quote: Optional[str] = None
+    published: Optional[bool] = None
+
+
+class TestimonialPublic(BaseModel):
+    id: int
+    author_name: str
+    author_business: Optional[str]
+    quote: str
+    published: bool
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        from_attributes = True
+
+
 class PricingTierPublic(BaseModel):
     id: int
     name: str

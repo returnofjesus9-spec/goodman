@@ -11,7 +11,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session, sessionmaker
 
-from app.models import Base, Lead, LeadStatus, BlogPost, CaseStudy, PricingTier, User
+from app.models import Base, Lead, LeadStatus, BlogPost, CaseStudy, PricingTier, Testimonial, User
 from app.schemas import (
     AuthLoginRequest,
     AuthLoginResponse,
@@ -26,6 +26,9 @@ from app.schemas import (
     LeadUpdate,
     PricingTierPublic,
     PricingTierUpdate,
+    TestimonialCreate,
+    TestimonialPublic,
+    TestimonialUpdate,
 )
 
 load_dotenv()
@@ -126,13 +129,31 @@ def seed_initial_data() -> None:
             admin = User(email=admin_email, password_hash=hash_password(admin_password))
             db.add(admin)
 
-        if not db.query(CaseStudy).filter(CaseStudy.slug == "retail-analytics-dashboard").first():
+        if not db.query(CaseStudy).filter(CaseStudy.slug == "rubyz-ensemble-boutique").first():
             db.add(
                 CaseStudy(
-                    title="Retail analytics dashboard",
-                    slug="retail-analytics-dashboard",
-                    summary="A simple dashboard that helped a retail business see daily sales and stock gaps.",
-                    content="[PLACEHOLDER: Full case study content goes here.]",
+                    title="RUBYZ Ensemble — a full online store for a boutique fashion brand",
+                    slug="rubyz-ensemble-boutique",
+                    summary="Moved a boutique ethnic-fashion brand from informal, message-based selling to a real online store with live payments and a self-serve owner dashboard.",
+                    content=(
+                        "The problem: a boutique ethnic-fashion brand needed a proper online store — "
+                        "one that could take real payments and track stock accurately, rather than relying on "
+                        "manual, message-by-message order-taking. Note for the business owner: confirm this "
+                        "framing reflects where things actually stood beforehand.\n\n"
+                        "What we built: a Next.js storefront paired with a FastAPI backend and a Postgres "
+                        "database, with product photos on Cloudflare R2. Customers can browse by category, "
+                        "filter by attributes like occasion, color, and fabric, save items to a wishlist, "
+                        "apply coupons at checkout, and pay through a real Razorpay integration — the backend "
+                        "independently re-prices each cart and verifies the payment signature before any order "
+                        "is written, so nothing about price or stock is ever trusted from the browser. Behind "
+                        "the scenes, the owner has a full dashboard to add and edit products, manage orders, "
+                        "run coupons, view basic sales analytics, and edit what appears on the homepage — all "
+                        "without needing a developer for day-to-day changes.\n\n"
+                        "The result: the store is live in production and handling real customer accounts, real "
+                        "orders, and real payments, with the owner able to run the catalog and homepage herself. "
+                        "We don't have specific sales or conversion numbers to share here yet — this section "
+                        "should be updated with real figures once the owner can confirm them."
+                    ),
                     published=True,
                 )
             )
@@ -148,12 +169,23 @@ def seed_initial_data() -> None:
                 )
             )
 
+        # PLACEHOLDER TESTIMONIAL — fictional, replace with a real client quote before the site goes live.
+        if not db.query(Testimonial).filter(Testimonial.author_name == "Priya Sahoo").first():
+            db.add(
+                Testimonial(
+                    author_name="Priya Sahoo",
+                    author_business="Sahoo General Store",
+                    quote="Before this, I was tracking orders in a notebook and losing track of who'd paid. Now I get a WhatsApp ping the moment someone places an order, and I haven't missed a follow-up in weeks.",
+                    published=True,
+                )
+            )
+
         if not db.query(PricingTier).filter(PricingTier.name == "Starter").first():
             db.add_all(
                 [
-                    PricingTier(name="Starter", price="₹25,000", description="A simple brochure site with 5 pages and WhatsApp contact."),
-                    PricingTier(name="Growth", price="₹60,000", description="A polished business website with automation and lead capture."),
-                    PricingTier(name="Scale", price="₹1,20,000", description="Custom dashboards, workflows, and deeper integrations."),
+                    PricingTier(name="Starter", price="₹15,000", description="A clean 5-page business website with WhatsApp contact, built to load fast and look credible."),
+                    PricingTier(name="Growth", price="₹35,000", description="Everything in Starter, plus one automation (like appointment/lead capture) and a simple dashboard to track it."),
+                    PricingTier(name="Scale", price="₹70,000", description="Custom dashboards, multiple automations, and integrations built around how your business actually runs."),
                 ]
             )
 
@@ -227,6 +259,12 @@ def get_blog_post(slug: str, db: Session = Depends(get_db)) -> BlogPostPublic:
     if not item or not item.published:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Blog post not found")
     return BlogPostPublic.model_validate(item)
+
+
+@app.get("/api/testimonials", response_model=list[TestimonialPublic])
+def list_testimonials(db: Session = Depends(get_db)) -> list[TestimonialPublic]:
+    items = db.query(Testimonial).filter(Testimonial.published.is_(True)).order_by(Testimonial.created_at.desc()).all()
+    return [TestimonialPublic.model_validate(item) for item in items]
 
 
 @app.get("/api/pricing", response_model=list[PricingTierPublic])
@@ -323,6 +361,36 @@ def delete_blog_post(slug: str, db: Session = Depends(get_db), admin: User = Dep
     item = db.query(BlogPost).filter(BlogPost.slug == slug).first()
     if not item:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Blog post not found")
+    db.delete(item)
+    db.commit()
+
+
+@app.post("/api/testimonials", response_model=TestimonialPublic)
+def create_testimonial(payload: TestimonialCreate, db: Session = Depends(get_db), admin: User = Depends(get_current_admin)) -> TestimonialPublic:
+    item = Testimonial(**payload.model_dump())
+    db.add(item)
+    db.commit()
+    db.refresh(item)
+    return TestimonialPublic.model_validate(item)
+
+
+@app.put("/api/testimonials/{testimonial_id}", response_model=TestimonialPublic)
+def update_testimonial(testimonial_id: int, payload: TestimonialUpdate, db: Session = Depends(get_db), admin: User = Depends(get_current_admin)) -> TestimonialPublic:
+    item = db.query(Testimonial).filter(Testimonial.id == testimonial_id).first()
+    if not item:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Testimonial not found")
+    for field, value in payload.model_dump(exclude_unset=True).items():
+        setattr(item, field, value)
+    db.commit()
+    db.refresh(item)
+    return TestimonialPublic.model_validate(item)
+
+
+@app.delete("/api/testimonials/{testimonial_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_testimonial(testimonial_id: int, db: Session = Depends(get_db), admin: User = Depends(get_current_admin)) -> None:
+    item = db.query(Testimonial).filter(Testimonial.id == testimonial_id).first()
+    if not item:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Testimonial not found")
     db.delete(item)
     db.commit()
 

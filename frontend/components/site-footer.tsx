@@ -16,8 +16,8 @@ export default function SiteFooter() {
         <div className="grid gap-8 md:grid-cols-[1.4fr_1fr]">
           <div className="rounded-lg border border-stone-200 bg-white p-6 text-sm text-stone-600">
             <p className="font-semibold text-ink">Goodman Consulting</p>
-            <p className="mt-2">UDYAM-XX-XXXXXXX • Registered MSME</p>
-            <p className="mt-2">hello@goodmanconsulting.com • +91 99999 99999</p>
+            <p className="mt-2">UDYAM-OD-19-0172402 • Registered MSME</p>
+            <p className="mt-2">help@goodmanconsulting.in • +91 97772 62734</p>
           </div>
           <nav className="flex flex-wrap items-start gap-x-6 gap-y-3 text-sm font-medium text-stone-600 md:justify-end">
             {links.map((link) => (

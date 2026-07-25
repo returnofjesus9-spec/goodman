@@ -1,7 +1,7 @@
 export default function WhatsAppCta() {
   return (
     <a
-      href="https://wa.me/919999999999"
+      href="https://wa.me/919777262734"
       aria-label="Chat with us on WhatsApp"
       className="fixed bottom-5 right-5 z-50 flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-ink/20 transition-transform hover:scale-105 md:bottom-8 md:right-8"
     >

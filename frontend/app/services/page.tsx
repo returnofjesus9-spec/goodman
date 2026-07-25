@@ -13,21 +13,25 @@ const services = [
     description:
       'Simple, clear websites that help customers understand your work and get in touch — built fast, and built to last.',
     points: ['Custom design, no cookie-cutter templates', 'Mobile-first and fast-loading', 'Easy for you to update later'],
+    accent: false,
   },
   {
     title: 'Business Automation',
     description: 'Forms, reminders, and follow-up steps that save hours every week by removing manual busywork.',
     points: ['Lead capture and follow-up automation', 'Reminders and scheduled notifications', 'Connects to the tools you already use'],
+    accent: true,
   },
   {
     title: 'Dashboards & Analytics',
     description: 'Basic reporting so you can see sales, leads, and routine performance without fuss.',
     points: ['Live view of sales and leads', 'Simple, readable charts', 'No data-science degree required'],
+    accent: true,
   },
   {
     title: 'Custom Software',
     description: 'Small tools and internal workflows built around how your team actually works, not the other way round.',
     points: ['Internal tools and admin panels', 'Workflow-specific, not off-the-shelf', 'Built to grow with your business'],
+    accent: false,
   },
 ];
 
@@ -43,8 +47,11 @@ export default function ServicesPage() {
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {services.map((service) => (
-            <article key={service.title} className="rounded-lg border border-stone-200 bg-white p-6">
-              <h2 className="text-xl font-semibold text-ink">{service.title}</h2>
+            <article
+              key={service.title}
+              className={`rounded-lg border bg-white p-6 ${service.accent ? 'border-teal/30 border-t-4 border-t-teal' : 'border-stone-200'}`}
+            >
+              <h2 className={`text-xl font-semibold ${service.accent ? 'text-teal' : 'text-ink'}`}>{service.title}</h2>
               <p className="mt-2 text-sm text-stone-600">{service.description}</p>
               <ul className="mt-4 space-y-2 text-sm text-stone-600">
                 {service.points.map((point) => (
@@ -59,7 +66,7 @@ export default function ServicesPage() {
         </div>
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <a href="https://wa.me/919999999999" className="rounded-sm bg-ink px-6 py-3 text-center font-semibold text-white">
+          <a href="https://wa.me/919777262734" className="rounded-sm bg-ink px-6 py-3 text-center font-semibold text-white">
             Chat on WhatsApp
           </a>
           <Link href="/pricing" className="rounded-sm border border-stone-300 px-6 py-3 text-center font-semibold text-ink">

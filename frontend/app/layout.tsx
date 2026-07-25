@@ -10,10 +10,20 @@ const heading = Space_Grotesk({ subsets: ['latin'], variable: '--font-heading' }
 export const metadata: Metadata = {
   title: 'Goodman Consulting',
   description: 'Affordable web design, automation and analytics support for growing businesses.',
+  icons: {
+    icon: '/icon.svg',
+  },
   openGraph: {
     title: 'Goodman Consulting',
     description: 'Affordable web design, automation and analytics support for growing businesses.',
     type: 'website',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Goodman Consulting' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Goodman Consulting',
+    description: 'Affordable web design, automation and analytics support for growing businesses.',
+    images: ['/og-image.svg'],
   },
 };
 

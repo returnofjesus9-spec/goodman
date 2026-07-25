@@ -69,6 +69,18 @@ class BlogPost(Base):
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
 
 
+class Testimonial(Base):
+    __tablename__ = "testimonials"
+
+    id = Column(Integer, primary_key=True, index=True)
+    author_name = Column(String(255), nullable=False)
+    author_business = Column(String(255), nullable=True)
+    quote = Column(Text, nullable=False)
+    published = Column(Boolean, default=True, nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
+
+
 class PricingTier(Base):
     __tablename__ = "pricing_tiers"
 

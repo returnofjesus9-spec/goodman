@@ -50,13 +50,13 @@ export default async function WorkIndexPage() {
           </div>
         ) : (
           <p className="mt-10 text-stone-600">
-            We're finishing up our first project — case studies will be posted here shortly. Message us on
-            WhatsApp in the meantime and we can walk you through it directly.
+            Our first project is wrapping up — check back this month. In the meantime, message us on WhatsApp
+            and we'll walk you through it directly.
           </p>
         )}
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <a href="https://wa.me/919999999999" className="rounded-sm bg-ink px-6 py-3 text-center font-semibold text-white">
+          <a href="https://wa.me/919777262734" className="rounded-sm bg-ink px-6 py-3 text-center font-semibold text-white">
             Chat on WhatsApp
           </a>
         </div>

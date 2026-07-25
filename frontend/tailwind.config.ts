@@ -7,6 +7,7 @@ export default {
       colors: {
         ink: '#131211',
         gold: { DEFAULT: '#A87C2E', light: '#C79A4B' },
+        teal: { DEFAULT: '#3D6B66', light: '#5C8B85' },
       },
       fontFamily: {
         heading: ['var(--font-heading)', 'sans-serif'],

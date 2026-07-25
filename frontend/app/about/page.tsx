@@ -29,12 +29,12 @@ export default function AboutPage() {
 
         <div className="mt-10 rounded-lg border border-stone-200 bg-ink p-6 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-stone-300">Registered business</p>
-          <p className="mt-3 text-lg">Registered MSME • UDYAM-XX-XXXXXXX</p>
+          <p className="mt-3 text-lg">Registered MSME • UDYAM-OD-19-0172402</p>
           <p className="mt-2 text-sm text-stone-300">Clear pricing • Direct communication • No agency overhead</p>
         </div>
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <a href="https://wa.me/919999999999" className="rounded-sm bg-ink px-6 py-3 text-center font-semibold text-white">
+          <a href="https://wa.me/919777262734" className="rounded-sm bg-ink px-6 py-3 text-center font-semibold text-white">
             Chat on WhatsApp
           </a>
           <a href="/contact" className="rounded-sm border border-stone-300 px-6 py-3 text-center font-semibold text-ink">

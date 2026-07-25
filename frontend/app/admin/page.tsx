@@ -19,8 +19,10 @@ type Lead = {
 type CaseStudy = { id: number; title: string; slug: string; summary: string; content: string; published: boolean };
 type BlogPost = { id: number; title: string; slug: string; summary: string; content: string; published: boolean };
 type PricingTier = { id: number; name: string; price: string; description: string };
+type Testimonial = { id: number; author_name: string; author_business?: string; quote: string; published: boolean };
 
 const emptyDoc = { title: '', slug: '', summary: '', content: '', published: true };
+const emptyTestimonial = { author_name: '', author_business: '', quote: '', published: true };
 
 export default function AdminPage() {
   const [token, setToken] = useState('');
@@ -32,12 +34,15 @@ export default function AdminPage() {
   const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([]);
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [pricing, setPricing] = useState<PricingTier[]>([]);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
 
   const [caseForm, setCaseForm] = useState(emptyDoc);
   const [editingCaseSlug, setEditingCaseSlug] = useState<string | null>(null);
   const [blogForm, setBlogForm] = useState(emptyDoc);
   const [editingBlogSlug, setEditingBlogSlug] = useState<string | null>(null);
   const [pricingDrafts, setPricingDrafts] = useState<Record<number, PricingTier>>({});
+  const [testimonialForm, setTestimonialForm] = useState(emptyTestimonial);
+  const [editingTestimonialId, setEditingTestimonialId] = useState<number | null>(null);
 
   const authHeaders = (extra: Record<string, string> = {}) => ({
     Authorization: `Bearer ${token}`,
@@ -65,11 +70,12 @@ export default function AdminPage() {
 
   async function loadAdminData(authToken: string) {
     const headers = { Authorization: `Bearer ${authToken}` };
-    const [leadsRes, caseRes, blogRes, pricingRes] = await Promise.all([
+    const [leadsRes, caseRes, blogRes, pricingRes, testimonialsRes] = await Promise.all([
       fetch(`${API_URL}/api/leads`, { headers }),
       fetch(`${API_URL}/api/case-studies`, { headers }),
       fetch(`${API_URL}/api/blog`, { headers }),
       fetch(`${API_URL}/api/pricing`, { headers }),
+      fetch(`${API_URL}/api/testimonials`, { headers }),
     ]);
     if (leadsRes.ok) setLeads(await leadsRes.json());
     if (caseRes.ok) setCaseStudies(await caseRes.json());
@@ -79,6 +85,7 @@ export default function AdminPage() {
       setPricing(items);
       setPricingDrafts(Object.fromEntries(items.map((item) => [item.id, item])));
     }
+    if (testimonialsRes.ok) setTestimonials(await testimonialsRes.json());
   }
 
   useEffect(() => {
@@ -186,6 +193,49 @@ export default function AdminPage() {
       body: JSON.stringify({ name: draft.name, price: draft.price, description: draft.description }),
     });
     if (res.ok) setPricing((prev) => prev.map((p) => (p.id === id ? draft : p)));
+  }
+
+  // --- Testimonials ---
+  async function submitTestimonial(e: FormEvent) {
+    e.preventDefault();
+    const isEditing = editingTestimonialId !== null;
+    const res = await fetch(
+      isEditing ? `${API_URL}/api/testimonials/${editingTestimonialId}` : `${API_URL}/api/testimonials`,
+      {
+        method: isEditing ? 'PUT' : 'POST',
+        headers: authHeaders({ 'Content-Type': 'application/json' }),
+        body: JSON.stringify(testimonialForm),
+      }
+    );
+    if (res.ok) {
+      setTestimonialForm(emptyTestimonial);
+      setEditingTestimonialId(null);
+      loadAdminData(token);
+    }
+  }
+
+  function editTestimonial(item: Testimonial) {
+    setTestimonialForm({
+      author_name: item.author_name,
+      author_business: item.author_business || '',
+      quote: item.quote,
+      published: item.published,
+    });
+    setEditingTestimonialId(item.id);
+  }
+
+  async function deleteTestimonial(id: number) {
+    const res = await fetch(`${API_URL}/api/testimonials/${id}`, { method: 'DELETE', headers: authHeaders() });
+    if (res.ok) setTestimonials((prev) => prev.filter((t) => t.id !== id));
+  }
+
+  async function toggleTestimonialPublished(item: Testimonial) {
+    const res = await fetch(`${API_URL}/api/testimonials/${item.id}`, {
+      method: 'PUT',
+      headers: authHeaders({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify({ published: !item.published }),
+    });
+    if (res.ok) loadAdminData(token);
   }
 
   const inputClass =
@@ -454,6 +504,86 @@ export default function AdminPage() {
                   </div>
                 );
               })}
+            </div>
+          </section>
+
+          {/* Testimonials */}
+          <section>
+            <h2 className="text-xl font-semibold text-ink">Testimonials</h2>
+            <form onSubmit={submitTestimonial} className="mt-4 space-y-2 rounded-sm border border-stone-200 p-4">
+              <p className="text-xs font-semibold uppercase tracking-wide text-stone-500">
+                {editingTestimonialId !== null ? `Editing testimonial #${editingTestimonialId}` : 'New testimonial'}
+              </p>
+              <input
+                className={inputClass}
+                placeholder="Author name"
+                value={testimonialForm.author_name}
+                onChange={(e) => setTestimonialForm({ ...testimonialForm, author_name: e.target.value })}
+                required
+              />
+              <input
+                className={inputClass}
+                placeholder="Business (optional)"
+                value={testimonialForm.author_business}
+                onChange={(e) => setTestimonialForm({ ...testimonialForm, author_business: e.target.value })}
+              />
+              <textarea
+                className={inputClass}
+                placeholder="Quote"
+                rows={3}
+                value={testimonialForm.quote}
+                onChange={(e) => setTestimonialForm({ ...testimonialForm, quote: e.target.value })}
+                required
+              />
+              <div className="flex items-center gap-3">
+                <button className="rounded-sm bg-ink px-4 py-2 text-sm font-semibold text-white" type="submit">
+                  {editingTestimonialId !== null ? 'Save changes' : 'Create testimonial'}
+                </button>
+                {editingTestimonialId !== null ? (
+                  <button
+                    type="button"
+                    className="text-sm text-stone-600 underline"
+                    onClick={() => {
+                      setTestimonialForm(emptyTestimonial);
+                      setEditingTestimonialId(null);
+                    }}
+                  >
+                    Cancel
+                  </button>
+                ) : null}
+              </div>
+            </form>
+
+            <div className="mt-4 space-y-3">
+              {testimonials.map((item) => (
+                <div key={item.id} className="flex items-center justify-between rounded-sm border border-stone-200 p-4 text-sm">
+                  <div>
+                    <p className="font-semibold">
+                      {item.author_name}
+                      {item.author_business ? ` · ${item.author_business}` : ''}{' '}
+                      {item.published ? '' : <span className="text-stone-400">(draft)</span>}
+                    </p>
+                    <p className="text-stone-600">{item.quote}</p>
+                  </div>
+                  <div className="flex shrink-0 gap-3">
+                    <button className="text-xs font-semibold text-stone-600 underline" onClick={() => editTestimonial(item)}>
+                      Edit
+                    </button>
+                    <button
+                      className="text-xs font-semibold text-stone-600 underline"
+                      onClick={() => toggleTestimonialPublished(item)}
+                    >
+                      {item.published ? 'Unpublish' : 'Publish'}
+                    </button>
+                    <button
+                      className="text-xs font-semibold text-red-600 underline"
+                      onClick={() => deleteTestimonial(item.id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
           </section>
         </div>

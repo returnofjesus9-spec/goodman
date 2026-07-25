@@ -28,7 +28,7 @@ export default async function PricingPage() {
                 <p className="mt-3 text-sm text-stone-600">{tier.description}</p>
                 <p className="mt-6 text-3xl font-semibold text-gold">{tier.price}</p>
                 <a
-                  href="https://wa.me/919999999999"
+                  href="https://wa.me/919777262734"
                   className="mt-6 inline-flex rounded-sm bg-ink px-5 py-3 text-sm font-semibold text-white"
                 >
                   Get a quote

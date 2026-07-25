@@ -41,7 +41,7 @@ export default function NavBar() {
             </Link>
           ))}
           <a
-            href="https://wa.me/919999999999"
+            href="https://wa.me/919777262734"
             className="rounded-sm bg-ink px-4 py-2 text-sm font-semibold text-white hover:bg-stone-800"
           >
             WhatsApp
@@ -81,7 +81,7 @@ export default function NavBar() {
               </Link>
             ))}
             <a
-              href="https://wa.me/919999999999"
+              href="https://wa.me/919777262734"
               onClick={() => setOpen(false)}
               className="mt-2 rounded-lg bg-ink px-3 py-2 text-center text-sm font-semibold text-white"
             >

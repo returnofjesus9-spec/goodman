@@ -49,7 +49,10 @@ export default async function BlogIndexPage() {
             ))}
           </div>
         ) : (
-          <p className="mt-10 text-stone-600">New articles are on the way — check back soon.</p>
+          <p className="mt-10 text-stone-600">
+            We're writing our first set of guides on pricing, automation, and getting a site live fast — the first
+            one lands soon.
+          </p>
         )}
       </section>
 
