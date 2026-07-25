@@ -1,4 +1,5 @@
 import os
+from contextlib import asynccontextmanager
 from datetime import datetime, timedelta
 from typing import Annotated
 
@@ -48,12 +49,18 @@ else:
     engine = create_engine(DATABASE_URL, connect_args={"sslmode": "require"}, pool_pre_ping=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-app = FastAPI(title="Goodman Consulting API")
-
-
 def initialize_database() -> None:
     Base.metadata.create_all(bind=engine)
     seed_initial_data()
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    initialize_database()
+    yield
+
+
+app = FastAPI(title="Goodman Consulting API", lifespan=lifespan)
 
 
 app.add_middleware(
@@ -152,13 +159,6 @@ def seed_initial_data() -> None:
     finally:
         db.close()
 
-
-@app.on_event("startup")
-def startup_event() -> None:
-    initialize_database()
-
-
-initialize_database()
 
 
 # Public endpoints
