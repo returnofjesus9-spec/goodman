@@ -11,7 +11,7 @@ export default function AboutPage() {
     <main>
       <section className="mx-auto max-w-4xl px-4 py-16 md:px-8 lg:px-12">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-stone-500">About</p>
-        <h1 className="mt-3 text-4xl font-semibold text-ink md:text-5xl">
+        <h1 className="mt-3 font-heading text-4xl font-semibold text-ink md:text-5xl">
           Practical help, without the agency overhead
         </h1>
 
@@ -27,17 +27,17 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="mt-10 rounded-lg border border-stone-200 bg-ink p-6 text-white">
+        <div className="mt-10 rounded border border-stone-200 bg-ink p-6 text-white">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-stone-300">Registered business</p>
-          <p className="mt-3 text-lg">Registered MSME • UDYAM-OD-19-0172402</p>
-          <p className="mt-2 text-sm text-stone-300">Clear pricing • Direct communication • No agency overhead</p>
+          <p className="mt-3 font-heading text-lg">Registered MSME · UDYAM-OD-19-0172402</p>
+          <p className="mt-2 text-sm text-stone-300">Clear pricing · Direct communication · No agency overhead</p>
         </div>
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <a href="https://wa.me/919777262734" className="rounded-sm bg-ink px-6 py-3 text-center font-semibold text-white">
+          <a href="https://wa.me/919777262734" className="rounded bg-navy px-6 py-3 text-center font-semibold text-white hover:bg-navy-dark">
             Chat on WhatsApp
           </a>
-          <a href="/contact" className="rounded-sm border border-stone-300 px-6 py-3 text-center font-semibold text-ink">
+          <a href="/contact" className="rounded border border-stone-300 px-6 py-3 text-center font-semibold text-ink hover:border-navy hover:text-navy">
             Get in touch
           </a>
         </div>

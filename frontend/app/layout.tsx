@@ -1,11 +1,11 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter, Space_Grotesk } from 'next/font/google';
+import { Inter, Source_Serif_4 } from 'next/font/google';
 import NavBar from '@/components/nav-bar';
 import WhatsAppCta from '@/components/whatsapp-cta';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-body' });
-const heading = Space_Grotesk({ subsets: ['latin'], variable: '--font-heading' });
+const heading = Source_Serif_4({ subsets: ['latin'], weight: ['500', '600', '700'], variable: '--font-heading' });
 
 export const metadata: Metadata = {
   title: 'Goodman Consulting',

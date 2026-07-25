@@ -5,12 +5,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: '#131211',
-        gold: { DEFAULT: '#A87C2E', light: '#C79A4B' },
-        teal: { DEFAULT: '#3D6B66', light: '#5C8B85' },
+        ink: '#201D19',
+        paper: '#FAF6EF',
+        navy: { DEFAULT: '#1E3A5F', dark: '#14283F', light: '#3A587D' },
+        rust: { DEFAULT: '#AE5330', dark: '#93441F', light: '#C97847' },
       },
       fontFamily: {
-        heading: ['var(--font-heading)', 'sans-serif'],
+        heading: ['var(--font-heading)', 'serif'],
       },
     },
   },

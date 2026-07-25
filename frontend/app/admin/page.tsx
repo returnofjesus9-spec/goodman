@@ -239,11 +239,11 @@ export default function AdminPage() {
   }
 
   const inputClass =
-    'w-full rounded-sm border border-stone-300 px-3 py-2 text-sm focus:border-ink focus:outline-none focus:ring-1 focus:ring-gold';
+    'w-full rounded-sm border border-stone-300 px-3 py-2 text-sm focus:border-navy focus:outline-none focus:ring-1 focus:ring-navy';
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-16 md:px-8 lg:px-12">
-      <h1 className="text-3xl font-semibold text-ink">Admin panel</h1>
+      <h1 className="font-heading text-3xl font-semibold text-ink">Admin panel</h1>
 
       {!token ? (
         <div className="mt-8 max-w-sm rounded-lg border border-stone-200 bg-white p-6 space-y-3">
@@ -255,7 +255,7 @@ export default function AdminPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="rounded-sm bg-ink px-5 py-3 text-sm font-semibold text-white" onClick={login}>
+          <button className="rounded-sm bg-navy px-5 py-3 text-sm font-semibold text-white hover:bg-navy-dark" onClick={login}>
             Login
           </button>
           {loginError ? <p className="text-sm text-red-600">{loginError}</p> : null}
@@ -264,7 +264,7 @@ export default function AdminPage() {
         <div className="mt-8 space-y-12">
           {/* Leads */}
           <section>
-            <h2 className="text-xl font-semibold text-ink">Leads</h2>
+            <h2 className="font-heading text-xl font-semibold text-ink">Leads</h2>
             <div className="mt-4 space-y-3">
               {leads.length ? (
                 leads.map((lead) => (
@@ -306,7 +306,7 @@ export default function AdminPage() {
 
           {/* Case studies */}
           <section>
-            <h2 className="text-xl font-semibold text-ink">Case studies</h2>
+            <h2 className="font-heading text-xl font-semibold text-ink">Case studies</h2>
             <form onSubmit={submitCaseStudy} className="mt-4 space-y-2 rounded-sm border border-stone-200 p-4">
               <p className="text-xs font-semibold uppercase tracking-wide text-stone-500">
                 {editingCaseSlug ? `Editing: ${editingCaseSlug}` : 'New case study'}
@@ -342,7 +342,7 @@ export default function AdminPage() {
                 required
               />
               <div className="flex items-center gap-3">
-                <button className="rounded-sm bg-ink px-4 py-2 text-sm font-semibold text-white" type="submit">
+                <button className="rounded-sm bg-navy px-4 py-2 text-sm font-semibold text-white hover:bg-navy-dark" type="submit">
                   {editingCaseSlug ? 'Save changes' : 'Create case study'}
                 </button>
                 {editingCaseSlug ? (
@@ -390,7 +390,7 @@ export default function AdminPage() {
 
           {/* Blog posts */}
           <section>
-            <h2 className="text-xl font-semibold text-ink">Blog posts</h2>
+            <h2 className="font-heading text-xl font-semibold text-ink">Blog posts</h2>
             <form onSubmit={submitBlogPost} className="mt-4 space-y-2 rounded-sm border border-stone-200 p-4">
               <p className="text-xs font-semibold uppercase tracking-wide text-stone-500">
                 {editingBlogSlug ? `Editing: ${editingBlogSlug}` : 'New blog post'}
@@ -426,7 +426,7 @@ export default function AdminPage() {
                 required
               />
               <div className="flex items-center gap-3">
-                <button className="rounded-sm bg-ink px-4 py-2 text-sm font-semibold text-white" type="submit">
+                <button className="rounded-sm bg-navy px-4 py-2 text-sm font-semibold text-white hover:bg-navy-dark" type="submit">
                   {editingBlogSlug ? 'Save changes' : 'Create post'}
                 </button>
                 {editingBlogSlug ? (
@@ -471,7 +471,7 @@ export default function AdminPage() {
 
           {/* Pricing */}
           <section>
-            <h2 className="text-xl font-semibold text-ink">Pricing</h2>
+            <h2 className="font-heading text-xl font-semibold text-ink">Pricing</h2>
             <div className="mt-4 space-y-3">
               {pricing.map((tier) => {
                 const draft = pricingDrafts[tier.id] || tier;
@@ -496,7 +496,7 @@ export default function AdminPage() {
                       }
                     />
                     <button
-                      className="rounded-sm bg-ink px-4 py-2 text-xs font-semibold text-white"
+                      className="rounded-sm bg-navy px-4 py-2 text-xs font-semibold text-white hover:bg-navy-dark"
                       onClick={() => savePricingTier(tier.id)}
                     >
                       Save
@@ -509,7 +509,7 @@ export default function AdminPage() {
 
           {/* Testimonials */}
           <section>
-            <h2 className="text-xl font-semibold text-ink">Testimonials</h2>
+            <h2 className="font-heading text-xl font-semibold text-ink">Testimonials</h2>
             <form onSubmit={submitTestimonial} className="mt-4 space-y-2 rounded-sm border border-stone-200 p-4">
               <p className="text-xs font-semibold uppercase tracking-wide text-stone-500">
                 {editingTestimonialId !== null ? `Editing testimonial #${editingTestimonialId}` : 'New testimonial'}
@@ -536,7 +536,7 @@ export default function AdminPage() {
                 required
               />
               <div className="flex items-center gap-3">
-                <button className="rounded-sm bg-ink px-4 py-2 text-sm font-semibold text-white" type="submit">
+                <button className="rounded-sm bg-navy px-4 py-2 text-sm font-semibold text-white hover:bg-navy-dark" type="submit">
                   {editingTestimonialId !== null ? 'Save changes' : 'Create testimonial'}
                 </button>
                 {editingTestimonialId !== null ? (

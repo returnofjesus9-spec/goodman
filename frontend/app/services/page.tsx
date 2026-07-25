@@ -40,7 +40,7 @@ export default function ServicesPage() {
     <main>
       <section className="mx-auto max-w-6xl px-4 py-16 md:px-8 lg:px-12">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-stone-500">Services</p>
-        <h1 className="mt-3 text-4xl font-semibold text-ink md:text-5xl">What we can build for you</h1>
+        <h1 className="mt-3 font-heading text-4xl font-semibold text-ink md:text-5xl">What we can build for you</h1>
         <p className="mt-4 max-w-2xl text-lg text-stone-600">
           Four focused services, each built to solve a specific problem for small and medium businesses.
         </p>
@@ -49,9 +49,9 @@ export default function ServicesPage() {
           {services.map((service) => (
             <article
               key={service.title}
-              className={`rounded-lg border bg-white p-6 ${service.accent ? 'border-teal/30 border-t-4 border-t-teal' : 'border-stone-200'}`}
+              className={`rounded border bg-white p-6 ${service.accent ? 'border-rust/30 border-t-4 border-t-rust' : 'border-stone-200'}`}
             >
-              <h2 className={`text-xl font-semibold ${service.accent ? 'text-teal' : 'text-ink'}`}>{service.title}</h2>
+              <h2 className={`font-heading text-xl font-semibold ${service.accent ? 'text-rust-dark' : 'text-ink'}`}>{service.title}</h2>
               <p className="mt-2 text-sm text-stone-600">{service.description}</p>
               <ul className="mt-4 space-y-2 text-sm text-stone-600">
                 {service.points.map((point) => (
@@ -66,10 +66,10 @@ export default function ServicesPage() {
         </div>
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <a href="https://wa.me/919777262734" className="rounded-sm bg-ink px-6 py-3 text-center font-semibold text-white">
+          <a href="https://wa.me/919777262734" className="rounded bg-navy px-6 py-3 text-center font-semibold text-white hover:bg-navy-dark">
             Chat on WhatsApp
           </a>
-          <Link href="/pricing" className="rounded-sm border border-stone-300 px-6 py-3 text-center font-semibold text-ink">
+          <Link href="/pricing" className="rounded border border-stone-300 px-6 py-3 text-center font-semibold text-ink hover:border-navy hover:text-navy">
             See pricing
           </Link>
         </div>

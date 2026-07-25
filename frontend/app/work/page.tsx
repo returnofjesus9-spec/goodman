@@ -29,7 +29,7 @@ export default async function WorkIndexPage() {
     <main>
       <section className="mx-auto max-w-6xl px-4 py-16 md:px-8 lg:px-12">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-stone-500">Our work</p>
-        <h1 className="mt-3 text-4xl font-semibold text-ink md:text-5xl">Real projects, real results</h1>
+        <h1 className="mt-3 font-heading text-4xl font-semibold text-ink md:text-5xl">Real projects, real results</h1>
         <p className="mt-4 max-w-2xl text-lg text-stone-600">
           A look at what we've built for small and medium businesses so far.
         </p>
@@ -40,11 +40,11 @@ export default async function WorkIndexPage() {
               <Link
                 key={item.slug}
                 href={`/work/${item.slug}`}
-                className="rounded-lg border border-stone-200 bg-white p-6 transition hover:border-ink"
+                className="rounded border border-stone-200 bg-white p-6 transition hover:border-navy"
               >
-                <h2 className="text-xl font-semibold text-ink">{item.title}</h2>
+                <h2 className="font-heading text-xl font-semibold text-ink">{item.title}</h2>
                 <p className="mt-2 text-sm text-stone-600">{item.summary}</p>
-                <span className="mt-4 inline-flex text-sm font-semibold text-gold">Read case study →</span>
+                <span className="mt-4 inline-flex text-sm font-semibold text-rust-dark">Read case study →</span>
               </Link>
             ))}
           </div>
@@ -56,7 +56,7 @@ export default async function WorkIndexPage() {
         )}
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <a href="https://wa.me/919777262734" className="rounded-sm bg-ink px-6 py-3 text-center font-semibold text-white">
+          <a href="https://wa.me/919777262734" className="rounded bg-navy px-6 py-3 text-center font-semibold text-white hover:bg-navy-dark">
             Chat on WhatsApp
           </a>
         </div>

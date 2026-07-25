@@ -29,7 +29,7 @@ export default async function BlogIndexPage() {
     <main>
       <section className="mx-auto max-w-6xl px-4 py-16 md:px-8 lg:px-12">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-stone-500">Blog</p>
-        <h1 className="mt-3 text-4xl font-semibold text-ink md:text-5xl">Practical guides for growing businesses</h1>
+        <h1 className="mt-3 font-heading text-4xl font-semibold text-ink md:text-5xl">Practical guides for growing businesses</h1>
         <p className="mt-4 max-w-2xl text-lg text-stone-600">
           Straightforward notes on websites, automation, and dashboards — no jargon.
         </p>
@@ -40,11 +40,11 @@ export default async function BlogIndexPage() {
               <Link
                 key={item.slug}
                 href={`/blog/${item.slug}`}
-                className="rounded-lg border border-stone-200 bg-white p-6 transition hover:border-ink"
+                className="rounded border border-stone-200 bg-white p-6 transition hover:border-navy"
               >
-                <h2 className="text-xl font-semibold text-ink">{item.title}</h2>
+                <h2 className="font-heading text-xl font-semibold text-ink">{item.title}</h2>
                 <p className="mt-2 text-sm text-stone-600">{item.summary}</p>
-                <span className="mt-4 inline-flex text-sm font-semibold text-gold">Read article →</span>
+                <span className="mt-4 inline-flex text-sm font-semibold text-rust-dark">Read article →</span>
               </Link>
             ))}
           </div>

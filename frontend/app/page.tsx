@@ -41,11 +41,11 @@ export default async function HomePage() {
     <main>
       <section className="mx-auto flex max-w-6xl flex-col gap-14 px-4 pb-16 pt-16 md:px-8 lg:px-12 md:pt-24">
         <div className="max-w-3xl">
-          <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-stone-500">
-            <span className="h-2 w-2 bg-gold" />
+          <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-rust-dark">
+            <span className="h-2 w-2 bg-rust" />
             Goodman Consulting · Bhubaneswar
           </p>
-          <h1 className="mt-5 text-4xl font-semibold leading-[1.1] text-ink md:text-7xl">
+          <h1 className="mt-5 font-heading text-4xl font-semibold leading-[1.15] text-ink md:text-6xl">
             Practical digital help for growing businesses.
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-stone-600">
@@ -55,31 +55,31 @@ export default async function HomePage() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
               href="https://wa.me/919777262734"
-              className="rounded-sm bg-ink px-6 py-3 text-center font-semibold text-white hover:bg-stone-800"
+              className="rounded bg-navy px-6 py-3 text-center font-semibold text-white hover:bg-navy-dark"
             >
               Chat on WhatsApp
             </a>
-            <Link href="/work" className="rounded-sm border border-stone-300 px-6 py-3 text-center font-semibold text-ink hover:border-ink">
+            <Link href="/work" className="rounded border border-stone-300 px-6 py-3 text-center font-semibold text-ink hover:border-navy hover:text-navy">
               See our work
             </Link>
           </div>
         </div>
 
-        <div className="grid gap-px overflow-hidden rounded-lg border border-stone-200 bg-stone-200 sm:grid-cols-3">
-          <Link href="/services" className="bg-white p-6 transition hover:bg-stone-50">
-            <h2 className="text-lg font-semibold text-ink">Services</h2>
+        <div className="grid gap-px overflow-hidden rounded border border-stone-200 bg-stone-200 sm:grid-cols-3">
+          <Link href="/services" className="bg-white p-6 transition hover:bg-paper">
+            <h2 className="font-heading text-lg font-semibold text-ink">Services</h2>
             <p className="mt-2 text-sm text-stone-600">Websites, automation, dashboards, and custom tools.</p>
-            <span className="mt-4 inline-flex text-sm font-semibold text-gold">Explore services →</span>
+            <span className="mt-4 inline-flex text-sm font-semibold text-rust-dark">Explore services →</span>
           </Link>
-          <Link href="/pricing" className="bg-white p-6 transition hover:bg-stone-50">
-            <h2 className="text-lg font-semibold text-ink">Pricing</h2>
+          <Link href="/pricing" className="bg-white p-6 transition hover:bg-paper">
+            <h2 className="font-heading text-lg font-semibold text-ink">Pricing</h2>
             <p className="mt-2 text-sm text-stone-600">Simple packages that fit wherever your business is at.</p>
-            <span className="mt-4 inline-flex text-sm font-semibold text-gold">See packages →</span>
+            <span className="mt-4 inline-flex text-sm font-semibold text-rust-dark">See packages →</span>
           </Link>
-          <Link href="/work" className="bg-white p-6 transition hover:bg-stone-50">
-            <h2 className="text-lg font-semibold text-ink">Our work</h2>
+          <Link href="/work" className="bg-white p-6 transition hover:bg-paper">
+            <h2 className="font-heading text-lg font-semibold text-ink">Our work</h2>
             <p className="mt-2 text-sm text-stone-600">Real projects for real businesses — see the results.</p>
-            <span className="mt-4 inline-flex text-sm font-semibold text-gold">View case studies →</span>
+            <span className="mt-4 inline-flex text-sm font-semibold text-rust-dark">View case studies →</span>
           </Link>
         </div>
 
@@ -91,11 +91,11 @@ export default async function HomePage() {
                 <Link
                   key={item.slug}
                   href={`/work/${item.slug}`}
-                  className="rounded-lg border border-stone-200 bg-white p-6 transition hover:border-ink"
+                  className="rounded border border-stone-200 bg-white p-6 transition hover:border-navy"
                 >
-                  <h3 className="text-xl font-semibold text-ink">{item.title}</h3>
+                  <h3 className="font-heading text-xl font-semibold text-ink">{item.title}</h3>
                   <p className="mt-2 text-sm text-stone-600">{item.summary}</p>
-                  <span className="mt-4 inline-flex text-sm font-semibold text-gold">Read case study →</span>
+                  <span className="mt-4 inline-flex text-sm font-semibold text-rust-dark">Read case study →</span>
                 </Link>
               ))}
             </div>
@@ -105,7 +105,7 @@ export default async function HomePage() {
         <div className="flex flex-col gap-3 border-t border-stone-200 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-stone-500">Trusted by small businesses</p>
-            <p className="mt-2 text-lg text-ink">Registered MSME · UDYAM-OD-19-0172402</p>
+            <p className="mt-2 font-heading text-lg text-ink">Registered MSME · UDYAM-OD-19-0172402</p>
           </div>
           <p className="text-sm text-stone-600">Clear pricing · Direct communication · No agency overhead</p>
         </div>

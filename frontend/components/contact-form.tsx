@@ -3,6 +3,8 @@
 import { FormEvent, useState } from 'react';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const inputClass =
+  'mt-2 w-full rounded border border-stone-300 bg-white px-3 py-2 focus:border-navy focus:outline-none focus:ring-1 focus:ring-navy';
 
 export default function ContactForm() {
   const [status, setStatus] = useState('');
@@ -37,24 +39,24 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-lg border border-stone-200 bg-white p-8">
+    <form onSubmit={handleSubmit} className="rounded border border-stone-200 bg-white p-8">
       <label className="block text-sm font-semibold text-ink">Your name</label>
-      <input className="mt-2 w-full rounded-sm border border-stone-300 px-3 py-2 focus:border-ink focus:outline-none focus:ring-1 focus:ring-gold" name="contact_name" />
+      <input className={inputClass} name="contact_name" />
       <label className="mt-4 block text-sm font-semibold text-ink">Business name</label>
-      <input className="mt-2 w-full rounded-sm border border-stone-300 px-3 py-2 focus:border-ink focus:outline-none focus:ring-1 focus:ring-gold" name="business_name" />
+      <input className={inputClass} name="business_name" />
       <label className="mt-4 block text-sm font-semibold text-ink">Business type</label>
-      <input className="mt-2 w-full rounded-sm border border-stone-300 px-3 py-2 focus:border-ink focus:outline-none focus:ring-1 focus:ring-gold" name="business_type" placeholder="e.g. gym, boutique, clinic" />
+      <input className={inputClass} name="business_type" placeholder="e.g. gym, boutique, clinic" />
       <label className="mt-4 block text-sm font-semibold text-ink">Service interest</label>
-      <input className="mt-2 w-full rounded-sm border border-stone-300 px-3 py-2 focus:border-ink focus:outline-none focus:ring-1 focus:ring-gold" name="service_interest" />
+      <input className={inputClass} name="service_interest" />
       <label className="mt-4 block text-sm font-semibold text-ink">Budget range</label>
-      <input className="mt-2 w-full rounded-sm border border-stone-300 px-3 py-2 focus:border-ink focus:outline-none focus:ring-1 focus:ring-gold" name="budget_range" />
+      <input className={inputClass} name="budget_range" />
       <label className="mt-4 block text-sm font-semibold text-ink">Contact email</label>
-      <input className="mt-2 w-full rounded-sm border border-stone-300 px-3 py-2 focus:border-ink focus:outline-none focus:ring-1 focus:ring-gold" name="contact_email" type="email" />
+      <input className={inputClass} name="contact_email" type="email" />
       <label className="mt-4 block text-sm font-semibold text-ink">Phone / WhatsApp</label>
-      <input className="mt-2 w-full rounded-sm border border-stone-300 px-3 py-2 focus:border-ink focus:outline-none focus:ring-1 focus:ring-gold" name="contact_phone" />
+      <input className={inputClass} name="contact_phone" />
       <label className="mt-4 block text-sm font-semibold text-ink">Message</label>
-      <textarea className="mt-2 w-full rounded-sm border border-stone-300 px-3 py-2 focus:border-ink focus:outline-none focus:ring-1 focus:ring-gold" name="message" rows={4} />
-      <button disabled={isSubmitting} className="mt-6 rounded-sm bg-ink px-5 py-3 text-sm font-semibold text-white disabled:opacity-60">
+      <textarea className={inputClass} name="message" rows={4} />
+      <button disabled={isSubmitting} className="mt-6 rounded bg-navy px-5 py-3 text-sm font-semibold text-white hover:bg-navy-dark disabled:opacity-60">
         {isSubmitting ? 'Sending…' : 'Send request'}
       </button>
       {status ? <p className="mt-4 text-sm text-stone-600">{status}</p> : null}
