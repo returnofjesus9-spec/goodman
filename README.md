@@ -1,57 +1,51 @@
 # Goodman Consulting
 
-## Architecture
+Marketing site + admin panel for Goodman Consulting (Bhubaneswar). Next.js frontend, FastAPI backend, PostgreSQL.
 
-This project uses a split deployment model because Cloudflare Pages/Workers does not provide a practical production hosting path for a FastAPI + PostgreSQL backend.
+## Stack
 
-- Frontend: Next.js on Cloudflare Pages
-- Backend: FastAPI on Railway, Render, or Fly.io
-- Database: PostgreSQL
+- **Frontend** — Next.js (App Router), Tailwind, Framer Motion → deployed on Cloudflare Pages
+- **Backend** — FastAPI, SQLAlchemy, Alembic → deployed on Railway / Render / Fly.io
+- **Database** — PostgreSQL
+
+Frontend and backend are split because Cloudflare Pages/Workers has no practical hosting path for FastAPI + Postgres.
+
+## Structure
+
+```
+frontend/   Next.js app — pages, components, styles
+backend/    FastAPI app — routes, models, migrations
+render.yaml Backend deploy config
+```
 
 ## Backend
 
-### Setup
-
 ```bash
 cd backend
-python -m venv .venv
-source .venv/bin/activate
+python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env
-```
-
-### Run locally
-
-```bash
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-```
-
-### Migrations
-
-```bash
+cp .env.example .env        # set DATABASE_URL, JWT_SECRET, ALLOWED_ORIGINS
 alembic upgrade head
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 ## Frontend
 
-### Setup
-
 ```bash
 cd frontend
 npm install
-cp .env.example .env.local
+cp .env.example .env.local  # set NEXT_PUBLIC_API_URL
 npm run dev
 ```
 
-### Deploy
-
-- Deploy the frontend to Cloudflare Pages from the frontend folder.
-- Deploy the backend to Railway, Render, or Fly.io and set the database URL and JWT secret in the platform environment.
-
 ## Admin panel
 
-Use the admin login at /admin with the admin email and password you configured on the backend.
+`/admin` — manages case studies, blog posts, pricing, and testimonials.
 
-On first run, the backend seeds one admin account using the `ADMIN_INITIAL_EMAIL` and `ADMIN_INITIAL_PASSWORD` environment variables (set these to your own values before first deploy — there is no built-in default password). Change the password after first login if you ever used a temporary value.
+First run seeds one admin account from `ADMIN_INITIAL_EMAIL` / `ADMIN_INITIAL_PASSWORD` (backend env vars). Change the password after first login.
 
-Update case studies, blog posts, and pricing from the admin panel once the backend is running.
+## Deploy
+
+- **Frontend** → Cloudflare Pages, build from `frontend/`
+- **Backend** → Railway / Render / Fly.io, with `DATABASE_URL` and `JWT_SECRET` set in the platform environment
+- Run `alembic upgrade head` against the production database before first deploy
