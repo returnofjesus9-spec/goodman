@@ -1,5 +1,6 @@
 import SiteFooter from '@/components/site-footer';
-import { Reveal, RevealGroup, RevealItem } from '@/components/motion';
+import SceneGrid from '@/components/scene-grid';
+import { Magnetic, Reveal, RevealGroup, RevealItem, TextReveal } from '@/components/motion';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -7,52 +8,86 @@ export const metadata: Metadata = {
   description: 'Simple, clear packages for websites, automation, and dashboards.',
 };
 
+type Tier = {
+  id: number;
+  name: string;
+  description: string;
+  price: string;
+};
+
 export default async function PricingPage() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
   const res = await fetch(`${apiUrl}/api/pricing`, { cache: 'no-store' });
-  const pricing = res.ok ? await res.json() : [];
+  const pricing: Tier[] = res.ok ? await res.json() : [];
 
   return (
     <main>
-      <section className="relative overflow-hidden px-4 py-28 md:px-8 lg:px-12">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-radial-fade" />
+      {/* SCENE 01 — HERO */}
+      <section className="relative overflow-hidden px-4 py-32 md:px-8 lg:px-12">
+        <SceneGrid className="opacity-40" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[480px] bg-radial-fade" />
         <div className="relative mx-auto max-w-6xl">
           <Reveal>
             <p className="label text-accent-light">Simple packages</p>
-            <h1 className="mt-4 max-w-2xl text-display-sm font-semibold text-ink text-balance">
-              Choose a package that fits your stage
-            </h1>
-            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink-secondary">
+          </Reveal>
+          <h1 className="mt-6 max-w-2xl text-display-lg font-semibold text-ink text-balance">
+            <TextReveal text="Choose a package that fits your stage." />
+          </h1>
+          <Reveal delay={0.35}>
+            <p className="mt-8 max-w-lg text-lg leading-relaxed text-ink-secondary">
               No hidden fees, no confusing tiers — just clear pricing based on what your business
               needs right now.
             </p>
           </Reveal>
+        </div>
+      </section>
 
+      {/* SCENE 02 — PACKAGES */}
+      <section className="relative border-t border-line px-4 py-24 md:px-8 lg:px-12">
+        <div className="mx-auto max-w-6xl">
           {pricing.length ? (
-            <RevealGroup className="mt-14 grid gap-6 md:grid-cols-3">
-              {pricing.map((tier: any) => (
+            <RevealGroup className="grid gap-px overflow-hidden rounded-sm border border-line bg-line md:grid-cols-3">
+              {pricing.map((tier) => (
                 <RevealItem key={tier.id}>
-                  <article className="flex h-full flex-col rounded-sm border border-line bg-bg-surface p-7">
-                    <h2 className="font-sans text-xl font-semibold text-ink">{tier.name}</h2>
+                  <article className="flex h-full flex-col bg-bg-surface p-8 md:p-10">
+                    <h2 className="text-lg font-semibold text-ink">{tier.name}</h2>
                     <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-secondary">{tier.description}</p>
-                    <p className="mt-6 font-mono text-3xl font-semibold text-ink">{tier.price}</p>
-                    <a
-                      href="https://wa.me/919777262734"
-                      className="mt-6 inline-flex justify-center rounded-sm bg-accent px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent-dark"
-                    >
-                      Get a quote
-                    </a>
+                    <p className="mt-10 font-mono text-display-sm font-semibold text-ink">{tier.price}</p>
+                    <Magnetic className="mt-7">
+                      <a
+                        href="https://wa.me/919777262734"
+                        className="block rounded-sm border border-line px-5 py-3 text-center text-sm font-semibold text-ink transition-colors hover:border-accent hover:text-accent-light"
+                      >
+                        Get a quote
+                      </a>
+                    </Magnetic>
                   </article>
                 </RevealItem>
               ))}
             </RevealGroup>
           ) : (
-            <p className="mt-14 text-ink-secondary">
-              Pricing details are being updated — message us on WhatsApp and we will share current
-              packages directly.
-            </p>
+            <Reveal>
+              <div className="border-t border-b border-line py-16">
+                <p className="max-w-md text-lg leading-relaxed text-ink-secondary">
+                  Pricing details are being updated — message us on WhatsApp and we&rsquo;ll share
+                  current packages directly.
+                </p>
+              </div>
+            </Reveal>
           )}
         </div>
+      </section>
+
+      {/* SCENE 03 — TRUST NOTE */}
+      <section className="relative border-t border-line px-4 py-20 md:px-8 lg:px-12">
+        <Reveal>
+          <div className="mx-auto flex max-w-6xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p className="max-w-md text-sm text-ink-secondary">
+              Every package is billed directly and in the open — no retainers you didn&rsquo;t agree to.
+            </p>
+            <p className="label text-ink-muted">Registered MSME · UDYAM-OD-19-0172402</p>
+          </div>
+        </Reveal>
       </section>
 
       <SiteFooter />

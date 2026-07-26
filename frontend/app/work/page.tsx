@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import SiteFooter from '@/components/site-footer';
-import { Reveal, RevealGroup, RevealItem } from '@/components/motion';
+import SceneGrid from '@/components/scene-grid';
+import { Reveal, TextReveal } from '@/components/motion';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -28,54 +29,75 @@ export default async function WorkIndexPage() {
 
   return (
     <main>
-      <section className="relative overflow-hidden px-4 py-28 md:px-8 lg:px-12">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-radial-fade" />
+      {/* SCENE 01 — HERO */}
+      <section className="relative overflow-hidden px-4 py-32 md:px-8 lg:px-12">
+        <SceneGrid className="opacity-40" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[480px] bg-radial-fade" />
         <div className="relative mx-auto max-w-6xl">
           <Reveal>
             <p className="label text-accent-light">Our work</p>
-            <h1 className="mt-4 max-w-2xl text-display-sm font-semibold text-ink text-balance">
-              Real projects, real results
-            </h1>
-            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink-secondary">
-              A look at what we&apos;ve built for small and medium businesses so far.
+          </Reveal>
+          <h1 className="mt-6 max-w-3xl text-display-lg font-semibold text-ink">
+            <TextReveal text="Real projects, real results." />
+          </h1>
+          <Reveal delay={0.35}>
+            <p className="mt-8 max-w-lg text-lg leading-relaxed text-ink-secondary">
+              A look at what we&rsquo;ve built for small and medium businesses so far.
             </p>
           </Reveal>
+        </div>
+      </section>
 
+      {/* SCENE 02 — CASE STUDIES (editorial numbered rows) */}
+      <section className="relative border-t border-line px-4 py-4 md:px-8 lg:px-12">
+        <div className="mx-auto max-w-6xl">
           {items.length ? (
-            <RevealGroup className="mt-14 grid gap-6 md:grid-cols-2">
-              {items.map((item) => (
-                <RevealItem key={item.slug}>
+            <div className="flex flex-col">
+              {items.map((item, i) => (
+                <Reveal key={item.slug}>
                   <Link
                     href={`/work/${item.slug}`}
-                    className="group block h-full rounded-sm border border-line bg-bg-surface p-8 transition-colors duration-300 hover:border-accent/40"
+                    className="group grid items-center gap-6 border-t border-line py-12 transition-colors last:border-b hover:bg-bg-surface/40 md:grid-cols-[auto_1fr_auto]"
                   >
-                    <h2 className="font-sans text-xl font-semibold text-ink">{item.title}</h2>
-                    <p className="mt-3 text-sm leading-relaxed text-ink-secondary">{item.summary}</p>
-                    <span className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-accent-light">
+                    <span className="font-mono text-sm text-ink-muted">{String(i + 1).padStart(2, '0')}</span>
+                    <div>
+                      <h2 className="text-2xl font-semibold text-ink transition-colors group-hover:text-accent-light md:text-3xl">
+                        {item.title}
+                      </h2>
+                      <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink-secondary">{item.summary}</p>
+                    </div>
+                    <span className="hidden text-sm font-semibold text-accent-light opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:inline-flex">
                       Read case study →
                     </span>
                   </Link>
-                </RevealItem>
+                </Reveal>
               ))}
-            </RevealGroup>
-          ) : (
-            <p className="mt-14 text-ink-secondary">
-              Our first project is wrapping up — check back this month. In the meantime, message us
-              on WhatsApp and we&apos;ll walk you through it directly.
-            </p>
-          )}
-
-          <Reveal delay={0.15}>
-            <div className="mt-12 flex flex-col gap-3 sm:flex-row">
-              <a
-                href="https://wa.me/919777262734"
-                className="rounded-sm bg-accent px-6 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-accent-dark"
-              >
-                Chat on WhatsApp
-              </a>
             </div>
-          </Reveal>
+          ) : (
+            <Reveal>
+              <div className="border-t border-b border-line py-16">
+                <p className="max-w-md text-lg leading-relaxed text-ink-secondary">
+                  Our first project is wrapping up — check back this month. In the meantime, message
+                  us on WhatsApp and we&rsquo;ll walk you through it directly.
+                </p>
+              </div>
+            </Reveal>
+          )}
         </div>
+      </section>
+
+      {/* SCENE 03 — CTA */}
+      <section className="relative border-t border-line px-4 py-28 md:px-8 lg:px-12">
+        <Reveal>
+          <div className="mx-auto max-w-6xl text-center">
+            <a
+              href="https://wa.me/919777262734"
+              className="inline-block rounded-sm bg-accent px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-accent-dark"
+            >
+              Chat on WhatsApp
+            </a>
+          </div>
+        </Reveal>
       </section>
 
       <SiteFooter />

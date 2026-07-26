@@ -222,8 +222,18 @@ export function ClipReveal({
 }
 
 /** Traces an SVG path stroke-on as it scrolls into view — for schematic/architecture diagrams. */
-export function DrawPath(props: React.SVGProps<SVGPathElement> & { delay?: number }) {
-  const { delay = 0, ...rest } = props;
+type DrawPathProps = {
+  d: string;
+  delay?: number;
+  fill?: string;
+  stroke?: string;
+  strokeWidth?: number;
+  strokeLinecap?: 'butt' | 'round' | 'square';
+  strokeLinejoin?: 'miter' | 'round' | 'bevel';
+  className?: string;
+};
+
+export function DrawPath({ delay = 0, ...rest }: DrawPathProps) {
   const ref = useRef<SVGPathElement>(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
   return (
