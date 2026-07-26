@@ -48,7 +48,7 @@ export default async function PricingPage() {
         <div className="mx-auto max-w-6xl">
           {pricing.length ? (
             <>
-              <Reveal className="mx-auto mb-16 max-w-xl">
+              <Reveal className="mx-auto mb-24 max-w-2xl">
                 <TierScale tiers={pricing.map((t) => ({ name: t.name }))} />
               </Reveal>
               <RevealGroup className="grid gap-px overflow-hidden rounded-sm border border-line bg-line md:grid-cols-3">

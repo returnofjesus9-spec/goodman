@@ -18,7 +18,13 @@
    of graph paper. */
 body {
   @apply bg-bg text-ink antialiased;
-  background-image: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(79, 127, 255, 0.12), transparent 60%);
+  /* Two soft washes rather than one: a cool light from the top (unchanged)
+     plus a faint warmer glow low on the page, so the base tone itself drifts
+     gently across the scroll instead of sitting as one flat black field
+     under whatever the per-section SceneGrid contributes. Both are subtle by
+     design — this is air behind the content, not a visible gradient. */
+  background-image: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(79, 127, 255, 0.12), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 85% 120%, rgba(79, 127, 255, 0.05), transparent 65%);
   background-size: 100% 100%;
   background-attachment: fixed;
 }

@@ -27,8 +27,9 @@ export default function AboutPage() {
       </section>
 
       {/* SCENE 02 — STORY (editorial column with a running marginal note) */}
-      <section className="relative border-t border-line px-4 py-24 md:px-8 lg:px-12">
-        <div className="mx-auto grid max-w-3xl gap-10 md:grid-cols-[auto_1fr] md:gap-16">
+      <section className="relative overflow-hidden border-t border-line px-4 py-28 md:px-8 lg:px-12">
+        <div className="pointer-events-none absolute inset-0 bg-radial-fade-sm opacity-30" />
+        <div className="relative mx-auto grid max-w-3xl gap-10 md:grid-cols-[auto_1fr] md:gap-16">
           <Parallax range={20} className="hidden flex-col gap-2 font-mono text-xs text-ink-muted md:flex">
             <span>§01</span>
             <span className="text-ink-muted/60">Who we are</span>
@@ -47,7 +48,7 @@ export default function AboutPage() {
                 how your business actually runs day to day.
               </p>
             </Reveal>
-            <Reveal delay={0.18} className="pt-4">
+            <Reveal delay={0.18} className="pt-6">
               <StageFlow stages={['You message us', 'We reply directly', 'Work ships weekly', 'You watch it launch']} />
             </Reveal>
           </div>

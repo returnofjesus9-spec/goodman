@@ -20,7 +20,7 @@ export default function StageFlow({ stages }: { stages: string[] }) {
           className="flex items-center"
         >
           <span className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rotate-45 border border-accent-light/80 bg-accent-dim" aria-hidden />
+            <span className="h-1.5 w-1.5 rotate-45 border border-accent-light/80 bg-accent-dim animate-node-blink" aria-hidden />
             <span className="label whitespace-nowrap text-ink-muted">{stage}</span>
           </span>
           {i < stages.length - 1 && (

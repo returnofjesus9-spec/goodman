@@ -248,6 +248,26 @@ export function DrawPath({ delay = 0, ...rest }: DrawPathProps) {
 }
 
 /**
+ * Tracks how far a diagram has scrolled through a fixed "reading window" of the
+ * viewport (from just entering at the bottom to settled a quarter of the way
+ * down) and returns that as a 0→1 MotionValue. This is the shared clock every
+ * technical diagram on the site reads from: connectors, node illumination, and
+ * signal travel all derive their state from the same value, so a diagram
+ * assembles in step with the reader's scroll instead of auto-playing once on
+ * entry. Unlike ScrollScene, nothing is pinned — the diagram just scrolls
+ * normally while quietly finishing its assembly as it passes through view.
+ */
+export function useDiagramProgress<T extends HTMLElement | SVGSVGElement>() {
+  const ref = useRef<T>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref as unknown as React.RefObject<HTMLElement>,
+    offset: ['start 0.92', 'start 0.3'],
+  });
+  const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 24, mass: 0.4 });
+  return { ref, progress };
+}
+
+/**
  * Pins its content in the viewport while the user scrolls through a tall track,
  * and reports 0→1 progress through that track — the base for sticky, scroll-driven scenes.
  */

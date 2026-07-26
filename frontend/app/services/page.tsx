@@ -54,7 +54,7 @@ export default function ServicesPage() {
       <section className="relative overflow-hidden px-4 py-32 md:px-8 lg:px-12">
         <SceneGrid className="opacity-40" density="regular" fade="bottom" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[480px] bg-radial-fade" />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="relative mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <div>
             <Reveal>
               <p className="label text-accent-light">Services · 04</p>

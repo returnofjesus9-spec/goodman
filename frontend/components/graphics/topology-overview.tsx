@@ -1,6 +1,7 @@
 'use client';
 
-import { DrawPath } from '@/components/motion';
+import { useDiagramProgress } from '@/components/motion';
+import { ScrollConnector, ScrollNode } from '@/components/graphics/motifs';
 import BlueprintFrame from '@/components/graphics/blueprint-frame';
 
 const width = 460;
@@ -26,10 +27,18 @@ const edges: [string, string][] = [
 ];
 
 export default function TopologyOverview() {
+  const { ref, progress } = useDiagramProgress<SVGSVGElement>();
   const byKey = Object.fromEntries(nodes.map((n) => [n.key, n]));
+
+  // Edges draw in sequence, each claiming a slice of the first 70% of scroll;
+  // a node lights up once every edge touching it has landed, so the four
+  // capabilities visibly "connect" to each other rather than fading in as a
+  // group.
+  const edgeSpan = 0.68 / edges.length;
 
   return (
     <svg
+      ref={ref}
       viewBox={`0 0 ${width} ${height}`}
       className="mx-auto h-auto w-full max-w-md"
       role="img"
@@ -37,42 +46,52 @@ export default function TopologyOverview() {
     >
       <BlueprintFrame width={width} height={height} tickStep={36} caption="Capability mesh" figNumber="00" />
 
-      {edges.map(([a, b], i) => (
-        <DrawPath
-          key={`${a}-${b}`}
-          d={`M ${byKey[a].x} ${byKey[a].y} L ${byKey[b].x} ${byKey[b].y}`}
-          stroke="rgba(140,169,255,0.28)"
-          strokeWidth={1}
-          strokeLinecap="round"
-          delay={0.1 + i * 0.06}
-        />
-      ))}
-
-      {nodes.map((n, i) => (
-        <g key={n.key}>
-          <circle
-            cx={n.x}
-            cy={n.y}
-            r={7}
-            fill="rgba(17,17,17,0.95)"
-            stroke="rgba(140,169,255,0.8)"
-            strokeWidth={1.4}
-            className="animate-node-blink"
-            style={{ animationDelay: `${i * 0.5}s` }}
+      {edges.map(([a, b], i) => {
+        const start = i * edgeSpan;
+        const end = start + edgeSpan * 0.85;
+        return (
+          <ScrollConnector
+            key={`${a}-${b}`}
+            progress={progress}
+            start={start}
+            end={end}
+            d={`M ${byKey[a].x} ${byKey[a].y} L ${byKey[b].x} ${byKey[b].y}`}
+            stroke="rgba(140,169,255,0.3)"
           />
-          <text
-            x={n.x}
-            y={n.y + (n.y < height / 2 ? -16 : 24)}
-            textAnchor="middle"
-            fill="#FFFFFF"
-            fontSize="11.5"
-            fontWeight={600}
-            fontFamily="var(--font-sans)"
-          >
-            {n.label}
-          </text>
-        </g>
-      ))}
+        );
+      })}
+
+      {nodes.map((n) => {
+        const touching = edges
+          .map((e, i) => (e.includes(n.key) ? i : -1))
+          .filter((i) => i >= 0);
+        const lastEdge = Math.max(...touching);
+        const at = lastEdge * edgeSpan + edgeSpan * 0.85;
+        return (
+          <ScrollNode key={n.key} progress={progress} at={at} x={n.x} y={n.y}>
+            <circle
+              cx={n.x}
+              cy={n.y}
+              r={7}
+              fill="rgba(17,17,17,0.95)"
+              stroke="rgba(140,169,255,0.8)"
+              strokeWidth={1.4}
+              className="animate-node-blink"
+            />
+            <text
+              x={n.x}
+              y={n.y + (n.y < height / 2 ? -16 : 24)}
+              textAnchor="middle"
+              fill="#FFFFFF"
+              fontSize="11.5"
+              fontWeight={600}
+              fontFamily="var(--font-sans)"
+            >
+              {n.label}
+            </text>
+          </ScrollNode>
+        );
+      })}
     </svg>
   );
 }

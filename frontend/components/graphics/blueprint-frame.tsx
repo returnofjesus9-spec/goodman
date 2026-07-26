@@ -37,7 +37,7 @@ export default function BlueprintFrame({
           x2={i * tickStep}
           y1={0}
           y2={height}
-          stroke="rgba(255,255,255,0.03)"
+          stroke="rgba(255,255,255,0.045)"
           strokeWidth={1}
         />
       ))}
@@ -48,7 +48,7 @@ export default function BlueprintFrame({
           x2={width}
           y1={i * tickStep}
           y2={i * tickStep}
-          stroke="rgba(255,255,255,0.03)"
+          stroke="rgba(255,255,255,0.045)"
           strokeWidth={1}
         />
       ))}

@@ -174,8 +174,12 @@ export default async function HomePage() {
       </section>
 
       {/* SCENE 02 — MISSION (centered statement) */}
-      <section className="relative border-t border-line px-4 py-20 md:px-8 lg:px-12">
-        <div className="mx-auto max-w-3xl text-center">
+      {/* Deliberately no grid here — this is the "airy" beat between the
+          textured hero and the architectural diagram section below, just a
+          faint glow so the page doesn't read as a hard cut to flat black. */}
+      <section className="relative overflow-hidden border-t border-line px-4 py-20 md:px-8 lg:px-12">
+        <div className="pointer-events-none absolute inset-0 bg-radial-fade-sm opacity-40" />
+        <div className="relative mx-auto max-w-3xl text-center">
           <Reveal>
             <p className="label text-accent-light">Philosophy</p>
           </Reveal>
@@ -205,28 +209,33 @@ export default async function HomePage() {
       </section>
 
       {/* SCENE 04 — INTERACTIVE VISUAL (architecture) */}
-      <section className="relative border-t border-line px-4 py-28 md:px-8 lg:px-12">
-        <div className="mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-2">
+      {/* The diagram is the compositional anchor of this section, not a
+          side-by-side companion to the text — it gets its own wide measure,
+          generous top/bottom air, and a soft sparse grid + light wash so it
+          reads as a real instrument panel rather than a figure squeezed
+          beside a paragraph. */}
+      <section className="relative overflow-hidden border-t border-line px-4 py-32 md:px-8 lg:px-12 lg:py-40">
+        <SceneGrid className="opacity-25" density="sparse" fade="both" />
+        <div className="mx-auto max-w-3xl text-center">
           <Reveal>
             <p className="label text-accent-light">How it connects</p>
-            <h2 className="mt-4 max-w-md text-display-sm font-semibold text-ink">
-              One operating core. Four ways in.
-            </h2>
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-ink-secondary">
+            <h2 className="mt-4 text-display-sm font-semibold text-ink">One operating core. Four ways in.</h2>
+            <p className="mx-auto mt-6 max-w-lg text-sm leading-relaxed text-ink-secondary">
               Each system we build feeds the same place — your business. A website that brings people
               in, automation that follows up without you, a dashboard that shows what&rsquo;s working,
               and custom tools where the rest doesn&rsquo;t fit. Separate pieces, one picture.
             </p>
           </Reveal>
-          <Reveal delay={0.15}>
-            <ArchitectureDiagram />
-          </Reveal>
+        </div>
+        <div className="relative mx-auto mt-20 max-w-4xl">
+          <ArchitectureDiagram />
         </div>
       </section>
 
       {/* SCENE 05 — CAPABILITIES (alternating full-width rows) */}
-      <section className="relative border-t border-line px-4 py-24 md:px-8 lg:px-12">
-        <div className="mx-auto max-w-6xl">
+      <section className="relative overflow-hidden border-t border-line px-4 py-24 md:px-8 lg:px-12">
+        <SceneGrid className="opacity-20" density="sparse" fade="both" scanline={false} />
+        <div className="relative mx-auto max-w-6xl">
           <Reveal>
             <p className="label text-accent-light">Capabilities</p>
             <h2 className="mt-4 max-w-2xl text-display-sm font-semibold text-ink">
@@ -288,7 +297,7 @@ export default async function HomePage() {
       </section>
 
       {/* SCENE 07 — PROCESS TIMELINE */}
-      <section className="relative border-t border-line px-4 py-24 md:px-8 lg:px-12">
+      <section className="relative border-t border-line px-4 py-28 md:px-8 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <p className="label text-accent-light">How we work</p>
@@ -297,11 +306,11 @@ export default async function HomePage() {
             </h2>
           </Reveal>
 
-          <Reveal delay={0.1} className="mt-14 hidden md:block">
+          <div className="mt-20 hidden md:block">
             <ProcessPipeline steps={processSteps.map(({ index, title }) => ({ index, title }))} />
-          </Reveal>
+          </div>
 
-          <RevealGroup className="relative mt-14 grid gap-10 border-t border-line pt-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-line lg:border-t-0 lg:pt-0 md:mt-6">
+          <RevealGroup className="relative mt-20 grid gap-10 border-t border-line pt-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-line lg:border-t-0 lg:pt-0 md:mt-10">
             {processSteps.map((step) => (
               <RevealItem key={step.index} className="lg:px-8 lg:first:pl-0 lg:last:pr-0">
                 <span className="font-mono text-xs text-accent-light">{step.index}</span>
