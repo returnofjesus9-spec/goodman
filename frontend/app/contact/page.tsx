@@ -1,6 +1,7 @@
 import ContactForm from '@/components/contact-form';
 import SiteFooter from '@/components/site-footer';
-import { Reveal } from '@/components/motion';
+import SceneGrid from '@/components/scene-grid';
+import { Reveal, TextReveal } from '@/components/motion';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -8,35 +9,64 @@ export const metadata: Metadata = {
   description: 'Get in touch about your next website, automation, or dashboard project.',
 };
 
+const channels = [
+  { label: 'WhatsApp', value: '+91 97772 62734', href: 'https://wa.me/919777262734' },
+  { label: 'Call', value: '+91 97772 62734', href: 'tel:+919777262734' },
+  { label: 'Email', value: 'help@goodmanconsulting.in', href: 'mailto:help@goodmanconsulting.in' },
+];
+
 export default function ContactPage() {
   return (
     <main>
-      <section className="relative overflow-hidden px-4 py-28 md:px-8 lg:px-12">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-radial-fade" />
+      {/* SCENE 01 — HERO */}
+      <section className="relative overflow-hidden px-4 py-32 md:px-8 lg:px-12">
+        <SceneGrid className="opacity-40" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[480px] bg-radial-fade" />
         <div className="relative mx-auto max-w-6xl">
-          <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-            <Reveal>
-              <div className="rounded-sm border border-line bg-bg-surface p-8">
-                <p className="label text-accent-light">Contact</p>
-                <h1 className="mt-4 text-display-sm font-semibold text-ink">Talk to us about your next project</h1>
-                <p className="mt-5 text-ink-secondary">Call or WhatsApp us directly for a quick conversation.</p>
-                <div className="mt-7 space-y-3 text-sm">
-                  <a href="https://wa.me/919777262734" className="block font-semibold text-ink transition-colors hover:text-accent-light">
-                    WhatsApp: +91 97772 62734
+          <Reveal>
+            <p className="label text-accent-light">Contact</p>
+          </Reveal>
+          <h1 className="mt-6 max-w-2xl text-display-lg font-semibold text-ink text-balance">
+            <TextReveal text="Talk to us about your next project." />
+          </h1>
+          <Reveal delay={0.35}>
+            <p className="mt-8 max-w-lg text-lg leading-relaxed text-ink-secondary">
+              Call or WhatsApp us directly for a quick conversation, or send the details below and
+              we&rsquo;ll reply the same way.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* SCENE 02 — CHANNELS + FORM (split, not two stacked cards) */}
+      <section className="relative border-t border-line px-4 py-24 md:px-8 lg:px-12">
+        <div className="mx-auto grid max-w-6xl gap-16 lg:grid-cols-[0.85fr_1.15fr]">
+          <Reveal>
+            <div>
+              <p className="label text-ink-muted">Direct lines</p>
+              <div className="mt-8 flex flex-col">
+                {channels.map((channel) => (
+                  <a
+                    key={channel.label}
+                    href={channel.href}
+                    className="group flex items-baseline justify-between gap-4 border-t border-line py-6 last:border-b transition-colors hover:text-accent-light"
+                  >
+                    <span className="label text-ink-muted group-hover:text-accent-light">{channel.label}</span>
+                    <span className="text-lg font-semibold text-ink transition-colors group-hover:text-accent-light">
+                      {channel.value}
+                    </span>
                   </a>
-                  <a href="tel:+919777262734" className="block font-semibold text-ink transition-colors hover:text-accent-light">
-                    Call: +91 97772 62734
-                  </a>
-                  <a href="mailto:help@goodmanconsulting.in" className="block font-semibold text-ink transition-colors hover:text-accent-light">
-                    Email: help@goodmanconsulting.in
-                  </a>
-                </div>
+                ))}
               </div>
-            </Reveal>
-            <Reveal delay={0.15}>
-              <ContactForm />
-            </Reveal>
-          </div>
+              <p className="mt-10 max-w-sm text-sm leading-relaxed text-ink-secondary">
+                Messages go straight to the person doing the work — no account manager in between.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.15}>
+            <ContactForm />
+          </Reveal>
         </div>
       </section>
 
