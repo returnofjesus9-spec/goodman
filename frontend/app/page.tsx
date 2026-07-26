@@ -65,7 +65,7 @@ const capabilities = [
 const stats = [
   { value: 100, suffix: '%', label: 'Direct communication, no account managers' },
   { value: 4, suffix: '', label: 'Focused service lines, nothing scattered' },
-  { value: 24, suffix: 'hr', label: 'Typical response time on WhatsApp' },
+  { value: 60, suffix: 'mins', label: 'Typical response time on WhatsApp' },
 ];
 
 const processSteps = [
