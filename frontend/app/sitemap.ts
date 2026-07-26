@@ -13,6 +13,12 @@ async function safeFetchList(path: string): Promise<{ slug: string; updated_at?:
   }
 }
 
+function toValidDate(value?: string): Date | undefined {
+  if (!value) return undefined;
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? undefined : date;
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/`, changeFrequency: 'weekly', priority: 1 },
@@ -31,14 +37,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const blogRoutes: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,
-    lastModified: post.updated_at,
+    lastModified: toValidDate(post.updated_at),
     changeFrequency: 'monthly',
     priority: 0.6,
   }));
 
   const workRoutes: MetadataRoute.Sitemap = caseStudies.map((item) => ({
     url: `${SITE_URL}/work/${item.slug}`,
-    lastModified: item.updated_at,
+    lastModified: toValidDate(item.updated_at),
     changeFrequency: 'monthly',
     priority: 0.6,
   }));
