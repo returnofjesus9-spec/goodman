@@ -1,11 +1,11 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter, Source_Serif_4 } from 'next/font/google';
+import { Inter, JetBrains_Mono } from 'next/font/google';
 import NavBar from '@/components/nav-bar';
 import WhatsAppCta from '@/components/whatsapp-cta';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-body' });
-const heading = Source_Serif_4({ subsets: ['latin'], weight: ['500', '600', '700'], variable: '--font-heading' });
+const sans = Inter({ subsets: ['latin'], variable: '--font-sans' });
+const mono = JetBrains_Mono({ subsets: ['latin'], weight: ['400', '500'], variable: '--font-mono' });
 
 export const metadata: Metadata = {
   title: 'Goodman Consulting',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${heading.variable}`}>
+    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <body>
         <NavBar />
         {children}

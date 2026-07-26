@@ -1,4 +1,5 @@
 import SiteFooter from '@/components/site-footer';
+import { Reveal, RevealGroup, RevealItem } from '@/components/motion';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -13,34 +14,45 @@ export default async function PricingPage() {
 
   return (
     <main>
-      <section className="mx-auto max-w-6xl px-4 py-16 md:px-8 lg:px-12">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-stone-500">Simple packages</p>
-        <h1 className="mt-3 font-heading text-4xl font-semibold text-ink md:text-5xl">Choose a package that fits your stage</h1>
-        <p className="mt-4 max-w-2xl text-lg text-stone-600">
-          No hidden fees, no confusing tiers — just clear pricing based on what your business needs right now.
-        </p>
+      <section className="relative overflow-hidden px-4 py-28 md:px-8 lg:px-12">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-radial-fade" />
+        <div className="relative mx-auto max-w-6xl">
+          <Reveal>
+            <p className="label text-accent-light">Simple packages</p>
+            <h1 className="mt-4 max-w-2xl text-display-sm font-semibold text-ink text-balance">
+              Choose a package that fits your stage
+            </h1>
+            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink-secondary">
+              No hidden fees, no confusing tiers — just clear pricing based on what your business
+              needs right now.
+            </p>
+          </Reveal>
 
-        {pricing.length ? (
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {pricing.map((tier: any) => (
-              <article key={tier.id} className="rounded border border-stone-200 bg-white p-6">
-                <h2 className="font-heading text-xl font-semibold text-ink">{tier.name}</h2>
-                <p className="mt-3 text-sm text-stone-600">{tier.description}</p>
-                <p className="mt-6 font-heading text-3xl font-semibold text-navy">{tier.price}</p>
-                <a
-                  href="https://wa.me/919777262734"
-                  className="mt-6 inline-flex rounded bg-navy px-5 py-3 text-sm font-semibold text-white hover:bg-navy-dark"
-                >
-                  Get a quote
-                </a>
-              </article>
-            ))}
-          </div>
-        ) : (
-          <p className="mt-10 text-stone-600">
-            Pricing details are being updated — message us on WhatsApp and we will share current packages directly.
-          </p>
-        )}
+          {pricing.length ? (
+            <RevealGroup className="mt-14 grid gap-6 md:grid-cols-3">
+              {pricing.map((tier: any) => (
+                <RevealItem key={tier.id}>
+                  <article className="flex h-full flex-col rounded-sm border border-line bg-bg-surface p-7">
+                    <h2 className="font-sans text-xl font-semibold text-ink">{tier.name}</h2>
+                    <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-secondary">{tier.description}</p>
+                    <p className="mt-6 font-mono text-3xl font-semibold text-ink">{tier.price}</p>
+                    <a
+                      href="https://wa.me/919777262734"
+                      className="mt-6 inline-flex justify-center rounded-sm bg-accent px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent-dark"
+                    >
+                      Get a quote
+                    </a>
+                  </article>
+                </RevealItem>
+              ))}
+            </RevealGroup>
+          ) : (
+            <p className="mt-14 text-ink-secondary">
+              Pricing details are being updated — message us on WhatsApp and we will share current
+              packages directly.
+            </p>
+          )}
+        </div>
       </section>
 
       <SiteFooter />

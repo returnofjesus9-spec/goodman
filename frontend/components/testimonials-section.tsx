@@ -1,3 +1,5 @@
+import { Reveal, RevealGroup, RevealItem } from '@/components/motion';
+
 type Testimonial = {
   id: number;
   author_name: string;
@@ -9,23 +11,27 @@ export default function TestimonialsSection({ items }: { items: Testimonial[] })
   if (!items.length) return null;
 
   return (
-    <section className="border-y border-stone-200 bg-white py-16 md:py-20">
-      <div className="mx-auto max-w-6xl px-4 md:px-8 lg:px-12">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-rust-dark">What clients say</p>
-        <h2 className="mt-3 font-heading text-3xl font-semibold text-ink md:text-4xl">Trusted by small businesses</h2>
+    <section className="border-t border-line px-4 py-24 md:px-8 lg:px-12">
+      <div className="mx-auto max-w-6xl">
+        <Reveal>
+          <p className="label text-accent-light">What clients say</p>
+          <h2 className="mt-4 max-w-xl text-display-sm font-semibold text-ink">Trusted by small businesses</h2>
+        </Reveal>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
+        <RevealGroup className="mt-14 grid gap-6 md:grid-cols-2">
           {items.map((item) => (
-            <blockquote key={item.id} className="rounded border-l-4 border-navy bg-paper p-6">
-              <span className="font-heading text-4xl leading-none text-rust">&ldquo;</span>
-              <p className="-mt-2 text-lg text-ink">{item.quote}</p>
-              <footer className="mt-4 text-sm font-semibold text-stone-600">
-                {item.author_name}
-                {item.author_business ? <span className="font-normal text-stone-500"> · {item.author_business}</span> : null}
-              </footer>
-            </blockquote>
+            <RevealItem key={item.id}>
+              <blockquote className="relative h-full rounded-sm border border-line bg-bg-surface p-8">
+                <span className="font-mono text-4xl leading-none text-accent">&ldquo;</span>
+                <p className="-mt-2 text-lg leading-relaxed text-ink">{item.quote}</p>
+                <footer className="mt-6 text-sm font-semibold text-ink-secondary">
+                  {item.author_name}
+                  {item.author_business ? <span className="font-normal text-ink-muted"> · {item.author_business}</span> : null}
+                </footer>
+              </blockquote>
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );

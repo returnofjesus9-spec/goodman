@@ -239,14 +239,14 @@ export default function AdminPage() {
   }
 
   const inputClass =
-    'w-full rounded-sm border border-stone-300 px-3 py-2 text-sm focus:border-navy focus:outline-none focus:ring-1 focus:ring-navy';
+    'w-full rounded-sm border border-stone-300 px-3 py-2 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-navy';
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-16 md:px-8 lg:px-12">
       <h1 className="font-heading text-3xl font-semibold text-ink">Admin panel</h1>
 
       {!token ? (
-        <div className="mt-8 max-w-sm rounded-lg border border-stone-200 bg-white p-6 space-y-3">
+        <div className="mt-8 max-w-sm rounded-lg border border-stone-200 bg-bg-surface p-6 space-y-3">
           <input className={inputClass} placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
           <input
             className={inputClass}
@@ -255,7 +255,7 @@ export default function AdminPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="rounded-sm bg-navy px-5 py-3 text-sm font-semibold text-white hover:bg-navy-dark" onClick={login}>
+          <button className="rounded-sm bg-accent px-5 py-3 text-sm font-semibold text-white hover:bg-accent-dark" onClick={login}>
             Login
           </button>
           {loginError ? <p className="text-sm text-red-600">{loginError}</p> : null}
@@ -342,7 +342,7 @@ export default function AdminPage() {
                 required
               />
               <div className="flex items-center gap-3">
-                <button className="rounded-sm bg-navy px-4 py-2 text-sm font-semibold text-white hover:bg-navy-dark" type="submit">
+                <button className="rounded-sm bg-accent px-4 py-2 text-sm font-semibold text-white hover:bg-accent-dark" type="submit">
                   {editingCaseSlug ? 'Save changes' : 'Create case study'}
                 </button>
                 {editingCaseSlug ? (
@@ -426,7 +426,7 @@ export default function AdminPage() {
                 required
               />
               <div className="flex items-center gap-3">
-                <button className="rounded-sm bg-navy px-4 py-2 text-sm font-semibold text-white hover:bg-navy-dark" type="submit">
+                <button className="rounded-sm bg-accent px-4 py-2 text-sm font-semibold text-white hover:bg-accent-dark" type="submit">
                   {editingBlogSlug ? 'Save changes' : 'Create post'}
                 </button>
                 {editingBlogSlug ? (
@@ -496,7 +496,7 @@ export default function AdminPage() {
                       }
                     />
                     <button
-                      className="rounded-sm bg-navy px-4 py-2 text-xs font-semibold text-white hover:bg-navy-dark"
+                      className="rounded-sm bg-accent px-4 py-2 text-xs font-semibold text-white hover:bg-accent-dark"
                       onClick={() => savePricingTier(tier.id)}
                     >
                       Save
@@ -536,7 +536,7 @@ export default function AdminPage() {
                 required
               />
               <div className="flex items-center gap-3">
-                <button className="rounded-sm bg-navy px-4 py-2 text-sm font-semibold text-white hover:bg-navy-dark" type="submit">
+                <button className="rounded-sm bg-accent px-4 py-2 text-sm font-semibold text-white hover:bg-accent-dark" type="submit">
                   {editingTestimonialId !== null ? 'Save changes' : 'Create testimonial'}
                 </button>
                 {editingTestimonialId !== null ? (

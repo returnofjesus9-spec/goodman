@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Reveal } from '@/components/motion';
 
 const links = [
   { href: '/services', label: 'Services' },
@@ -11,21 +12,50 @@ const links = [
 
 export default function SiteFooter() {
   return (
-    <footer className="border-t border-stone-200 bg-paper">
-      <div className="mx-auto max-w-6xl px-4 py-12 md:px-8 lg:px-12">
-        <div className="grid gap-8 md:grid-cols-[1.4fr_1fr]">
-          <div className="rounded border border-stone-200 bg-white p-6 text-sm text-stone-600">
-            <p className="font-heading text-base font-semibold text-ink">Goodman Consulting</p>
-            <p className="mt-2">UDYAM-OD-19-0172402 · Registered MSME</p>
-            <p className="mt-2">help@goodmanconsulting.in · +91 97772 62734</p>
+    <footer className="relative border-t border-line bg-bg-secondary">
+      <div className="mx-auto max-w-7xl px-4 py-16 md:px-8 lg:px-12">
+        <Reveal>
+          <div className="grid gap-12 border-b border-line pb-12 md:grid-cols-[1.3fr_1fr_1fr]">
+            <div>
+              <p className="font-sans text-lg font-semibold tracking-tight text-ink">Goodman Consulting</p>
+              <p className="mt-3 max-w-sm text-sm leading-relaxed text-ink-secondary">
+                Practical websites, automation, and dashboards for small and medium businesses —
+                built with the discipline of an enterprise engineering team.
+              </p>
+              <p className="label mt-6">UDYAM-OD-19-0172402 · Registered MSME</p>
+            </div>
+
+            <div>
+              <p className="label">Navigate</p>
+              <nav className="mt-4 flex flex-col gap-2.5">
+                {links.map((link) => (
+                  <Link key={link.href} href={link.href} className="w-fit text-sm text-ink-secondary transition-colors hover:text-ink">
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+
+            <div>
+              <p className="label">Contact</p>
+              <div className="mt-4 flex flex-col gap-2.5 text-sm text-ink-secondary">
+                <a href="mailto:help@goodmanconsulting.in" className="w-fit transition-colors hover:text-ink">
+                  help@goodmanconsulting.in
+                </a>
+                <a href="tel:+919777262734" className="w-fit transition-colors hover:text-ink">
+                  +91 97772 62734
+                </a>
+                <a href="https://wa.me/919777262734" className="w-fit transition-colors hover:text-ink">
+                  WhatsApp
+                </a>
+              </div>
+            </div>
           </div>
-          <nav className="flex flex-wrap items-start gap-x-6 gap-y-3 text-sm font-medium text-stone-600 md:justify-end">
-            {links.map((link) => (
-              <Link key={link.href} href={link.href} className="hover:text-navy">
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+        </Reveal>
+
+        <div className="flex flex-col gap-3 pt-8 text-xs text-ink-muted sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} Goodman Consulting. All rights reserved.</p>
+          <p className="font-mono uppercase tracking-label">Bhubaneswar, Odisha</p>
         </div>
       </div>
     </footer>
