@@ -120,7 +120,13 @@ export function Counter({
   className?: string;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  // A fixed '-80px' margin here previously excluded an 80px band on every
+  // edge of the viewport before counting as "in view". On a short mobile
+  // screen that band can eat a large share of the visible area, so a stat
+  // could land in the excluded zone and never cross the trigger threshold —
+  // permanently stuck at its initial 0. Triggering as soon as any part of
+  // the element is on screen removes that dead zone.
+  const inView = useInView(ref, { once: true });
   const motionVal = useMotionValue(0);
   const spring = useSpring(motionVal, { duration: duration * 1000, bounce: 0 });
 
