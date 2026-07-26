@@ -172,7 +172,7 @@ export default async function HomePage() {
       </section>
 
       {/* SCENE 02 — MISSION (centered statement) */}
-      <section className="relative border-t border-line px-4 py-28 md:px-8 lg:px-12">
+      <section className="relative border-t border-line px-4 py-20 md:px-8 lg:px-12">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
             <p className="label text-accent-light">Philosophy</p>
@@ -187,7 +187,7 @@ export default async function HomePage() {
       </section>
 
       {/* SCENE 03 — LARGE STATEMENT (split, editorial) */}
-      <section className="relative overflow-hidden border-t border-line px-4 py-28 md:px-8 lg:px-12">
+      <section className="relative overflow-hidden border-t border-line px-4 py-32 md:px-8 lg:px-12">
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[auto_1fr] md:gap-16">
           <Parallax range={24} className="hidden flex-col gap-2 font-mono text-xs text-ink-muted md:flex">
             <span>§01</span>
@@ -223,7 +223,7 @@ export default async function HomePage() {
       </section>
 
       {/* SCENE 05 — CAPABILITIES (alternating full-width rows) */}
-      <section className="relative border-t border-line px-4 py-28 md:px-8 lg:px-12">
+      <section className="relative border-t border-line px-4 py-24 md:px-8 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <p className="label text-accent-light">Capabilities</p>
@@ -285,7 +285,7 @@ export default async function HomePage() {
       </section>
 
       {/* SCENE 07 — PROCESS TIMELINE */}
-      <section className="relative border-t border-line px-4 py-28 md:px-8 lg:px-12">
+      <section className="relative border-t border-line px-4 py-24 md:px-8 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <p className="label text-accent-light">How we work</p>

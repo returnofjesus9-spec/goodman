@@ -51,7 +51,7 @@ export default function AboutPage() {
       </section>
 
       {/* SCENE 03 — CREDENTIAL (treated like a technical plate, not a card) */}
-      <section className="relative border-t border-line px-4 py-24 md:px-8 lg:px-12">
+      <section className="relative border-t border-line px-4 py-20 md:px-8 lg:px-12">
         <div className="mx-auto max-w-3xl">
           <Reveal>
             <div className="relative overflow-hidden rounded-sm border border-line bg-bg-surface px-8 py-10 md:px-12 md:py-14">
@@ -76,7 +76,7 @@ export default function AboutPage() {
       </section>
 
       {/* SCENE 04 — CTA */}
-      <section className="relative border-t border-line px-4 py-24 md:px-8 lg:px-12">
+      <section className="relative border-t border-line px-4 py-16 md:px-8 lg:px-12">
         <Reveal>
           <div className="mx-auto flex max-w-3xl flex-col gap-3 sm:flex-row">
             <a

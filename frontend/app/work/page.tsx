@@ -87,7 +87,7 @@ export default async function WorkIndexPage() {
       </section>
 
       {/* SCENE 03 — CTA */}
-      <section className="relative border-t border-line px-4 py-28 md:px-8 lg:px-12">
+      <section className="relative border-t border-line px-4 py-20 md:px-8 lg:px-12">
         <Reveal>
           <div className="mx-auto max-w-6xl text-center">
             <a
