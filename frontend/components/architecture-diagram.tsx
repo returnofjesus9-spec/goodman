@@ -16,7 +16,11 @@ export default function ArchitectureDiagram() {
   return (
     <svg
       viewBox="0 0 760 560"
+      width={760}
+      height={560}
+      preserveAspectRatio="xMidYMid meet"
       className="h-auto w-full max-w-2xl"
+      style={{ aspectRatio: '760 / 560' }}
       role="img"
       aria-label="Diagram showing the website, automation, dashboard, and custom systems each connecting into one operating core"
     >
