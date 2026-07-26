@@ -4,7 +4,7 @@
 
 :root {
   color-scheme: dark;
-  font-family: var(--font-sans), Arial, sans-serif;
+  font-family: var(--font-sans), Georgia, sans-serif;
 }
 
 * {
@@ -23,8 +23,8 @@ body {
      gently across the scroll instead of sitting as one flat black field
      under whatever the per-section SceneGrid contributes. Both are subtle by
      design — this is air behind the content, not a visible gradient. */
-  background-image: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(79, 127, 255, 0.12), transparent 60%),
-    radial-gradient(ellipse 60% 40% at 85% 120%, rgba(79, 127, 255, 0.05), transparent 65%);
+  background-image: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(174, 83, 48, 0.14), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 85% 120%, rgba(174, 83, 48, 0.06), transparent 65%);
   background-size: 100% 100%;
   background-attachment: fixed;
 }
@@ -36,13 +36,19 @@ main {
 h1,
 h2,
 h3,
-h4 {
-  @apply font-sans tracking-tightest;
+h4,
+h5,
+h6,
+.text-display-xl:not(.font-mono),
+.text-display-lg:not(.font-mono),
+.text-display-md:not(.font-mono),
+.text-display-sm:not(.font-mono) {
+  @apply font-serif tracking-tightest;
   font-weight: 600;
 }
 
 ::selection {
-  background: rgba(79, 127, 255, 0.35);
+  background: rgba(174, 83, 48, 0.4);
   color: #fff;
 }
 
@@ -51,10 +57,10 @@ h4 {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #050505;
+  background: #151310;
 }
 ::-webkit-scrollbar-thumb {
-  background: #242424;
+  background: #3a342a;
   border-radius: 999px;
 }
 

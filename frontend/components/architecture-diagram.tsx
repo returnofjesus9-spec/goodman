@@ -115,7 +115,7 @@ export default function ArchitectureDiagram() {
             <motion.circle
               key={`${s.key}-pulse`}
               r={2}
-              fill="#8CA9FF"
+              fill="#D9835A"
               initial={{ opacity: 0 }}
               animate={{ cx: cxs, cy: cys, opacity: [0, 1, 1, 0] }}
               transition={{
@@ -146,14 +146,14 @@ export default function ArchitectureDiagram() {
             <text x={n.x + 16} y={n.y + 15} fill="#666666" fontSize="9.5" letterSpacing="0.14em" fontFamily="var(--font-mono)" style={{ textTransform: 'uppercase' }}>
               {n.sub}
             </text>
-            <circle cx={n.x + 150} cy={n.y} r={2.5} fill="#4F7FFF" />
+            <circle cx={n.x + 150} cy={n.y} r={2.5} fill="#AE5330" />
           </ScrollNode>
         );
       })}
 
       {/* core — powers on last, once every spoke is connected */}
       <ScrollNode progress={progress} at={coreAt} x={coreX} y={coreY}>
-        <circle cx={coreX} cy={coreY} r={70} fill="rgba(79,127,255,0.06)" stroke="rgba(79,127,255,0.35)" strokeWidth={1} />
+        <circle cx={coreX} cy={coreY} r={70} fill="rgba(174,83,48,0.06)" stroke="rgba(174,83,48,0.35)" strokeWidth={1} />
         <circle cx={coreX} cy={coreY} r={44} fill="rgba(17,17,17,0.95)" stroke="rgba(255,255,255,0.16)" strokeWidth={1} />
         <text x={coreX} y={coreY - 4} textAnchor="middle" fill="#FFFFFF" fontSize="12.5" fontWeight={600} fontFamily="var(--font-sans)">
           Your

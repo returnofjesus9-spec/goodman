@@ -186,7 +186,7 @@ export default async function HomePage() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-6 text-display-sm font-semibold leading-[1.15] text-ink">
-              Most small businesses don&rsquo;t need more software.
+              Most local businesses don&rsquo;t need more software.
               <span className="text-ink-muted"> They need the software they already paid for to actually get used.</span>
             </p>
           </Reveal>

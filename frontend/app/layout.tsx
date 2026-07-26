@@ -1,10 +1,15 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import { Fraunces, Work_Sans, JetBrains_Mono } from 'next/font/google';
 import NavBar from '@/components/nav-bar';
-import WhatsAppCta from '@/components/whatsapp-cta';
 
-const sans = Inter({ subsets: ['latin'], variable: '--font-sans' });
+const serif = Fraunces({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  style: ['normal', 'italic'],
+  variable: '--font-serif',
+});
+const sans = Work_Sans({ subsets: ['latin'], weight: ['400', '500', '600'], variable: '--font-sans' });
 const mono = JetBrains_Mono({ subsets: ['latin'], weight: ['400', '500'], variable: '--font-mono' });
 
 export const metadata: Metadata = {
@@ -29,11 +34,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
+    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
       <body>
         <NavBar />
         {children}
-        <WhatsAppCta />
       </body>
     </html>
   );

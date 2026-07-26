@@ -45,7 +45,7 @@ export default function SceneGrid({
   return (
     <div className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`} aria-hidden>
       <div
-        className={`absolute inset-0 ${DRIFT_CLASS[density]} ${SIZE_CLASS[density]} opacity-40`}
+        className={`absolute inset-0 ${DRIFT_CLASS[density]} ${SIZE_CLASS[density]} opacity-70`}
         style={
           maskImage !== 'none'
             ? { WebkitMaskImage: maskImage, maskImage, WebkitMaskSize: '100% 100%', maskSize: '100% 100%' }

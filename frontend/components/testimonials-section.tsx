@@ -15,7 +15,7 @@ export default function TestimonialsSection({ items }: { items: Testimonial[] })
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <p className="label text-accent-light">What clients say</p>
-          <h2 className="mt-4 max-w-xl text-display-sm font-semibold text-ink">Trusted by small businesses</h2>
+          <h2 className="mt-4 max-w-xl text-display-sm font-semibold text-ink">Trusted by local businesses</h2>
         </Reveal>
 
         <RevealGroup className="mt-14 grid gap-6 md:grid-cols-2">

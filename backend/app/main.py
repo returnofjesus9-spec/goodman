@@ -305,6 +305,15 @@ def update_lead(lead_id: int, payload: LeadUpdate, db: Session = Depends(get_db)
     return LeadPublic.model_validate(lead)
 
 
+@app.delete("/api/leads/{lead_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_lead(lead_id: int, db: Session = Depends(get_db), admin: User = Depends(get_current_admin)) -> None:
+    lead = db.query(Lead).filter(Lead.id == lead_id).first()
+    if not lead:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Lead not found")
+    db.delete(lead)
+    db.commit()
+
+
 @app.post("/api/case-studies", response_model=CaseStudyPublic)
 def create_case_study(payload: CaseStudyCreate, db: Session = Depends(get_db), admin: User = Depends(get_current_admin)) -> CaseStudyPublic:
     item = CaseStudy(**payload.model_dump())

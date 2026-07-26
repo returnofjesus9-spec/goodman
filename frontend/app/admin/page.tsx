@@ -111,6 +111,11 @@ export default function AdminPage() {
     if (res.ok) setLeads((prev) => prev.map((l) => (l.id === id ? { ...l, notes } : l)));
   }
 
+  async function deleteLead(id: number) {
+    const res = await fetch(`${API_URL}/api/leads/${id}`, { method: 'DELETE', headers: authHeaders() });
+    if (res.ok) setLeads((prev) => prev.filter((l) => l.id !== id));
+  }
+
   // --- Case studies ---
   async function submitCaseStudy(e: FormEvent) {
     e.preventDefault();
@@ -265,39 +270,60 @@ export default function AdminPage() {
           {/* Leads */}
           <section>
             <h2 className="font-heading text-xl font-semibold text-ink">Leads</h2>
-            <div className="mt-4 space-y-3">
+            <div className="mt-4 space-y-8">
               {leads.length ? (
-                leads.map((lead) => (
-                  <div key={lead.id} className="rounded-sm border border-stone-200 p-4 text-sm">
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <p className="font-semibold">
-                        {lead.business_name || lead.contact_name || lead.contact_email || `Lead #${lead.id}`}
+                LEAD_STATUSES.map((statusKey) => {
+                  const group = leads.filter((l) => l.status === statusKey);
+                  if (!group.length) return null;
+                  return (
+                    <div key={statusKey}>
+                      <p className="text-xs font-semibold uppercase tracking-wide text-stone-500">
+                        {statusKey} · {group.length}
                       </p>
-                      <select
-                        className="rounded-sm border border-stone-300 px-2 py-1 text-xs"
-                        value={lead.status}
-                        onChange={(e) => updateLeadStatus(lead.id, e.target.value)}
-                      >
-                        {LEAD_STATUSES.map((s) => (
-                          <option key={s} value={s}>
-                            {s}
-                          </option>
+                      <div className="mt-3 space-y-3">
+                        {group.map((lead) => (
+                          <div key={lead.id} className="rounded-sm border border-stone-200 p-4 text-sm">
+                            <div className="flex flex-wrap items-center justify-between gap-2">
+                              <p className="font-semibold">
+                                {lead.business_name || lead.contact_name || lead.contact_email || `Lead #${lead.id}`}
+                              </p>
+                              <div className="flex items-center gap-2">
+                                <select
+                                  className="rounded-sm border border-stone-300 px-2 py-1 text-xs"
+                                  value={lead.status}
+                                  onChange={(e) => updateLeadStatus(lead.id, e.target.value)}
+                                >
+                                  {LEAD_STATUSES.map((s) => (
+                                    <option key={s} value={s}>
+                                      {s}
+                                    </option>
+                                  ))}
+                                </select>
+                                <button
+                                  className="text-xs font-semibold text-red-600 underline"
+                                  onClick={() => deleteLead(lead.id)}
+                                >
+                                  Delete
+                                </button>
+                              </div>
+                            </div>
+                            <p className="mt-1 text-stone-600">{lead.service_interest}</p>
+                            <p className="mt-1 text-stone-600">
+                              {lead.contact_email} {lead.contact_phone ? `· ${lead.contact_phone}` : ''}
+                            </p>
+                            <textarea
+                              className={`${inputClass} mt-2`}
+                              placeholder="Notes"
+                              defaultValue={lead.notes || ''}
+                              rows={2}
+                              onBlur={(e) => saveLeadNotes(lead.id, e.target.value)}
+                            />
+                          </div>
                         ))}
-                      </select>
+                      </div>
                     </div>
-                    <p className="mt-1 text-stone-600">{lead.service_interest}</p>
-                    <p className="mt-1 text-stone-600">
-                      {lead.contact_email} {lead.contact_phone ? `· ${lead.contact_phone}` : ''}
-                    </p>
-                    <textarea
-                      className={`${inputClass} mt-2`}
-                      placeholder="Notes"
-                      defaultValue={lead.notes || ''}
-                      rows={2}
-                      onBlur={(e) => saveLeadNotes(lead.id, e.target.value)}
-                    />
-                  </div>
-                ))
+                  );
+                })
               ) : (
                 <p className="text-sm text-stone-600">No leads yet.</p>
               )}

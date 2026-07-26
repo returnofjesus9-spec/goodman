@@ -7,37 +7,40 @@ export default {
       colors: {
         bg: {
           // Tonal ramp, not a flat slab. Each step is a touch lighter *and*
-          // a touch cooler (blue creeping into the graphite as it lifts),
-          // so the darks read as material catching a faint cool light
-          // rather than a neutral void — and so they sit comfortably next
-          // to the #4F7FFF accent instead of fighting it.
+          // a touch warmer (a whisper of the charcoal-brown creeping in as
+          // it lifts), echoing the #201D19 floor already used in the site's
+          // icon and OG card — so the darks read as warm material rather
+          // than a neutral tech-void, and sit comfortably next to the
+          // terracotta accent instead of fighting it.
           //   void    — true floor. Reserved for hero + final CTA only.
           //   deep    — page-level section background, one step up from void.
           //   surface — card/panel background, sits on deep or void.
           //   raised  — hover states, active nav items, elevated panels.
-          void: '#050505',
-          deep: '#0A0C10',
-          surface: '#10131A',
-          raised: '#171B24',
+          void: '#151310',
+          deep: '#1C1915',
+          surface: '#25211B',
+          raised: '#2F2A22',
           // DEFAULT kept as an alias of void so any un-migrated `bg-bg`
           // usage still resolves to the correct floor tone.
-          DEFAULT: '#050505',
+          DEFAULT: '#151310',
         },
-        line: '#242424',
+        line: '#3A342A',
         ink: {
-          DEFAULT: '#FFFFFF',
-          secondary: '#A3A3A3',
-          muted: '#666666',
+          DEFAULT: '#FAF6EF',
+          secondary: '#B0A99A',
+          muted: '#756E60',
         },
         accent: {
-          DEFAULT: '#4F7FFF',
-          dark: '#3860D6',
-          light: '#8CA9FF',
-          dim: 'rgba(79, 127, 255, 0.12)',
+          DEFAULT: '#AE5330',
+          dark: '#8A3F23',
+          light: '#D9835A',
+          dim: 'rgba(174, 83, 48, 0.14)',
         },
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-serif)', 'Georgia', 'ui-serif', 'serif'],
+        heading: ['var(--font-serif)', 'Georgia', 'ui-serif', 'serif'],
         mono: ['var(--font-mono)', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       fontSize: {
@@ -54,13 +57,13 @@ export default {
         'display-stat-grid': ['clamp(2.75rem, 7vw, 5.5rem)', { lineHeight: '0.95', letterSpacing: '-0.03em' }],
       },
       letterSpacing: {
-        tightest: '-0.04em',
+        tightest: '-0.025em',
         label: '0.22em',
       },
       backgroundImage: {
-        grid: 'linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)',
-        'radial-fade': 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(79,127,255,0.16), transparent 70%)',
-        'radial-fade-sm': 'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(79,127,255,0.14), transparent 70%)',
+        grid: 'linear-gradient(to right, rgba(250,246,239,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(250,246,239,0.12) 1px, transparent 1px)',
+        'radial-fade': 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(174,83,48,0.18), transparent 70%)',
+        'radial-fade-sm': 'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(174,83,48,0.16), transparent 70%)',
       },
       backgroundSize: {
         grid: '48px 48px',

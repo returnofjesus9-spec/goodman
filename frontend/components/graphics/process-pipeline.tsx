@@ -63,7 +63,7 @@ export default function ProcessPipeline({ steps }: { steps: { index: string; tit
       <ScrollAmbient progress={progress} reveal={liveAt}>
         <motion.circle
           r={2.4}
-          fill="#8CA9FF"
+          fill="#D9835A"
           initial={{ opacity: 0 }}
           animate={{ cx: cxs, cy: cys, opacity: [0, 1, 1, 0] }}
           transition={{
@@ -82,7 +82,7 @@ export default function ProcessPipeline({ steps }: { steps: { index: string; tit
         return (
           <ScrollNode key={step.index} progress={progress} at={at} x={cx} y={cy}>
             <circle cx={cx} cy={cy} r={13} fill="rgba(17,17,17,0.95)" stroke="rgba(140,169,255,0.55)" strokeWidth={1.25} />
-            <text x={cx} y={cy + 4} textAnchor="middle" fill="#8CA9FF" fontSize="10" fontFamily="var(--font-mono)">
+            <text x={cx} y={cy + 4} textAnchor="middle" fill="#D9835A" fontSize="10" fontFamily="var(--font-mono)">
               {step.index}
             </text>
             <text

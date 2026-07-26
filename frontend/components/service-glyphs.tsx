@@ -55,7 +55,7 @@ export function DashboardGlyph() {
       <DrawPath d="M38 90 V66" {...common} strokeWidth={2} delay={0.15} />
       <DrawPath d="M58 90 V44" {...common} strokeWidth={2} delay={0.3} />
       <DrawPath d="M78 90 V56" {...common} strokeWidth={2} delay={0.45} />
-      <DrawPath d="M34 60 L54 40 L74 50 L92 30" {...common} delay={0.7} stroke="rgba(79,127,255,0.9)" />
+      <DrawPath d="M34 60 L54 40 L74 50 L92 30" {...common} delay={0.7} stroke="rgba(174,83,48,0.9)" />
     </Frame>
   );
 }
@@ -69,7 +69,7 @@ export function CustomGlyph() {
       <circle cx={88} cy={34} r={4} fill="rgba(17,17,17,1)" stroke="rgba(140,169,255,0.85)" strokeWidth={1.4} />
       <circle cx={32} cy={90} r={4} fill="rgba(17,17,17,1)" stroke="rgba(140,169,255,0.85)" strokeWidth={1.4} />
       <circle cx={88} cy={90} r={4} fill="rgba(17,17,17,1)" stroke="rgba(140,169,255,0.85)" strokeWidth={1.4} />
-      <circle cx={60} cy={60} r={5} fill="rgba(79,127,255,0.9)" />
+      <circle cx={60} cy={60} r={5} fill="rgba(174,83,48,0.9)" />
     </Frame>
   );
 }
