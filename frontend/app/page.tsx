@@ -286,10 +286,10 @@ export default async function HomePage() {
       <section className="relative overflow-hidden border-t border-line bg-bg-raised px-4 py-32 md:px-8 lg:px-12">
         <SceneGrid className="opacity-60" density="sparse" fade="both" />
         <div className="relative mx-auto max-w-6xl">
-          <RevealGroup className="grid grid-cols-1 gap-16 sm:grid-cols-3">
+          <RevealGroup className="grid grid-cols-1 place-items-center gap-16 text-center sm:grid-cols-3">
             {stats.map((stat) => (
-              <RevealItem key={stat.label}>
-                <p className="font-mono text-display-stat font-semibold text-ink">
+              <RevealItem key={stat.label} className="flex flex-col items-center">
+                <p className="font-mono text-display-stat-grid font-semibold text-ink">
                   <Counter value={stat.value} suffix={stat.suffix} />
                 </p>
                 <p className="mt-4 max-w-[24ch] text-sm text-ink-secondary">{stat.label}</p>
