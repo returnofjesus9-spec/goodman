@@ -1,7 +1,18 @@
 import Link from 'next/link';
 import SiteFooter from '@/components/site-footer';
 import TestimonialsSection from '@/components/testimonials-section';
-import { Counter, Reveal, RevealGroup, RevealItem, TextReveal } from '@/components/motion';
+import ArchitectureDiagram from '@/components/architecture-diagram';
+import SceneGrid from '@/components/scene-grid';
+import {
+  ClipReveal,
+  Counter,
+  Magnetic,
+  Parallax,
+  Reveal,
+  RevealGroup,
+  RevealItem,
+  TextReveal,
+} from '@/components/motion';
 
 type CaseStudy = {
   id: number;
@@ -21,25 +32,30 @@ const capabilities = [
   {
     index: '01',
     title: 'Websites',
-    description: 'Clear, fast sites built to convert visitors into conversations — no bloated templates.',
+    description:
+      'Clear, fast sites built to convert visitors into conversations — no bloated templates, no filler sections.',
+    detail: 'Client-facing',
     href: '/services',
   },
   {
     index: '02',
     title: 'Automation',
-    description: 'Lead capture, follow-ups, and reminders that run themselves in the background.',
+    description: 'Lead capture, follow-ups, and reminders that run themselves in the background, every day.',
+    detail: 'Background',
     href: '/services',
   },
   {
     index: '03',
     title: 'Dashboards',
-    description: 'Live, readable views of sales and leads — the numbers that actually matter.',
+    description: 'Live, readable views of sales and leads — the handful of numbers that actually matter.',
+    detail: 'Visibility',
     href: '/services',
   },
   {
     index: '04',
     title: 'Custom systems',
-    description: 'Internal tools shaped around how your team already operates.',
+    description: 'Internal tools shaped around how your team already operates, not the other way round.',
+    detail: 'Internal',
     href: '/services',
   },
 ];
@@ -48,6 +64,29 @@ const stats = [
   { value: 100, suffix: '%', label: 'Direct communication, no account managers' },
   { value: 4, suffix: '', label: 'Focused service lines, nothing scattered' },
   { value: 24, suffix: 'hr', label: 'Typical response time on WhatsApp' },
+];
+
+const processSteps = [
+  {
+    index: '01',
+    title: 'Discovery',
+    description: 'We look at how the business actually runs before proposing anything — no template pitch.',
+  },
+  {
+    index: '02',
+    title: 'Build',
+    description: 'Work ships in visible, working pieces. You see progress every week, not one big reveal.',
+  },
+  {
+    index: '03',
+    title: 'Launch',
+    description: 'We go live directly with you watching it work — no handover document, no disappearing act.',
+  },
+  {
+    index: '04',
+    title: 'Support',
+    description: 'One WhatsApp line to the person who built it. No ticket queue, no tiers.',
+  },
 ];
 
 export default async function HomePage() {
@@ -69,65 +108,123 @@ export default async function HomePage() {
     testimonials = [];
   }
 
-  const recentWork = caseStudies.slice(0, 2);
+  const recentWork = caseStudies.slice(0, 3);
 
   return (
     <main>
-      {/* HERO */}
-      <section className="relative overflow-hidden px-4 pb-24 pt-28 md:px-8 md:pt-40 lg:px-12">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[560px] bg-radial-fade" />
-        <div className="relative mx-auto max-w-6xl">
+      {/* SCENE 01 — HERO */}
+      <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-4 pb-16 pt-28 md:px-8 lg:px-12">
+        <SceneGrid />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[640px] bg-radial-fade" />
+        <div className="pointer-events-none absolute -right-24 top-1/3 h-72 w-72 animate-drift-slow rounded-full bg-accent/[0.06] blur-3xl" />
+
+        <div className="relative mx-auto w-full max-w-6xl">
           <Reveal>
             <p className="label flex items-center gap-2 text-accent-light">
-              <span className="h-1.5 w-1.5 bg-accent" />
+              <span className="h-1.5 w-1.5 animate-pulse-slow bg-accent" />
               Goodman Consulting · Bhubaneswar
             </p>
           </Reveal>
 
-          <h1 className="mt-6 max-w-4xl text-display-lg font-semibold text-ink text-balance">
-            <TextReveal text="Practical digital infrastructure for growing businesses." />
+          <h1 className="mt-8 max-w-5xl text-display-xl font-semibold text-ink">
+            <TextReveal text="Practical infrastructure." />
+            <br />
+            <TextReveal text="Nothing you don't need." />
           </h1>
 
-          <Reveal delay={0.35}>
-            <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink-secondary">
+          <Reveal delay={0.4}>
+            <p className="mt-9 max-w-lg text-lg leading-relaxed text-ink-secondary">
               Clear websites, dependable automation, and dashboards that get used — engineered with
-              the same discipline as a large firm, without the overhead or the noise.
+              the discipline of a large firm, without the overhead or the noise.
             </p>
           </Reveal>
 
-          <Reveal delay={0.45}>
+          <Reveal delay={0.52}>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <a
-                href="https://wa.me/919777262734"
-                className="group relative overflow-hidden rounded-sm bg-accent px-7 py-3.5 text-center text-sm font-semibold text-white transition-colors hover:bg-accent-dark"
-              >
-                Chat on WhatsApp
-              </a>
-              <Link
-                href="/work"
-                className="rounded-sm border border-line px-7 py-3.5 text-center text-sm font-semibold text-ink transition-colors hover:border-accent hover:text-accent-light"
-              >
-                See our work
-              </Link>
+              <Magnetic>
+                <a
+                  href="https://wa.me/919777262734"
+                  className="block rounded-sm bg-accent px-7 py-3.5 text-center text-sm font-semibold text-white transition-colors hover:bg-accent-dark"
+                >
+                  Chat on WhatsApp
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <Link
+                  href="/work"
+                  className="block rounded-sm border border-line px-7 py-3.5 text-center text-sm font-semibold text-ink transition-colors hover:border-accent hover:text-accent-light"
+                >
+                  See our work
+                </Link>
+              </Magnetic>
             </div>
           </Reveal>
+        </div>
 
-          {/* animated stat row */}
-          <RevealGroup className="mt-20 grid grid-cols-1 gap-8 border-t border-line pt-10 sm:grid-cols-3">
-            {stats.map((stat) => (
-              <RevealItem key={stat.label}>
-                <p className="font-mono text-4xl font-semibold text-ink">
-                  <Counter value={stat.value} suffix={stat.suffix} />
-                </p>
-                <p className="mt-2 max-w-[22ch] text-sm text-ink-secondary">{stat.label}</p>
-              </RevealItem>
-            ))}
-          </RevealGroup>
+        {/* scroll indicator */}
+        <Reveal delay={0.9} className="relative mx-auto mt-20 w-full max-w-6xl">
+          <div className="flex items-center gap-3 text-ink-muted">
+            <span className="relative flex h-9 w-5 items-start justify-center rounded-full border border-line p-1">
+              <span className="h-1.5 w-1 animate-bounce rounded-full bg-accent-light" />
+            </span>
+            <span className="label">Scroll</span>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* SCENE 02 — MISSION (centered statement) */}
+      <section className="relative border-t border-line px-4 py-28 md:px-8 lg:px-12">
+        <div className="mx-auto max-w-3xl text-center">
+          <Reveal>
+            <p className="label text-accent-light">Philosophy</p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mt-6 text-display-sm font-semibold leading-[1.15] text-ink">
+              Most small businesses don&rsquo;t need more software.
+              <span className="text-ink-muted"> They need the software they already paid for to actually get used.</span>
+            </p>
+          </Reveal>
         </div>
       </section>
 
-      {/* CAPABILITIES */}
-      <section className="border-t border-line px-4 py-24 md:px-8 lg:px-12">
+      {/* SCENE 03 — LARGE STATEMENT (split, editorial) */}
+      <section className="relative overflow-hidden border-t border-line px-4 py-28 md:px-8 lg:px-12">
+        <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[auto_1fr] md:gap-16">
+          <Parallax range={24} className="hidden flex-col gap-2 font-mono text-xs text-ink-muted md:flex">
+            <span>§01</span>
+            <span className="text-ink-muted/60">Our standard</span>
+          </Parallax>
+          <Reveal>
+            <p className="max-w-3xl text-display-md font-semibold leading-[1.05] text-ink text-balance">
+              We ask one question before writing any code — will someone actually use this in six
+              months, or does it just look good in a demo?
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* SCENE 04 — INTERACTIVE VISUAL (architecture) */}
+      <section className="relative border-t border-line px-4 py-28 md:px-8 lg:px-12">
+        <div className="mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-2">
+          <Reveal>
+            <p className="label text-accent-light">How it connects</p>
+            <h2 className="mt-4 max-w-md text-display-sm font-semibold text-ink">
+              One operating core. Four ways in.
+            </h2>
+            <p className="mt-6 max-w-md text-sm leading-relaxed text-ink-secondary">
+              Each system we build feeds the same place — your business. A website that brings people
+              in, automation that follows up without you, a dashboard that shows what&rsquo;s working,
+              and custom tools where the rest doesn&rsquo;t fit. Separate pieces, one picture.
+            </p>
+          </Reveal>
+          <ClipReveal from="right">
+            <ArchitectureDiagram />
+          </ClipReveal>
+        </div>
+      </section>
+
+      {/* SCENE 05 — CAPABILITIES (alternating full-width rows) */}
+      <section className="relative border-t border-line px-4 py-28 md:px-8 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <p className="label text-accent-light">Capabilities</p>
@@ -136,31 +233,83 @@ export default async function HomePage() {
             </h2>
           </Reveal>
 
-          <RevealGroup className="mt-14 grid gap-px overflow-hidden rounded-sm border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-            {capabilities.map((cap) => (
-              <RevealItem key={cap.title}>
+          <div className="mt-20 flex flex-col">
+            {capabilities.map((cap, i) => (
+              <Reveal key={cap.title}>
                 <Link
                   href={cap.href}
-                  className="group flex h-full flex-col justify-between bg-bg-surface p-7 transition-colors duration-300 hover:bg-bg-secondary"
+                  className={`group grid items-center gap-6 border-t border-line py-12 transition-colors hover:bg-bg-surface/40 md:grid-cols-[auto_1fr_auto] md:gap-12 ${
+                    i % 2 === 1 ? 'md:text-right' : ''
+                  }`}
                 >
-                  <span className="font-mono text-xs text-ink-muted">{cap.index}</span>
-                  <div className="mt-10">
-                    <h3 className="font-sans text-lg font-semibold text-ink">{cap.title}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-ink-secondary">{cap.description}</p>
-                    <span className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-accent-light opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                      Explore →
-                    </span>
+                  <span
+                    className={`font-mono text-sm text-ink-muted md:row-span-2 ${i % 2 === 1 ? 'md:order-3' : ''}`}
+                  >
+                    {cap.index}
+                  </span>
+                  <div className={i % 2 === 1 ? 'md:order-2' : ''}>
+                    <h3 className="text-2xl font-semibold text-ink transition-colors group-hover:text-accent-light md:text-4xl">
+                      {cap.title}
+                    </h3>
+                    <p className="mt-3 max-w-md text-sm leading-relaxed text-ink-secondary md:max-w-lg">
+                      {cap.description}
+                    </p>
                   </div>
+                  <span
+                    className={`label whitespace-nowrap text-ink-muted md:order-1 ${i % 2 === 1 ? '' : 'md:text-right'}`}
+                  >
+                    {cap.detail}
+                  </span>
                 </Link>
+              </Reveal>
+            ))}
+            <div className="border-t border-line" />
+          </div>
+        </div>
+      </section>
+
+      {/* SCENE 06 — MASSIVE STATS */}
+      <section className="relative overflow-hidden border-t border-line px-4 py-32 md:px-8 lg:px-12">
+        <SceneGrid className="opacity-60" />
+        <div className="relative mx-auto max-w-6xl">
+          <RevealGroup className="grid grid-cols-1 gap-16 sm:grid-cols-3">
+            {stats.map((stat) => (
+              <RevealItem key={stat.label}>
+                <p className="font-mono text-display-stat font-semibold text-ink">
+                  <Counter value={stat.value} suffix={stat.suffix} />
+                </p>
+                <p className="mt-4 max-w-[24ch] text-sm text-ink-secondary">{stat.label}</p>
               </RevealItem>
             ))}
           </RevealGroup>
         </div>
       </section>
 
-      {/* RECENT WORK */}
+      {/* SCENE 07 — PROCESS TIMELINE */}
+      <section className="relative border-t border-line px-4 py-28 md:px-8 lg:px-12">
+        <div className="mx-auto max-w-6xl">
+          <Reveal>
+            <p className="label text-accent-light">How we work</p>
+            <h2 className="mt-4 max-w-xl text-display-sm font-semibold text-ink">
+              Four stages. No surprises in between.
+            </h2>
+          </Reveal>
+
+          <RevealGroup className="relative mt-20 grid gap-10 border-t border-line pt-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-line lg:border-t-0 lg:pt-0">
+            {processSteps.map((step) => (
+              <RevealItem key={step.index} className="lg:px-8 lg:first:pl-0 lg:last:pr-0">
+                <span className="font-mono text-xs text-accent-light">{step.index}</span>
+                <h3 className="mt-5 text-lg font-semibold text-ink">{step.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-secondary">{step.description}</p>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </div>
+      </section>
+
+      {/* SCENE 08 — CASE STUDIES */}
       {recentWork.length ? (
-        <section className="border-t border-line px-4 py-24 md:px-8 lg:px-12">
+        <section className="relative border-t border-line px-4 py-28 md:px-8 lg:px-12">
           <div className="mx-auto max-w-6xl">
             <Reveal>
               <div className="flex flex-wrap items-end justify-between gap-4">
@@ -174,51 +323,62 @@ export default async function HomePage() {
               </div>
             </Reveal>
 
-            <RevealGroup className="mt-14 grid gap-6 md:grid-cols-2">
-              {recentWork.map((item) => (
-                <RevealItem key={item.slug}>
+            <div className="mt-16 flex flex-col">
+              {recentWork.map((item, i) => (
+                <Reveal key={item.slug}>
                   <Link
                     href={`/work/${item.slug}`}
-                    className="group block h-full rounded-sm border border-line bg-bg-surface p-8 transition-colors duration-300 hover:border-accent/40"
+                    className="group grid items-center gap-6 border-t border-line py-10 transition-colors hover:bg-bg-surface/40 md:grid-cols-[auto_1fr_auto]"
                   >
-                    <h3 className="font-sans text-xl font-semibold text-ink">{item.title}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-ink-secondary">{item.summary}</p>
-                    <span className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-accent-light">
+                    <span className="font-mono text-sm text-ink-muted">{String(i + 1).padStart(2, '0')}</span>
+                    <div>
+                      <h3 className="text-xl font-semibold text-ink transition-colors group-hover:text-accent-light md:text-2xl">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-secondary">{item.summary}</p>
+                    </div>
+                    <span className="hidden text-sm font-semibold text-accent-light opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:inline-flex">
                       Read case study →
                     </span>
                   </Link>
-                </RevealItem>
+                </Reveal>
               ))}
-            </RevealGroup>
+              <div className="border-t border-line" />
+            </div>
           </div>
         </section>
       ) : null}
 
       <TestimonialsSection items={testimonials} />
 
-      {/* CTA */}
-      <section className="border-t border-line px-4 py-24 md:px-8 lg:px-12">
+      {/* SCENE 09 — CTA */}
+      <section className="relative border-t border-line px-4 py-28 md:px-8 lg:px-12">
         <Reveal>
-          <div className="relative mx-auto max-w-6xl overflow-hidden rounded-sm border border-line bg-bg-surface px-8 py-16 text-center">
+          <div className="relative mx-auto max-w-6xl overflow-hidden rounded-sm border border-line bg-bg-surface px-8 py-20 text-center">
+            <SceneGrid className="opacity-30" />
             <div className="pointer-events-none absolute inset-0 bg-radial-fade opacity-70" />
             <div className="relative">
               <p className="label text-accent-light">Registered MSME · UDYAM-OD-19-0172402</p>
-              <h2 className="mx-auto mt-5 max-w-2xl text-display-sm font-semibold text-ink">
-                Clear pricing. Direct communication. No agency overhead.
+              <h2 className="mx-auto mt-5 max-w-2xl text-display-md font-semibold text-ink">
+                Clear pricing. Direct communication.
               </h2>
-              <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <a
-                  href="https://wa.me/919777262734"
-                  className="rounded-sm bg-accent px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-accent-dark"
-                >
-                  Chat on WhatsApp
-                </a>
-                <Link
-                  href="/pricing"
-                  className="rounded-sm border border-line px-7 py-3.5 text-sm font-semibold text-ink transition-colors hover:border-accent hover:text-accent-light"
-                >
-                  See pricing
-                </Link>
+              <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <Magnetic>
+                  <a
+                    href="https://wa.me/919777262734"
+                    className="block rounded-sm bg-accent px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-accent-dark"
+                  >
+                    Chat on WhatsApp
+                  </a>
+                </Magnetic>
+                <Magnetic>
+                  <Link
+                    href="/pricing"
+                    className="block rounded-sm border border-line px-7 py-3.5 text-sm font-semibold text-ink transition-colors hover:border-accent hover:text-accent-light"
+                  >
+                    See pricing
+                  </Link>
+                </Magnetic>
               </div>
             </div>
           </div>

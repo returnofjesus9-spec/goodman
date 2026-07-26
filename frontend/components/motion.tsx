@@ -1,6 +1,14 @@
 'use client';
 
-import { motion, useInView, useMotionValue, useSpring, Variants } from 'framer-motion';
+import {
+  motion,
+  useInView,
+  useMotionValue,
+  useScroll,
+  useSpring,
+  useTransform,
+  Variants,
+} from 'framer-motion';
 import { useEffect, useRef } from 'react';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -162,6 +170,95 @@ export function Magnetic({ children, className }: { children: React.ReactNode; c
       className={`transition-transform duration-300 ease-smooth ${className ?? ''}`}
     >
       {children}
+    </div>
+  );
+}
+
+/** Drifts children vertically as the viewport passes over them — cheap, GPU-only parallax. */
+export function Parallax({
+  children,
+  className,
+  range = 60,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  range?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const y = useTransform(scrollYProgress, [0, 1], [range, -range]);
+  return (
+    <motion.div ref={ref} style={{ y }} className={className}>
+      {children}
+    </motion.div>
+  );
+}
+
+/** Wipes a panel into view with a hard edge, like a shutter opening — for full-bleed panels/images. */
+export function ClipReveal({
+  children,
+  className,
+  delay = 0,
+  from = 'bottom',
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+  from?: 'bottom' | 'left' | 'right';
+}) {
+  const hidden =
+    from === 'left' ? 'inset(0 100% 0 0)' : from === 'right' ? 'inset(0 0 0 100%)' : 'inset(0 0 100% 0)';
+  return (
+    <motion.div
+      initial={{ clipPath: hidden }}
+      whileInView={{ clipPath: 'inset(0 0 0 0)' }}
+      viewport={{ once: true, margin: '-100px' }}
+      transition={{ duration: 1.1, delay, ease: EASE }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/** Traces an SVG path stroke-on as it scrolls into view — for schematic/architecture diagrams. */
+export function DrawPath(props: React.SVGProps<SVGPathElement> & { delay?: number }) {
+  const { delay = 0, ...rest } = props;
+  const ref = useRef<SVGPathElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-60px' });
+  return (
+    <motion.path
+      ref={ref}
+      initial={{ pathLength: 0, opacity: 0 }}
+      animate={inView ? { pathLength: 1, opacity: 1 } : {}}
+      transition={{ duration: 1.4, delay, ease: EASE }}
+      {...rest}
+    />
+  );
+}
+
+/**
+ * Pins its content in the viewport while the user scrolls through a tall track,
+ * and reports 0→1 progress through that track — the base for sticky, scroll-driven scenes.
+ */
+export function ScrollScene({
+  children,
+  className,
+  trackClassName,
+  heightVh = 260,
+}: {
+  children: (progress: ReturnType<typeof useScroll>['scrollYProgress']) => React.ReactNode;
+  className?: string;
+  trackClassName?: string;
+  heightVh?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] });
+  return (
+    <div ref={ref} className={trackClassName} style={{ height: `${heightVh}vh`, position: 'relative' }}>
+      <div className={`sticky top-0 h-screen overflow-hidden ${className ?? ''}`}>
+        {children(scrollYProgress)}
+      </div>
     </div>
   );
 }

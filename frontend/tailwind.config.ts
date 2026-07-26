@@ -28,9 +28,11 @@ export default {
         mono: ['var(--font-mono)', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       fontSize: {
+        'display-xl': ['clamp(3.25rem, 10.5vw, 9rem)', { lineHeight: '0.95', letterSpacing: '-0.035em' }],
         'display-lg': ['clamp(3rem, 8vw, 7.5rem)', { lineHeight: '0.98', letterSpacing: '-0.03em' }],
         'display-md': ['clamp(2.5rem, 6vw, 5rem)', { lineHeight: '1.02', letterSpacing: '-0.025em' }],
         'display-sm': ['clamp(2rem, 4vw, 3rem)', { lineHeight: '1.08', letterSpacing: '-0.02em' }],
+        'display-stat': ['clamp(4rem, 13vw, 11rem)', { lineHeight: '0.92', letterSpacing: '-0.04em' }],
       },
       letterSpacing: {
         tightest: '-0.04em',
@@ -39,15 +41,20 @@ export default {
       backgroundImage: {
         grid: 'linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)',
         'radial-fade': 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(79,127,255,0.16), transparent 70%)',
+        'radial-fade-sm': 'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(79,127,255,0.14), transparent 70%)',
       },
       backgroundSize: {
         grid: '48px 48px',
+        'grid-fine': '24px 24px',
       },
       animation: {
         'fade-up': 'fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
         'fade-in': 'fade-in 1s ease forwards',
         marquee: 'marquee 32s linear infinite',
         'pulse-slow': 'pulse-slow 4s ease-in-out infinite',
+        'grid-drift': 'grid-drift 24s linear infinite',
+        scanline: 'scanline 6s cubic-bezier(0.65, 0, 0.35, 1) infinite',
+        'drift-slow': 'drift-slow 14s ease-in-out infinite',
       },
       keyframes: {
         'fade-up': {
@@ -65,6 +72,20 @@ export default {
         'pulse-slow': {
           '0%, 100%': { opacity: '0.4' },
           '50%': { opacity: '0.9' },
+        },
+        'grid-drift': {
+          '0%': { backgroundPosition: '0px 0px' },
+          '100%': { backgroundPosition: '48px 48px' },
+        },
+        scanline: {
+          '0%, 100%': { transform: 'translateY(-10%)', opacity: '0' },
+          '10%': { opacity: '0.6' },
+          '50%': { transform: 'translateY(110%)', opacity: '0.35' },
+          '90%': { opacity: '0.6' },
+        },
+        'drift-slow': {
+          '0%, 100%': { transform: 'translate(0px, 0px)' },
+          '50%': { transform: 'translate(18px, -14px)' },
         },
       },
       transitionTimingFunction: {
