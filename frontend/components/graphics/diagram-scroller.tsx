@@ -39,7 +39,7 @@ export default function DiagramScroller({
   }, []);
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative min-w-0 ${className}`}>
       <div
         ref={trackRef}
         className="-mx-4 overflow-x-auto px-4 pb-1 md:mx-0 md:overflow-visible md:px-0 md:pb-0"

@@ -70,7 +70,7 @@ export default function ServicesPage() {
               </p>
             </Reveal>
           </div>
-          <Reveal delay={0.2}>
+          <Reveal delay={0.2} className="min-w-0">
             <DiagramScroller width={460}>
               <TopologyOverview />
             </DiagramScroller>
