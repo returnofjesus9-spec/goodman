@@ -5,8 +5,10 @@ import { Reveal, TextReveal } from '@/components/motion';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Contact — Goodman Consulting',
-  description: 'Get in touch about your next website, automation, or dashboard project.',
+  title: 'Contact',
+  description: 'Get in touch with a tech consultant about your next website, automation, or dashboard project.',
+  keywords: ['contact tech consultant', 'Goodman Consulting contact', 'Bhubaneswar IT consultant'],
+  alternates: { canonical: '/contact' },
 };
 
 const channels = [

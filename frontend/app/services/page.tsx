@@ -8,8 +8,10 @@ import { AutomationGlyph, CustomGlyph, DashboardGlyph, WebsiteGlyph } from '@/co
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Services — Goodman Consulting',
-  description: 'Website design, business automation, dashboards, and custom software for growing businesses.',
+  title: 'Services',
+  description: 'Tech consulting services: website design, business automation, dashboards, and custom software for local businesses.',
+  keywords: ['tech consulting services', 'business automation consulting', 'custom dashboards', 'website design services'],
+  alternates: { canonical: '/services' },
 };
 
 const services = [

@@ -5,8 +5,10 @@ import { Magnetic, Reveal, RevealGroup, RevealItem, TextReveal } from '@/compone
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Pricing — Goodman Consulting',
-  description: 'Simple, clear packages for websites, automation, and dashboards.',
+  title: 'Pricing',
+  description: 'Simple, clear tech consulting packages for websites, automation, and dashboards.',
+  keywords: ['tech consulting pricing', 'website design cost India', 'automation consulting packages'],
+  alternates: { canonical: '/pricing' },
 };
 
 type Tier = {

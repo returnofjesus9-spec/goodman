@@ -6,8 +6,10 @@ import { Reveal, TextReveal } from '@/components/motion';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Our Work — Goodman Consulting',
-  description: 'Real projects for real small and medium businesses.',
+  title: 'Our Work',
+  description: 'Real tech consulting projects for real local businesses — websites, automation, and dashboards.',
+  keywords: ['tech consulting case studies', 'client work Goodman Consulting', 'small business software projects'],
+  alternates: { canonical: '/work' },
 };
 
 type CaseStudy = {

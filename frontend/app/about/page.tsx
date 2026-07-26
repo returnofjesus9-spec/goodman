@@ -5,8 +5,10 @@ import { Parallax, Reveal, TextReveal } from '@/components/motion';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About — Goodman Consulting',
-  description: 'Who we are and why we work with small and medium businesses.',
+  title: 'About',
+  description: 'Who we are and why we work with local businesses on practical tech consulting — websites, automation, and dashboards.',
+  keywords: ['tech consulting company', 'about Goodman Consulting', 'Bhubaneswar tech consultancy'],
+  alternates: { canonical: '/about' },
 };
 
 export default function AboutPage() {

@@ -5,8 +5,10 @@ import { Reveal, TextReveal } from '@/components/motion';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Blog — Goodman Consulting',
-  description: 'Practical guides on websites, automation, and dashboards for local businesses.',
+  title: 'Blog',
+  description: 'Practical guides on tech consulting, websites, automation, and dashboards for local businesses.',
+  keywords: ['tech consulting blog', 'small business website guides', 'automation guides India'],
+  alternates: { canonical: '/blog' },
 };
 
 type BlogPost = {

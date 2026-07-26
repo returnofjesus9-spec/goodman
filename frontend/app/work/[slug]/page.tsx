@@ -1,14 +1,40 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import SiteFooter from '@/components/site-footer';
 import SceneGrid from '@/components/scene-grid';
 import { Reveal, TextReveal } from '@/components/motion';
 
-export default async function WorkDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+const SITE_URL = 'https://goodmanconsulting.in';
+
+async function getCaseStudy(slug: string) {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
   const res = await fetch(`${apiUrl}/api/case-studies/${slug}`, { cache: 'no-store' });
+  if (!res.ok) return null;
+  return res.json();
+}
 
-  if (!res.ok) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const item = await getCaseStudy(slug);
+  if (!item) return { title: 'Case study not found' };
+  return {
+    title: item.title,
+    description: item.summary,
+    alternates: { canonical: `/work/${slug}` },
+    openGraph: {
+      title: item.title,
+      description: item.summary,
+      type: 'article',
+      url: `${SITE_URL}/work/${slug}`,
+    },
+  };
+}
+
+export default async function WorkDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const item = await getCaseStudy(slug);
+
+  if (!item) {
     return (
       <main>
         <div className="mx-auto max-w-4xl px-4 py-28 text-ink-secondary">
@@ -22,10 +48,20 @@ export default async function WorkDetailPage({ params }: { params: Promise<{ slu
     );
   }
 
-  const item = await res.json();
+  const caseStudyJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: item.title,
+    description: item.summary,
+    url: `${SITE_URL}/work/${slug}`,
+    dateCreated: item.created_at,
+    dateModified: item.updated_at,
+    creator: { '@type': 'Organization', name: 'Goodman Consulting' },
+  };
 
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudyJsonLd) }} />
       {/* SCENE 01 — TITLE */}
       <section className="relative overflow-hidden bg-bg-void px-4 pb-16 pt-32 md:px-8 lg:px-12">
         <SceneGrid className="opacity-25" density="fine" fade="bottom" scanline={false} />
