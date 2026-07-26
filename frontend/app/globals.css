@@ -11,13 +11,15 @@
   scroll-behavior: smooth;
 }
 
+/* Base page tone only — no site-wide grid here. Grid texture is applied per
+   section by <SceneGrid>, deliberately varying in density and fading in/out
+   (or dropping out entirely) from one section to the next, so the page reads
+   as a sequence of distinct instrument panels rather than one uniform sheet
+   of graph paper. */
 body {
   @apply bg-bg text-ink antialiased;
-  background-image:
-    radial-gradient(ellipse 70% 50% at 50% -10%, rgba(79, 127, 255, 0.14), transparent 60%),
-    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-  background-size: 100% 100%, 56px 56px, 56px 56px;
+  background-image: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(79, 127, 255, 0.12), transparent 60%);
+  background-size: 100% 100%;
   background-attachment: fixed;
 }
 

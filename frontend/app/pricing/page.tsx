@@ -1,5 +1,6 @@
 import SiteFooter from '@/components/site-footer';
 import SceneGrid from '@/components/scene-grid';
+import TierScale from '@/components/graphics/tier-scale';
 import { Magnetic, Reveal, RevealGroup, RevealItem, TextReveal } from '@/components/motion';
 import type { Metadata } from 'next';
 
@@ -24,7 +25,7 @@ export default async function PricingPage() {
     <main>
       {/* SCENE 01 — HERO */}
       <section className="relative overflow-hidden px-4 py-32 md:px-8 lg:px-12">
-        <SceneGrid className="opacity-40" />
+        <SceneGrid className="opacity-40" density="regular" fade="bottom" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[480px] bg-radial-fade" />
         <div className="relative mx-auto max-w-6xl">
           <Reveal>
@@ -46,7 +47,11 @@ export default async function PricingPage() {
       <section className="relative border-t border-line px-4 py-24 md:px-8 lg:px-12">
         <div className="mx-auto max-w-6xl">
           {pricing.length ? (
-            <RevealGroup className="grid gap-px overflow-hidden rounded-sm border border-line bg-line md:grid-cols-3">
+            <>
+              <Reveal className="mx-auto mb-16 max-w-xl">
+                <TierScale tiers={pricing.map((t) => ({ name: t.name }))} />
+              </Reveal>
+              <RevealGroup className="grid gap-px overflow-hidden rounded-sm border border-line bg-line md:grid-cols-3">
               {pricing.map((tier) => (
                 <RevealItem key={tier.id}>
                   <article className="flex h-full flex-col bg-bg-surface p-8 md:p-10">
@@ -64,7 +69,8 @@ export default async function PricingPage() {
                   </article>
                 </RevealItem>
               ))}
-            </RevealGroup>
+              </RevealGroup>
+            </>
           ) : (
             <Reveal>
               <div className="border-t border-b border-line py-16">

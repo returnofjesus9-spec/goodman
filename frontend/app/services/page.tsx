@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import SiteFooter from '@/components/site-footer';
 import SceneGrid from '@/components/scene-grid';
+import TopologyOverview from '@/components/graphics/topology-overview';
 import { ClipReveal, Magnetic, Reveal, TextReveal } from '@/components/motion';
 import { AutomationGlyph, CustomGlyph, DashboardGlyph, WebsiteGlyph } from '@/components/service-glyphs';
 import type { Metadata } from 'next';
@@ -51,20 +52,25 @@ export default function ServicesPage() {
     <main>
       {/* SCENE 01 — HERO */}
       <section className="relative overflow-hidden px-4 py-32 md:px-8 lg:px-12">
-        <SceneGrid className="opacity-40" />
+        <SceneGrid className="opacity-40" density="regular" fade="bottom" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[480px] bg-radial-fade" />
-        <div className="relative mx-auto max-w-6xl">
-          <Reveal>
-            <p className="label text-accent-light">Services · 04</p>
-          </Reveal>
-          <h1 className="mt-6 max-w-3xl text-display-lg font-semibold text-ink">
-            <TextReveal text="What we can build for you." />
-          </h1>
-          <Reveal delay={0.35}>
-            <p className="mt-8 max-w-lg text-lg leading-relaxed text-ink-secondary">
-              Four focused services, each built to solve one specific problem for small and medium
-              businesses — not a menu of everything.
-            </p>
+        <div className="relative mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <Reveal>
+              <p className="label text-accent-light">Services · 04</p>
+            </Reveal>
+            <h1 className="mt-6 max-w-3xl text-display-lg font-semibold text-ink">
+              <TextReveal text="What we can build for you." />
+            </h1>
+            <Reveal delay={0.35}>
+              <p className="mt-8 max-w-lg text-lg leading-relaxed text-ink-secondary">
+                Four focused services, each built to solve one specific problem for small and medium
+                businesses — not a menu of everything.
+              </p>
+            </Reveal>
+          </div>
+          <Reveal delay={0.2} className="hidden lg:block">
+            <TopologyOverview />
           </Reveal>
         </div>
       </section>
@@ -113,7 +119,7 @@ export default function ServicesPage() {
       <section className="relative border-t border-line px-4 py-28 md:px-8 lg:px-12">
         <ClipReveal>
           <div className="relative mx-auto max-w-6xl overflow-hidden rounded-sm border border-line bg-bg-surface px-8 py-16 text-center">
-            <SceneGrid className="opacity-30" />
+            <SceneGrid className="opacity-30" density="fine" fade="none" />
             <div className="pointer-events-none absolute inset-0 bg-radial-fade opacity-70" />
             <div className="relative">
               <p className="label text-accent-light">Ready when you are</p>

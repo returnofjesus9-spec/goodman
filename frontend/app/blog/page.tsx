@@ -31,7 +31,7 @@ export default async function BlogIndexPage() {
     <main>
       {/* SCENE 01 — HERO */}
       <section className="relative overflow-hidden px-4 py-32 md:px-8 lg:px-12">
-        <SceneGrid className="opacity-40" />
+        <SceneGrid className="opacity-40" density="fine" fade="bottom" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[480px] bg-radial-fade" />
         <div className="relative mx-auto max-w-6xl">
           <Reveal>

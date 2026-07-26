@@ -1,5 +1,6 @@
 import SiteFooter from '@/components/site-footer';
 import SceneGrid from '@/components/scene-grid';
+import StageFlow from '@/components/graphics/stage-flow';
 import { Parallax, Reveal, TextReveal } from '@/components/motion';
 import type { Metadata } from 'next';
 
@@ -13,7 +14,7 @@ export default function AboutPage() {
     <main>
       {/* SCENE 01 — HERO */}
       <section className="relative overflow-hidden px-4 py-32 md:px-8 lg:px-12">
-        <SceneGrid className="opacity-40" />
+        <SceneGrid className="opacity-40" density="fine" fade="bottom" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[480px] bg-radial-fade" />
         <div className="relative mx-auto max-w-3xl">
           <Reveal>
@@ -46,6 +47,9 @@ export default function AboutPage() {
                 how your business actually runs day to day.
               </p>
             </Reveal>
+            <Reveal delay={0.18} className="pt-4">
+              <StageFlow stages={['You message us', 'We reply directly', 'Work ships weekly', 'You watch it launch']} />
+            </Reveal>
           </div>
         </div>
       </section>
@@ -55,7 +59,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-3xl">
           <Reveal>
             <div className="relative overflow-hidden rounded-sm border border-line bg-bg-surface px-8 py-10 md:px-12 md:py-14">
-              <SceneGrid className="opacity-25" />
+              <SceneGrid className="opacity-25" density="sparse" fade="none" />
               <div className="relative flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
                 <div>
                   <p className="label text-ink-muted">Registered business</p>

@@ -2,6 +2,8 @@ import Link from 'next/link';
 import SiteFooter from '@/components/site-footer';
 import TestimonialsSection from '@/components/testimonials-section';
 import ArchitectureDiagram from '@/components/architecture-diagram';
+import IndexRail from '@/components/graphics/index-rail';
+import ProcessPipeline from '@/components/graphics/process-pipeline';
 import SceneGrid from '@/components/scene-grid';
 import {
   Counter,
@@ -113,7 +115,7 @@ export default async function HomePage() {
     <main>
       {/* SCENE 01 — HERO */}
       <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-4 pb-16 pt-28 md:px-8 lg:px-12">
-        <SceneGrid />
+        <SceneGrid density="regular" fade="bottom" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[640px] bg-radial-fade" />
         <div className="pointer-events-none absolute -right-24 top-1/3 h-72 w-72 animate-drift-slow rounded-full bg-accent/[0.06] blur-3xl" />
 
@@ -232,7 +234,8 @@ export default async function HomePage() {
             </h2>
           </Reveal>
 
-          <div className="mt-20 flex flex-col">
+          <div className="relative mt-20 flex flex-col md:pl-8">
+            <IndexRail count={capabilities.length} />
             {capabilities.map((cap, i) => (
               <Reveal key={cap.title}>
                 <Link
@@ -269,7 +272,7 @@ export default async function HomePage() {
 
       {/* SCENE 06 — MASSIVE STATS */}
       <section className="relative overflow-hidden border-t border-line px-4 py-32 md:px-8 lg:px-12">
-        <SceneGrid className="opacity-60" />
+        <SceneGrid className="opacity-60" density="sparse" fade="both" />
         <div className="relative mx-auto max-w-6xl">
           <RevealGroup className="grid grid-cols-1 gap-16 sm:grid-cols-3">
             {stats.map((stat) => (
@@ -294,7 +297,11 @@ export default async function HomePage() {
             </h2>
           </Reveal>
 
-          <RevealGroup className="relative mt-20 grid gap-10 border-t border-line pt-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-line lg:border-t-0 lg:pt-0">
+          <Reveal delay={0.1} className="mt-14 hidden md:block">
+            <ProcessPipeline steps={processSteps.map(({ index, title }) => ({ index, title }))} />
+          </Reveal>
+
+          <RevealGroup className="relative mt-14 grid gap-10 border-t border-line pt-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-line lg:border-t-0 lg:pt-0 md:mt-6">
             {processSteps.map((step) => (
               <RevealItem key={step.index} className="lg:px-8 lg:first:pl-0 lg:last:pr-0">
                 <span className="font-mono text-xs text-accent-light">{step.index}</span>
@@ -354,7 +361,7 @@ export default async function HomePage() {
       <section className="relative border-t border-line px-4 py-28 md:px-8 lg:px-12">
         <Reveal>
           <div className="relative mx-auto max-w-6xl overflow-hidden rounded-sm border border-line bg-bg-surface px-8 py-20 text-center">
-            <SceneGrid className="opacity-30" />
+            <SceneGrid className="opacity-30" density="fine" fade="none" />
             <div className="pointer-events-none absolute inset-0 bg-radial-fade opacity-70" />
             <div className="relative">
               <p className="label text-accent-light">Registered MSME · UDYAM-OD-19-0172402</p>

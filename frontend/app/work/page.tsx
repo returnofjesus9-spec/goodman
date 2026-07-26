@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import SiteFooter from '@/components/site-footer';
 import SceneGrid from '@/components/scene-grid';
+import StageFlow from '@/components/graphics/stage-flow';
 import { Reveal, TextReveal } from '@/components/motion';
 import type { Metadata } from 'next';
 
@@ -31,7 +32,7 @@ export default async function WorkIndexPage() {
     <main>
       {/* SCENE 01 — HERO */}
       <section className="relative overflow-hidden px-4 py-32 md:px-8 lg:px-12">
-        <SceneGrid className="opacity-40" />
+        <SceneGrid className="opacity-40" density="sparse" fade="bottom" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[480px] bg-radial-fade" />
         <div className="relative mx-auto max-w-6xl">
           <Reveal>
@@ -44,6 +45,9 @@ export default async function WorkIndexPage() {
             <p className="mt-8 max-w-lg text-lg leading-relaxed text-ink-secondary">
               A look at what we&rsquo;ve built for small and medium businesses so far.
             </p>
+          </Reveal>
+          <Reveal delay={0.5} className="mt-12">
+            <StageFlow stages={['Brief', 'Build', 'Launch', 'Live']} />
           </Reveal>
         </div>
       </section>
