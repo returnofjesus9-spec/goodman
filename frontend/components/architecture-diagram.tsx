@@ -91,7 +91,7 @@ export default function ArchitectureDiagram() {
             start={start}
             end={end}
             d={`M ${s.p0x} ${s.p0y} C ${s.p1x} ${s.p1y}, ${s.p2x} ${s.p2y}, ${s.p3x} ${s.p3y}`}
-            stroke="rgba(140,169,255,0.55)"
+            stroke="rgba(217,131,90,0.55)"
           />
         );
       })}
@@ -101,7 +101,7 @@ export default function ArchitectureDiagram() {
         const at = s.i * spokeSpan + spokeSpan * 0.85;
         return (
           <ScrollNode key={`${s.key}-port`} progress={progress} at={at} x={s.portX} y={s.portY}>
-            <line x1={s.p3x} y1={s.p3y} x2={s.portX} y2={s.portY} stroke="rgba(140,169,255,0.75)" strokeWidth={1.25} />
+            <line x1={s.p3x} y1={s.p3y} x2={s.portX} y2={s.portY} stroke="rgba(217,131,90,0.75)" strokeWidth={1.25} />
           </ScrollNode>
         );
       })}

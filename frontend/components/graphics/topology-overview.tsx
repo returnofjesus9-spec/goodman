@@ -56,7 +56,7 @@ export default function TopologyOverview() {
             start={start}
             end={end}
             d={`M ${byKey[a].x} ${byKey[a].y} L ${byKey[b].x} ${byKey[b].y}`}
-            stroke="rgba(140,169,255,0.3)"
+            stroke="rgba(217,131,90,0.3)"
           />
         );
       })}
@@ -74,7 +74,7 @@ export default function TopologyOverview() {
               cy={n.y}
               r={7}
               fill="rgba(17,17,17,0.95)"
-              stroke="rgba(140,169,255,0.8)"
+              stroke="rgba(217,131,90,0.8)"
               strokeWidth={1.4}
               className="animate-node-blink"
             />

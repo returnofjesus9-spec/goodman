@@ -56,7 +56,7 @@ export default function ProcessPipeline({ steps }: { steps: { index: string; tit
         start={0}
         end={lineEnd}
         d={`M ${p0} ${y} C ${p1x} ${y - bow}, ${p2x} ${y + bow}, ${p3} ${y}`}
-        stroke="rgba(140,169,255,0.45)"
+        stroke="rgba(217,131,90,0.45)"
       />
 
       {/* traveling signal — only starts once the full run is laid down */}
@@ -81,7 +81,7 @@ export default function ProcessPipeline({ steps }: { steps: { index: string; tit
         const at = t * lineEnd;
         return (
           <ScrollNode key={step.index} progress={progress} at={at} x={cx} y={cy}>
-            <circle cx={cx} cy={cy} r={13} fill="rgba(17,17,17,0.95)" stroke="rgba(140,169,255,0.55)" strokeWidth={1.25} />
+            <circle cx={cx} cy={cy} r={13} fill="rgba(17,17,17,0.95)" stroke="rgba(217,131,90,0.55)" strokeWidth={1.25} />
             <text x={cx} y={cy + 4} textAnchor="middle" fill="#D9835A" fontSize="10" fontFamily="var(--font-mono)">
               {step.index}
             </text>

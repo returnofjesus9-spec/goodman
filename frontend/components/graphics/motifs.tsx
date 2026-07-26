@@ -19,7 +19,7 @@ export function ScrollConnector({
   start,
   end,
   d,
-  stroke = 'rgba(140,169,255,0.5)',
+  stroke = 'rgba(217,131,90,0.5)',
   strokeWidth = 1.25,
 }: {
   progress: MotionValue<number>;
