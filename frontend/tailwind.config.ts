@@ -46,6 +46,12 @@ export default {
         'display-md': ['clamp(2.5rem, 6vw, 5rem)', { lineHeight: '1.02', letterSpacing: '-0.025em' }],
         'display-sm': ['clamp(2rem, 4vw, 3rem)', { lineHeight: '1.08', letterSpacing: '-0.02em' }],
         'display-stat': ['clamp(4rem, 13vw, 11rem)', { lineHeight: '0.92', letterSpacing: '-0.04em' }],
+        // Sized to fit one column of a 3-up grid inside max-w-6xl (~300–340px
+        // per column) at any viewport width, unlike display-stat's vw-based
+        // sizing which was written for a full-bleed single number and
+        // overflows into neighboring columns once contained to a third of
+        // the page.
+        'display-stat-grid': ['clamp(2.75rem, 7vw, 5.5rem)', { lineHeight: '0.95', letterSpacing: '-0.03em' }],
       },
       letterSpacing: {
         tightest: '-0.04em',
