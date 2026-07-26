@@ -4,7 +4,6 @@ import TestimonialsSection from '@/components/testimonials-section';
 import ArchitectureDiagram from '@/components/architecture-diagram';
 import SceneGrid from '@/components/scene-grid';
 import {
-  ClipReveal,
   Counter,
   Magnetic,
   Parallax,
@@ -217,9 +216,9 @@ export default async function HomePage() {
               and custom tools where the rest doesn&rsquo;t fit. Separate pieces, one picture.
             </p>
           </Reveal>
-          <ClipReveal from="right">
+          <Reveal delay={0.15}>
             <ArchitectureDiagram />
-          </ClipReveal>
+          </Reveal>
         </div>
       </section>
 
