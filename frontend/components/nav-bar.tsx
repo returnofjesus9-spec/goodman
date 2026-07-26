@@ -101,7 +101,7 @@ export default function NavBar() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden border-t border-line bg-bg md:hidden"
+            className="overflow-hidden border-t border-line bg-bg-surface md:hidden"
           >
             <div className="flex flex-col gap-1 px-4 py-4">
               {links.map((link) => (
@@ -110,7 +110,7 @@ export default function NavBar() {
                   href={link.href}
                   onClick={() => setOpen(false)}
                   className={`rounded-sm px-3 py-2.5 text-sm font-medium ${
-                    isActive(link.href) ? 'bg-bg-surface text-ink' : 'text-ink-secondary hover:bg-bg-surface hover:text-ink'
+                    isActive(link.href) ? 'bg-bg-raised text-ink' : 'text-ink-secondary hover:bg-bg-raised hover:text-ink'
                   }`}
                 >
                   {link.label}

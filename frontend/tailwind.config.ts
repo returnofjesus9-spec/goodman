@@ -6,9 +6,22 @@ export default {
     extend: {
       colors: {
         bg: {
+          // Tonal ramp, not a flat slab. Each step is a touch lighter *and*
+          // a touch cooler (blue creeping into the graphite as it lifts),
+          // so the darks read as material catching a faint cool light
+          // rather than a neutral void — and so they sit comfortably next
+          // to the #4F7FFF accent instead of fighting it.
+          //   void    — true floor. Reserved for hero + final CTA only.
+          //   deep    — page-level section background, one step up from void.
+          //   surface — card/panel background, sits on deep or void.
+          //   raised  — hover states, active nav items, elevated panels.
+          void: '#050505',
+          deep: '#0A0C10',
+          surface: '#10131A',
+          raised: '#171B24',
+          // DEFAULT kept as an alias of void so any un-migrated `bg-bg`
+          // usage still resolves to the correct floor tone.
           DEFAULT: '#050505',
-          secondary: '#0B0B0B',
-          surface: '#111111',
         },
         line: '#242424',
         ink: {

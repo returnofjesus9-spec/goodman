@@ -27,7 +27,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   return (
     <main>
       {/* SCENE 01 — TITLE */}
-      <section className="relative overflow-hidden px-4 pb-16 pt-32 md:px-8 lg:px-12">
+      <section className="relative overflow-hidden bg-bg-void px-4 pb-16 pt-32 md:px-8 lg:px-12">
         <SceneGrid className="opacity-25" density="fine" fade="bottom" scanline={false} />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[480px] bg-radial-fade" />
         <div className="relative mx-auto max-w-3xl">
@@ -46,7 +46,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </section>
 
       {/* SCENE 02 — ARTICLE (editorial column, no card) */}
-      <section className="relative border-t border-line px-4 py-20 md:px-8 lg:px-12">
+      <section className="relative border-t border-line bg-bg-deep px-4 py-20 md:px-8 lg:px-12">
         <div className="mx-auto max-w-3xl">
           <Reveal delay={0.1}>
             <article className="whitespace-pre-line text-lg leading-relaxed text-ink-secondary">
@@ -57,7 +57,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </section>
 
       {/* SCENE 03 — CTA */}
-      <section className="relative border-t border-line px-4 py-24 md:px-8 lg:px-12">
+      <section className="relative border-t border-line bg-bg-surface px-4 py-24 md:px-8 lg:px-12">
         <Reveal>
           <div className="mx-auto flex max-w-3xl flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
             <p className="max-w-sm text-lg font-semibold text-ink">Have a project like this in mind?</p>

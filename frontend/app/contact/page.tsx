@@ -19,7 +19,7 @@ export default function ContactPage() {
   return (
     <main>
       {/* SCENE 01 — HERO */}
-      <section className="relative overflow-hidden px-4 py-32 md:px-8 lg:px-12">
+      <section className="relative overflow-hidden bg-bg-void px-4 py-32 md:px-8 lg:px-12">
         <SceneGrid className="opacity-25" density="fine" fade="bottom" scanline={false} />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[480px] bg-radial-fade" />
         <div className="relative mx-auto max-w-6xl">
@@ -39,7 +39,7 @@ export default function ContactPage() {
       </section>
 
       {/* SCENE 02 — CHANNELS + FORM (split, not two stacked cards) */}
-      <section className="relative border-t border-line px-4 py-24 md:px-8 lg:px-12">
+      <section className="relative border-t border-line bg-bg-deep px-4 py-24 md:px-8 lg:px-12">
         <div className="mx-auto grid max-w-6xl gap-16 lg:grid-cols-[0.85fr_1.15fr]">
           <Reveal>
             <div>

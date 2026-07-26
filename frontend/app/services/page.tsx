@@ -52,7 +52,7 @@ export default function ServicesPage() {
   return (
     <main>
       {/* SCENE 01 — HERO */}
-      <section className="relative overflow-hidden px-4 py-32 md:px-8 lg:px-12">
+      <section className="relative overflow-hidden bg-bg-void px-4 py-32 md:px-8 lg:px-12">
         <SceneGrid className="opacity-40" density="regular" fade="bottom" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[480px] bg-radial-fade" />
         <div className="relative mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-[1fr_1fr] lg:gap-20">
@@ -79,7 +79,7 @@ export default function ServicesPage() {
       </section>
 
       {/* SCENE 02 — SERVICES (alternating rows, each with its own glyph) */}
-      <section className="relative border-t border-line px-4 py-4 md:px-8 lg:px-12">
+      <section className="relative border-t border-line bg-bg-deep px-4 py-4 md:px-8 lg:px-12">
         <div className="mx-auto flex max-w-6xl flex-col">
           {services.map(({ Glyph, ...service }, i) => (
             <Reveal key={service.title}>
@@ -119,7 +119,7 @@ export default function ServicesPage() {
       </section>
 
       {/* SCENE 03 — CTA */}
-      <section className="relative border-t border-line px-4 py-28 md:px-8 lg:px-12">
+      <section className="relative border-t border-line bg-bg-void px-4 py-28 md:px-8 lg:px-12">
         <ClipReveal>
           <div className="relative mx-auto max-w-6xl overflow-hidden rounded-sm border border-line bg-bg-surface px-8 py-16 text-center">
             <SceneGrid className="opacity-30" density="fine" fade="none" />

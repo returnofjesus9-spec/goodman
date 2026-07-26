@@ -31,7 +31,7 @@ export default async function WorkIndexPage() {
   return (
     <main>
       {/* SCENE 01 — HERO */}
-      <section className="relative overflow-hidden px-4 py-32 md:px-8 lg:px-12">
+      <section className="relative overflow-hidden bg-bg-void px-4 py-32 md:px-8 lg:px-12">
         <SceneGrid className="opacity-40" density="sparse" fade="bottom" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[480px] bg-radial-fade" />
         <div className="relative mx-auto max-w-6xl">
@@ -53,7 +53,7 @@ export default async function WorkIndexPage() {
       </section>
 
       {/* SCENE 02 — CASE STUDIES (editorial numbered rows) */}
-      <section className="relative border-t border-line px-4 py-4 md:px-8 lg:px-12">
+      <section className="relative border-t border-line bg-bg-deep px-4 py-4 md:px-8 lg:px-12">
         <div className="mx-auto max-w-6xl">
           {items.length ? (
             <div className="flex flex-col">
@@ -61,7 +61,7 @@ export default async function WorkIndexPage() {
                 <Reveal key={item.slug}>
                   <Link
                     href={`/work/${item.slug}`}
-                    className="group grid items-center gap-6 border-t border-line py-12 transition-colors last:border-b hover:bg-bg-surface/40 md:grid-cols-[auto_1fr_auto]"
+                    className="group grid items-center gap-6 border-t border-line py-12 transition-colors last:border-b hover:bg-bg-raised/40 md:grid-cols-[auto_1fr_auto]"
                   >
                     <span className="font-mono text-sm text-ink-muted">{String(i + 1).padStart(2, '0')}</span>
                     <div>
@@ -91,7 +91,7 @@ export default async function WorkIndexPage() {
       </section>
 
       {/* SCENE 03 — CTA */}
-      <section className="relative border-t border-line px-4 py-20 md:px-8 lg:px-12">
+      <section className="relative border-t border-line bg-bg-surface px-4 py-20 md:px-8 lg:px-12">
         <Reveal>
           <div className="mx-auto max-w-6xl text-center">
             <a

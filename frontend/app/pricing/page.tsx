@@ -24,7 +24,7 @@ export default async function PricingPage() {
   return (
     <main>
       {/* SCENE 01 — HERO */}
-      <section className="relative overflow-hidden px-4 py-32 md:px-8 lg:px-12">
+      <section className="relative overflow-hidden bg-bg-void px-4 py-32 md:px-8 lg:px-12">
         <SceneGrid className="opacity-40" density="regular" fade="bottom" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[480px] bg-radial-fade" />
         <div className="relative mx-auto max-w-6xl">
@@ -44,7 +44,7 @@ export default async function PricingPage() {
       </section>
 
       {/* SCENE 02 — PACKAGES */}
-      <section className="relative border-t border-line px-4 py-24 md:px-8 lg:px-12">
+      <section className="relative border-t border-line bg-bg-deep px-4 py-24 md:px-8 lg:px-12">
         <div className="mx-auto max-w-6xl">
           {pricing.length ? (
             <>
@@ -85,7 +85,7 @@ export default async function PricingPage() {
       </section>
 
       {/* SCENE 03 — TRUST NOTE */}
-      <section className="relative border-t border-line px-4 py-20 md:px-8 lg:px-12">
+      <section className="relative border-t border-line bg-bg-surface px-4 py-20 md:px-8 lg:px-12">
         <Reveal>
           <div className="mx-auto flex max-w-6xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="max-w-md text-sm text-ink-secondary">

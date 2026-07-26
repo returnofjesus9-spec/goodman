@@ -115,7 +115,7 @@ export default async function HomePage() {
   return (
     <main>
       {/* SCENE 01 — HERO */}
-      <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-4 pb-16 pt-28 md:px-8 lg:px-12">
+      <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden bg-bg-void px-4 pb-16 pt-28 md:px-8 lg:px-12">
         <SceneGrid density="regular" fade="bottom" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[640px] bg-radial-fade" />
         <div className="pointer-events-none absolute -right-24 top-1/3 h-72 w-72 animate-drift-slow rounded-full bg-accent/[0.06] blur-3xl" />
@@ -178,7 +178,7 @@ export default async function HomePage() {
       {/* Deliberately no grid here — this is the "airy" beat between the
           textured hero and the architectural diagram section below, just a
           faint glow so the page doesn't read as a hard cut to flat black. */}
-      <section className="relative overflow-hidden border-t border-line px-4 py-20 md:px-8 lg:px-12">
+      <section className="relative overflow-hidden border-t border-line bg-bg-deep px-4 py-20 md:px-8 lg:px-12">
         <div className="pointer-events-none absolute inset-0 bg-radial-fade-sm opacity-40" />
         <div className="relative mx-auto max-w-3xl text-center">
           <Reveal>
@@ -194,7 +194,7 @@ export default async function HomePage() {
       </section>
 
       {/* SCENE 03 — LARGE STATEMENT (split, editorial) */}
-      <section className="relative overflow-hidden border-t border-line px-4 py-32 md:px-8 lg:px-12">
+      <section className="relative overflow-hidden border-t border-line bg-bg-surface px-4 py-32 md:px-8 lg:px-12">
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[auto_1fr] md:gap-16">
           <Parallax range={24} className="hidden flex-col gap-2 font-mono text-xs text-ink-muted md:flex">
             <span>§01</span>
@@ -215,7 +215,7 @@ export default async function HomePage() {
           generous top/bottom air, and a soft sparse grid + light wash so it
           reads as a real instrument panel rather than a figure squeezed
           beside a paragraph. */}
-      <section className="relative overflow-hidden border-t border-line px-4 py-32 md:px-8 lg:px-12 lg:py-40">
+      <section className="relative overflow-hidden border-t border-line bg-bg-deep px-4 py-32 md:px-8 lg:px-12 lg:py-40">
         <SceneGrid className="opacity-25" density="sparse" fade="both" />
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
@@ -236,7 +236,7 @@ export default async function HomePage() {
       </section>
 
       {/* SCENE 05 — CAPABILITIES (alternating full-width rows) */}
-      <section className="relative overflow-hidden border-t border-line px-4 py-24 md:px-8 lg:px-12">
+      <section className="relative overflow-hidden border-t border-line bg-bg-surface px-4 py-24 md:px-8 lg:px-12">
         <SceneGrid className="opacity-20" density="sparse" fade="both" scanline={false} />
         <div className="relative mx-auto max-w-6xl">
           <Reveal>
@@ -252,7 +252,7 @@ export default async function HomePage() {
               <Reveal key={cap.title}>
                 <Link
                   href={cap.href}
-                  className={`group grid items-center gap-6 border-t border-line py-12 transition-colors hover:bg-bg-surface/40 md:grid-cols-[auto_1fr_auto] md:gap-12 ${
+                  className={`group grid items-center gap-6 border-t border-line py-12 transition-colors hover:bg-bg-raised/40 md:grid-cols-[auto_1fr_auto] md:gap-12 ${
                     i % 2 === 1 ? 'md:text-right' : ''
                   }`}
                 >
@@ -283,7 +283,7 @@ export default async function HomePage() {
       </section>
 
       {/* SCENE 06 — MASSIVE STATS */}
-      <section className="relative overflow-hidden border-t border-line px-4 py-32 md:px-8 lg:px-12">
+      <section className="relative overflow-hidden border-t border-line bg-bg-raised px-4 py-32 md:px-8 lg:px-12">
         <SceneGrid className="opacity-60" density="sparse" fade="both" />
         <div className="relative mx-auto max-w-6xl">
           <RevealGroup className="grid grid-cols-1 gap-16 sm:grid-cols-3">
@@ -300,7 +300,7 @@ export default async function HomePage() {
       </section>
 
       {/* SCENE 07 — PROCESS TIMELINE */}
-      <section className="relative border-t border-line px-4 py-28 md:px-8 lg:px-12">
+      <section className="relative border-t border-line bg-bg-deep px-4 py-28 md:px-8 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <Reveal>
             <p className="label text-accent-light">How we work</p>
@@ -329,7 +329,7 @@ export default async function HomePage() {
 
       {/* SCENE 08 — CASE STUDIES */}
       {recentWork.length ? (
-        <section className="relative border-t border-line px-4 py-28 md:px-8 lg:px-12">
+        <section className="relative border-t border-line bg-bg-surface px-4 py-28 md:px-8 lg:px-12">
           <div className="mx-auto max-w-6xl">
             <Reveal>
               <div className="flex flex-wrap items-end justify-between gap-4">
@@ -348,7 +348,7 @@ export default async function HomePage() {
                 <Reveal key={item.slug}>
                   <Link
                     href={`/work/${item.slug}`}
-                    className="group grid items-center gap-6 border-t border-line py-10 transition-colors hover:bg-bg-surface/40 md:grid-cols-[auto_1fr_auto]"
+                    className="group grid items-center gap-6 border-t border-line py-10 transition-colors hover:bg-bg-raised/40 md:grid-cols-[auto_1fr_auto]"
                   >
                     <span className="font-mono text-sm text-ink-muted">{String(i + 1).padStart(2, '0')}</span>
                     <div>
@@ -372,7 +372,7 @@ export default async function HomePage() {
       <TestimonialsSection items={testimonials} />
 
       {/* SCENE 09 — CTA */}
-      <section className="relative border-t border-line px-4 py-28 md:px-8 lg:px-12">
+      <section className="relative border-t border-line bg-bg-void px-4 py-28 md:px-8 lg:px-12">
         <Reveal>
           <div className="relative mx-auto max-w-6xl overflow-hidden rounded-sm border border-line bg-bg-surface px-8 py-20 text-center">
             <SceneGrid className="opacity-30" density="fine" fade="none" />

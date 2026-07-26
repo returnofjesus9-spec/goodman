@@ -13,7 +13,7 @@ export default function AboutPage() {
   return (
     <main>
       {/* SCENE 01 — HERO */}
-      <section className="relative overflow-hidden px-4 py-32 md:px-8 lg:px-12">
+      <section className="relative overflow-hidden bg-bg-void px-4 py-32 md:px-8 lg:px-12">
         <SceneGrid className="opacity-40" density="fine" fade="bottom" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[480px] bg-radial-fade" />
         <div className="relative mx-auto max-w-3xl">
@@ -27,7 +27,7 @@ export default function AboutPage() {
       </section>
 
       {/* SCENE 02 — STORY (editorial column with a running marginal note) */}
-      <section className="relative overflow-hidden border-t border-line px-4 py-28 md:px-8 lg:px-12">
+      <section className="relative overflow-hidden border-t border-line bg-bg-deep px-4 py-28 md:px-8 lg:px-12">
         <div className="pointer-events-none absolute inset-0 bg-radial-fade-sm opacity-30" />
         <div className="relative mx-auto grid max-w-3xl gap-10 md:grid-cols-[auto_1fr] md:gap-16">
           <Parallax range={20} className="hidden flex-col gap-2 font-mono text-xs text-ink-muted md:flex">
@@ -56,10 +56,10 @@ export default function AboutPage() {
       </section>
 
       {/* SCENE 03 — CREDENTIAL (treated like a technical plate, not a card) */}
-      <section className="relative border-t border-line px-4 py-20 md:px-8 lg:px-12">
+      <section className="relative border-t border-line bg-bg-surface px-4 py-20 md:px-8 lg:px-12">
         <div className="mx-auto max-w-3xl">
           <Reveal>
-            <div className="relative overflow-hidden rounded-sm border border-line bg-bg-surface px-8 py-10 md:px-12 md:py-14">
+            <div className="relative overflow-hidden rounded-sm border border-line bg-bg-raised px-8 py-10 md:px-12 md:py-14">
               <SceneGrid className="opacity-25" density="sparse" fade="none" />
               <div className="relative flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
                 <div>
@@ -81,7 +81,7 @@ export default function AboutPage() {
       </section>
 
       {/* SCENE 04 — CTA */}
-      <section className="relative border-t border-line px-4 py-16 md:px-8 lg:px-12">
+      <section className="relative border-t border-line bg-bg-void px-4 py-16 md:px-8 lg:px-12">
         <Reveal>
           <div className="mx-auto flex max-w-3xl flex-col gap-3 sm:flex-row">
             <a

@@ -12,7 +12,7 @@ const links = [
 
 export default function SiteFooter() {
   return (
-    <footer className="relative border-t border-line bg-bg-secondary">
+    <footer className="relative border-t border-line bg-bg-deep">
       <div className="mx-auto max-w-7xl px-4 py-16 md:px-8 lg:px-12">
         <Reveal>
           <div className="grid gap-12 border-b border-line pb-12 md:grid-cols-[1.3fr_1fr_1fr]">

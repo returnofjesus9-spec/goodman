@@ -11,7 +11,7 @@ export default function TestimonialsSection({ items }: { items: Testimonial[] })
   if (!items.length) return null;
 
   return (
-    <section className="border-t border-line px-4 py-24 md:px-8 lg:px-12">
+    <section className="border-t border-line bg-bg-deep px-4 py-24 md:px-8 lg:px-12">
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <p className="label text-accent-light">What clients say</p>
