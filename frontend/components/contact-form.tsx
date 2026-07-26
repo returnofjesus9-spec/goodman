@@ -4,7 +4,7 @@ import { FormEvent, useEffect, useRef, useState } from 'react';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 const inputClass =
-  'mt-2 w-full rounded-sm border border-line bg-bg px-3.5 py-2.5 text-sm text-ink placeholder:text-ink-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent';
+  'mt-2 w-full rounded-sm border border-line bg-bg px-3.5 py-2.5 text-base text-ink placeholder:text-ink-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent md:text-sm';
 const labelClass = 'block text-xs font-semibold uppercase tracking-[0.08em] text-ink-secondary';
 
 // Render's free plan spins the backend down when idle, so the first request

@@ -9,7 +9,7 @@ import {
   useTransform,
   Variants,
 } from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -259,10 +259,25 @@ export function DrawPath({ delay = 0, ...rest }: DrawPathProps) {
  */
 export function useDiagramProgress<T extends HTMLElement | SVGSVGElement>() {
   const ref = useRef<T>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref as unknown as React.RefObject<HTMLElement>,
-    offset: ['start 0.92', 'start 0.3'],
-  });
+
+  // On short mobile viewports (especially with dynamic browser chrome in
+  // mobile Safari/Chrome), the default ['start 0.92', 'start 0.3'] window
+  // compresses into a much smaller scroll distance than on desktop, so the
+  // diagram's scroll-linked assembly finishes drawing abruptly. Widening the
+  // window on short viewports keeps the reveal gradual everywhere.
+  const [compactViewport, setCompactViewport] = useState(false);
+  useEffect(() => {
+    const check = () => setCompactViewport(window.innerHeight < 700);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  const { scrollYProgress } = useScroll(
+    compactViewport
+      ? { target: ref as unknown as React.RefObject<HTMLElement>, offset: ['start 0.98', 'start 0.15'] }
+      : { target: ref as unknown as React.RefObject<HTMLElement>, offset: ['start 0.92', 'start 0.3'] }
+  );
   const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 24, mass: 0.4 });
   return { ref, progress };
 }

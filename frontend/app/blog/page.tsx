@@ -66,7 +66,7 @@ export default async function BlogIndexPage() {
                       </h2>
                       <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink-secondary">{item.summary}</p>
                     </div>
-                    <span className="hidden text-sm font-semibold text-accent-light opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:inline-flex">
+                    <span className="inline-flex text-sm font-semibold text-accent-light opacity-100 transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100">
                       Read article →
                     </span>
                   </Link>

@@ -27,7 +27,7 @@ export default function IndexRail({ count }: { count: number }) {
   const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <div ref={ref} className="pointer-events-none absolute inset-y-0 left-0 hidden w-px md:block" aria-hidden>
+    <div ref={ref} className="pointer-events-none absolute inset-y-0 left-0 block w-px" aria-hidden>
       <div className="absolute inset-y-0 left-0 w-px bg-line" />
       <motion.div style={{ scaleY }} className="absolute inset-y-0 left-0 w-px origin-top bg-accent-light/70" />
       {Array.from({ length: count }).map((_, i) => (

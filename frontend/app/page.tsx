@@ -4,6 +4,7 @@ import TestimonialsSection from '@/components/testimonials-section';
 import ArchitectureDiagram from '@/components/architecture-diagram';
 import IndexRail from '@/components/graphics/index-rail';
 import ProcessPipeline from '@/components/graphics/process-pipeline';
+import DiagramScroller from '@/components/graphics/diagram-scroller';
 import SceneGrid from '@/components/scene-grid';
 import {
   Counter,
@@ -228,7 +229,9 @@ export default async function HomePage() {
           </Reveal>
         </div>
         <div className="relative mx-auto mt-20 max-w-4xl">
-          <ArchitectureDiagram />
+          <DiagramScroller width={760}>
+            <ArchitectureDiagram />
+          </DiagramScroller>
         </div>
       </section>
 
@@ -243,7 +246,7 @@ export default async function HomePage() {
             </h2>
           </Reveal>
 
-          <div className="relative mt-20 flex flex-col md:pl-8">
+          <div className="relative mt-20 flex flex-col pl-4 md:pl-8">
             <IndexRail count={capabilities.length} />
             {capabilities.map((cap, i) => (
               <Reveal key={cap.title}>
@@ -306,8 +309,10 @@ export default async function HomePage() {
             </h2>
           </Reveal>
 
-          <div className="mt-20 hidden md:block">
-            <ProcessPipeline steps={processSteps.map(({ index, title }) => ({ index, title }))} />
+          <div className="mt-20">
+            <DiagramScroller width={1040}>
+              <ProcessPipeline steps={processSteps.map(({ index, title }) => ({ index, title }))} />
+            </DiagramScroller>
           </div>
 
           <RevealGroup className="relative mt-20 grid gap-10 border-t border-line pt-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-line lg:border-t-0 lg:pt-0 md:mt-10">
@@ -352,7 +357,7 @@ export default async function HomePage() {
                       </h3>
                       <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-secondary">{item.summary}</p>
                     </div>
-                    <span className="hidden text-sm font-semibold text-accent-light opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:inline-flex">
+                    <span className="inline-flex text-sm font-semibold text-accent-light opacity-100 transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100">
                       Read case study →
                     </span>
                   </Link>

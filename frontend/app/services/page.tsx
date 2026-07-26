@@ -2,6 +2,7 @@ import Link from 'next/link';
 import SiteFooter from '@/components/site-footer';
 import SceneGrid from '@/components/scene-grid';
 import TopologyOverview from '@/components/graphics/topology-overview';
+import DiagramScroller from '@/components/graphics/diagram-scroller';
 import { ClipReveal, Magnetic, Reveal, TextReveal } from '@/components/motion';
 import { AutomationGlyph, CustomGlyph, DashboardGlyph, WebsiteGlyph } from '@/components/service-glyphs';
 import type { Metadata } from 'next';
@@ -69,8 +70,10 @@ export default function ServicesPage() {
               </p>
             </Reveal>
           </div>
-          <Reveal delay={0.2} className="hidden lg:block">
-            <TopologyOverview />
+          <Reveal delay={0.2}>
+            <DiagramScroller width={460}>
+              <TopologyOverview />
+            </DiagramScroller>
           </Reveal>
         </div>
       </section>
