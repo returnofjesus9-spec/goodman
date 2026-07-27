@@ -189,6 +189,26 @@ def seed_initial_data() -> None:
                 ]
             )
 
+        if not db.query(PricingTier).filter(PricingTier.name == "Automation · Starter").first():
+            db.add_all(
+                [
+                    # Automation & Workflows
+                    PricingTier(name="Automation · Starter", price="₹10,000 – ₹20,000", description="One core automation — WhatsApp auto-replies, lead capture into a sheet, or appointment booking — set up and handed over."),
+                    PricingTier(name="Automation · Growth", price="₹25,000 – ₹45,000", description="Several connected automations across the tools you already use, so leads, orders, or bookings move without manual follow-up."),
+                    PricingTier(name="Automation · Scale", price="₹60,000+", description="End-to-end workflow automation with custom integrations between your website, messaging, payments, and internal tools."),
+
+                    # Dashboards & Analytics
+                    PricingTier(name="Dashboards · Starter", price="₹12,000 – ₹20,000", description="A simple dashboard tracking one key metric or data source, so you can see what's happening at a glance."),
+                    PricingTier(name="Dashboards · Growth", price="₹30,000 – ₹45,000", description="A multi-source dashboard pulling together sales, leads, and operations data into one view."),
+                    PricingTier(name="Dashboards · Scale", price="₹60,000+", description="A custom analytics setup built around your specific reporting needs, with ongoing data connections."),
+
+                    # Ongoing Support
+                    PricingTier(name="Support · Basic", price="₹3,000/mo", description="Monthly monitoring and small content updates — keeping your site or automation running smoothly."),
+                    PricingTier(name="Support · Standard", price="₹7,000/mo", description="Regular updates, plus minor feature additions and priority response for issues."),
+                    PricingTier(name="Support · Priority", price="₹15,000/mo", description="Dedicated support with fast turnaround for changes, new features, and troubleshooting."),
+                ]
+            )
+
         db.commit()
     finally:
         db.close()
