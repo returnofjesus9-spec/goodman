@@ -48,14 +48,32 @@ export default function SiteFooter() {
                 <a href="https://wa.me/919777262734" className="w-fit transition-colors hover:text-ink">
                   WhatsApp
                 </a>
-                <a
-                  href="https://www.instagram.com/good.manconsulting/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-fit transition-colors hover:text-ink"
-                >
-                  Instagram
-                </a>
+
+                {/* Follow us section for social links (place to add more later) */}
+                <div className="mt-4">
+                  <p className="label">Follow us</p>
+                  <div className="mt-2 flex items-center gap-3">
+                    <a
+                      href="https://www.instagram.com/good.manconsulting/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Instagram (opens in a new tab)"
+                      className="flex items-center gap-2 w-fit transition-colors hover:text-ink"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        className="h-5 w-5 text-ink-secondary"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 4.5A4.5 4.5 0 1016.5 13 4.5 4.5 0 0012 6.5zM18.7 6.6a1.1 1.1 0 11-1.1-1.1 1.1 1.1 0 011.1 1.1z" />
+                        <circle cx="12" cy="13" r="2.6" fill="currentColor" />
+                      </svg>
+                      <span className="text-sm">Instagram</span>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
