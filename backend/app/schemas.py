@@ -141,6 +141,15 @@ class PricingTierPublic(BaseModel):
         from_attributes = True
 
 
+class PricingTierCreate(BaseModel):
+    name: str
+    price: str
+    description: str
+    features: Optional[str] = None
+    ideal_for: Optional[str] = None
+    timeline: Optional[str] = None
+
+
 class PricingTierUpdate(BaseModel):
     name: Optional[str] = None
     price: Optional[str] = None

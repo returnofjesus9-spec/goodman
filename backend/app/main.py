@@ -24,6 +24,7 @@ from app.schemas import (
     LeadCreate,
     LeadPublic,
     LeadUpdate,
+    PricingTierCreate,
     PricingTierPublic,
     PricingTierUpdate,
     TestimonialCreate,
@@ -57,6 +58,7 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 def initialize_database() -> None:
     Base.metadata.create_all(bind=engine)
     seed_initial_data()
+    cleanup_legacy_pricing_duplicates()
 
 
 @asynccontextmanager
@@ -213,6 +215,36 @@ def seed_initial_data() -> None:
     finally:
         db.close()
 
+
+def cleanup_legacy_pricing_duplicates() -> None:
+    """One-time cleanup for the pricing redesign.
+
+    Automation/Dashboards/Support tiers used to be seeded with generic
+    "Category · Starter/Growth/Scale" names. The redesign added new tiers
+    with better names (and populated features/ideal_for/timeline) but never
+    removed the old rows, so categories showed both the old and new cards.
+    Any "Category · Label" row that still has all three new columns empty
+    predates the redesign and is safe to remove — every row the redesign
+    itself inserted has those columns filled in. Plain, non-prefixed rows
+    (e.g. the Website "Starter"/"Growth"/"Scale" packages) are left alone.
+    This is idempotent: once the old rows are gone, it's a no-op.
+    """
+    db = SessionLocal()
+    try:
+        legacy = (
+            db.query(PricingTier)
+            .filter(PricingTier.name.contains("·"))
+            .filter(PricingTier.features.is_(None))
+            .filter(PricingTier.ideal_for.is_(None))
+            .filter(PricingTier.timeline.is_(None))
+            .all()
+        )
+        for tier in legacy:
+            db.delete(tier)
+        if legacy:
+            db.commit()
+    finally:
+        db.close()
 
 
 # Public endpoints
@@ -434,3 +466,21 @@ def update_pricing_tier(tier_id: int, payload: PricingTierUpdate, db: Session = 
     db.commit()
     db.refresh(item)
     return PricingTierPublic.model_validate(item)
+
+
+@app.post("/api/pricing", response_model=PricingTierPublic, status_code=status.HTTP_201_CREATED)
+def create_pricing_tier(payload: PricingTierCreate, db: Session = Depends(get_db), admin: User = Depends(get_current_admin)) -> PricingTierPublic:
+    item = PricingTier(**payload.model_dump())
+    db.add(item)
+    db.commit()
+    db.refresh(item)
+    return PricingTierPublic.model_validate(item)
+
+
+@app.delete("/api/pricing/{tier_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_pricing_tier(tier_id: int, db: Session = Depends(get_db), admin: User = Depends(get_current_admin)) -> None:
+    item = db.query(PricingTier).filter(PricingTier.id == tier_id).first()
+    if not item:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Pricing tier not found")
+    db.delete(item)
+    db.commit()

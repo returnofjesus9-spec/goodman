@@ -207,6 +207,39 @@ export default function AdminPage() {
     if (res.ok) setPricing((prev) => prev.map((p) => (p.id === id ? draft : p)));
   }
 
+  async function deletePricingTier(id: number) {
+    if (!confirm('Delete this pricing tier? This cannot be undone.')) return;
+    const res = await fetch(`${API_URL}/api/pricing/${id}`, { method: 'DELETE', headers: authHeaders() });
+    if (res.ok) {
+      setPricing((prev) => prev.filter((p) => p.id !== id));
+      setPricingDrafts((prev) => {
+        const next = { ...prev };
+        delete next[id];
+        return next;
+      });
+    }
+  }
+
+  async function createPricingTier() {
+    const res = await fetch(`${API_URL}/api/pricing`, {
+      method: 'POST',
+      headers: authHeaders({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify({
+        name: 'New tier',
+        price: '₹0',
+        description: '',
+        features: '',
+        ideal_for: '',
+        timeline: '',
+      }),
+    });
+    if (res.ok) {
+      const item: PricingTier = await res.json();
+      setPricing((prev) => [...prev, item]);
+      setPricingDrafts((prev) => ({ ...prev, [item.id]: item }));
+    }
+  }
+
   // --- Testimonials ---
   async function submitTestimonial(e: FormEvent) {
     e.preventDefault();
@@ -504,7 +537,18 @@ export default function AdminPage() {
 
           {/* Pricing */}
           <section>
-            <h2 className="font-heading text-xl font-semibold text-ink">Pricing</h2>
+            <div className="flex items-center justify-between">
+              <h2 className="font-heading text-xl font-semibold text-ink">Pricing</h2>
+              <button
+                className="rounded-sm border border-stone-300 px-3 py-1.5 text-xs font-semibold text-ink hover:border-accent hover:text-accent-dark"
+                onClick={createPricingTier}
+              >
+                + Add tier
+              </button>
+            </div>
+            <p className="mt-1 text-xs text-ink-secondary">
+              Tip: name tiers as &ldquo;Category · Label&rdquo; (e.g. &ldquo;Automation · Starter&rdquo;) to group them on the pricing page.
+            </p>
             <div className="mt-4 space-y-3">
               {pricing.map((tier) => {
                 const draft = pricingDrafts[tier.id] || tier;
@@ -547,12 +591,20 @@ export default function AdminPage() {
                       value={draft.features || ''}
                       onChange={(e) => setPricingDrafts({ ...pricingDrafts, [tier.id]: { ...draft, features: e.target.value } })}
                     />
-                    <button
-                      className="rounded-sm bg-accent px-4 py-2 text-xs font-semibold text-white hover:bg-accent-dark"
-                      onClick={() => savePricingTier(tier.id)}
-                    >
-                      Save
-                    </button>
+                    <div className="flex gap-2">
+                      <button
+                        className="rounded-sm bg-accent px-4 py-2 text-xs font-semibold text-white hover:bg-accent-dark"
+                        onClick={() => savePricingTier(tier.id)}
+                      >
+                        Save
+                      </button>
+                      <button
+                        className="rounded-sm border border-red-300 px-4 py-2 text-xs font-semibold text-red-600 hover:bg-red-50"
+                        onClick={() => deletePricingTier(tier.id)}
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </div>
                 );
               })}
