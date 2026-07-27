@@ -78,7 +78,7 @@ export default async function PricingPage() {
                 project — actual cost depends on scope, number of pages, integrations, and
                 timeline. For a number that fits your business specifically,{' '}
                 
-                  href="https://wa.me/919777262734"
+                <a  href="https://wa.me/919777262734"
                   className="font-semibold text-ink underline decoration-line underline-offset-4 hover:text-accent-light"
                 >
                   contact us for a quote
@@ -121,7 +121,7 @@ export default async function PricingPage() {
                           <p className="mt-1 label text-ink-muted">Estimate</p>
                           <Magnetic className="mt-7">
                             
-                              href="https://wa.me/919777262734"
+                             <a href="https://wa.me/919777262734"
                               className="block rounded-sm border border-line px-5 py-3 text-center text-sm font-semibold text-ink transition-colors hover:border-accent hover:text-accent-light"
                             >
                               Get a quote
