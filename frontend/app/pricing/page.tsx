@@ -1,6 +1,6 @@
 import SiteFooter from '@/components/site-footer';
 import SceneGrid from '@/components/scene-grid';
-import TierScale from '@/components/graphics/tier-scale';
+import CategoryScale from '@/components/graphics/category-scale';
 import { Magnetic, Reveal, RevealGroup, RevealItem, TextReveal } from '@/components/motion';
 import type { Metadata } from 'next';
 
@@ -78,7 +78,7 @@ export default async function PricingPage() {
                 project — actual cost depends on scope, number of pages, integrations, and
                 timeline. For a number that fits your business specifically,{' '}
                 
-                 <a href="https://wa.me/919777262734"
+                  href="https://wa.me/919777262734"
                   className="font-semibold text-ink underline decoration-line underline-offset-4 hover:text-accent-light"
                 >
                   contact us for a quote
@@ -101,7 +101,7 @@ export default async function PricingPage() {
                     <h2 className="text-xl font-semibold text-ink">{group.category}</h2>
                   </Reveal>
                   <Reveal className="mx-auto mb-16 mt-10 max-w-2xl">
-                    <TierScale tiers={group.tiers.map((t) => ({ name: t.name }))} />
+                    <CategoryScale category={group.category} tiers={group.tiers.map((t) => ({ name: t.name }))} />
                   </Reveal>
                   <RevealGroup
                     className={`grid gap-px overflow-hidden rounded-sm border border-line bg-line md:grid-cols-2 ${
@@ -121,7 +121,7 @@ export default async function PricingPage() {
                           <p className="mt-1 label text-ink-muted">Estimate</p>
                           <Magnetic className="mt-7">
                             
-                            <a href="https://wa.me/919777262734"
+                              href="https://wa.me/919777262734"
                               className="block rounded-sm border border-line px-5 py-3 text-center text-sm font-semibold text-ink transition-colors hover:border-accent hover:text-accent-light"
                             >
                               Get a quote
