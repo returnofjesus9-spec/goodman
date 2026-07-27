@@ -48,6 +48,14 @@ export default function SiteFooter() {
                 <a href="https://wa.me/919777262734" className="w-fit transition-colors hover:text-ink">
                   WhatsApp
                 </a>
+                <a
+                  href="https://www.instagram.com/good.manconsulting/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-fit transition-colors hover:text-ink"
+                >
+                  Instagram
+                </a>
               </div>
             </div>
           </div>
