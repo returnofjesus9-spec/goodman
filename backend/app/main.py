@@ -183,29 +183,29 @@ def seed_initial_data() -> None:
         if not db.query(PricingTier).filter(PricingTier.name == "Starter").first():
             db.add_all(
                 [
-                    PricingTier(name="Starter", price="₹15,000", description="A clean 5-page business website with WhatsApp contact, built to load fast and look credible."),
-                    PricingTier(name="Growth", price="₹35,000", description="Everything in Starter, plus one automation (like appointment/lead capture) and a simple dashboard to track it."),
-                    PricingTier(name="Scale", price="₹70,000", description="Custom dashboards, multiple automations, and integrations built around how your business actually runs."),
+                    PricingTier(name="Starter", price="₹15,000", description="A clean 5-page business website with WhatsApp contact, built to load fast and look credible.", ideal_for="Freelancers and new businesses", timeline="1-2 weeks", features="5-page responsive website\nWhatsApp click-to-chat integration\nMobile-first, fast-loading build\nBasic on-page SEO setup\nContact form with lead capture\n1 round of design revisions"),
+                    PricingTier(name="Growth", price="₹35,000", description="Everything in Starter, plus one automation (like appointment/lead capture) and a simple dashboard to track it.", ideal_for="Growing small businesses", timeline="3-4 weeks", features="Everything in Starter\n1 core business automation\nSimple tracking dashboard\nAppointment/lead capture flow\nCMS for easy content updates\nAnalytics setup\n2 rounds of revisions"),
+                    PricingTier(name="Scale", price="₹70,000", description="Custom dashboards, multiple automations, and integrations built around how your business actually runs.", ideal_for="Established, growing businesses", timeline="5-8 weeks", features="Everything in Growth\nCustom multi-source dashboard\nMultiple connected automations\nThird-party tool integrations\nPriority build and QA\nLaunch support\nUnlimited revisions during build"),
                 ]
             )
 
-        if not db.query(PricingTier).filter(PricingTier.name == "Automation · Starter").first():
+        if not db.query(PricingTier).filter(PricingTier.name == "Automation · Quick Start").first():
             db.add_all(
                 [
                     # Automation & Workflows
-                    PricingTier(name="Automation · Starter", price="₹10,000 – ₹20,000", description="One core automation — WhatsApp auto-replies, lead capture into a sheet, or appointment booking — set up and handed over."),
-                    PricingTier(name="Automation · Growth", price="₹25,000 – ₹45,000", description="Several connected automations across the tools you already use, so leads, orders, or bookings move without manual follow-up."),
-                    PricingTier(name="Automation · Scale", price="₹60,000+", description="End-to-end workflow automation with custom integrations between your website, messaging, payments, and internal tools."),
+                    PricingTier(name="Automation · Quick Start", price="₹10,000 – ₹20,000", description="One core automation — WhatsApp auto-replies, lead capture into a sheet, or appointment booking — set up and handed over.", ideal_for="Freelancers and solo operators", timeline="1-2 weeks", features="1 core automation workflow\nWhatsApp auto-replies or lead capture\nConnects to a sheet or simple tool\nHandover walkthrough included\nBasic error handling\n2 weeks of post-launch support"),
+                    PricingTier(name="Automation · Business Flow", price="₹25,000 – ₹45,000", description="Several connected automations across the tools you already use, so leads, orders, or bookings move without manual follow-up.", ideal_for="SMEs with growing manual workload", timeline="3-5 weeks", features="Several connected automations\nWorks across your existing tools\nLead, order and booking workflows\nNotifications and status tracking\nTeam handover documentation\n1 month of post-launch support"),
+                    PricingTier(name="Automation · Enterprise Workflow", price="₹60,000+", description="End-to-end workflow automation with custom integrations between your website, messaging, payments, and internal tools.", ideal_for="Established businesses scaling operations", timeline="6-10 weeks", features="End-to-end workflow automation\nCustom integrations across systems\nWebsite, messaging and payments linked\nInternal tool connections\nDedicated build and testing\nPriority support post-launch"),
 
                     # Dashboards & Analytics
-                    PricingTier(name="Dashboards · Starter", price="₹12,000 – ₹20,000", description="A simple dashboard tracking one key metric or data source, so you can see what's happening at a glance."),
-                    PricingTier(name="Dashboards · Growth", price="₹30,000 – ₹45,000", description="A multi-source dashboard pulling together sales, leads, and operations data into one view."),
-                    PricingTier(name="Dashboards · Scale", price="₹60,000+", description="A custom analytics setup built around your specific reporting needs, with ongoing data connections."),
+                    PricingTier(name="Dashboards · Snapshot", price="₹12,000 – ₹20,000", description="A simple dashboard tracking one key metric or data source, so you can see what's happening at a glance.", ideal_for="Freelancers and small teams", timeline="1-2 weeks", features="1 key metric or data source\nAt-a-glance visual dashboard\nMobile-friendly view\nManual or scheduled refresh\nHandover walkthrough\n2 weeks of post-launch support"),
+                    PricingTier(name="Dashboards · Business Insights", price="₹30,000 – ₹45,000", description="A multi-source dashboard pulling together sales, leads, and operations data into one view.", ideal_for="SMEs juggling multiple data sources", timeline="3-5 weeks", features="Multiple data sources combined\nSales, leads and ops in one view\nCustom charts and filters\nScheduled data refresh\nTeam access setup\n1 month of post-launch support"),
+                    PricingTier(name="Dashboards · Enterprise Analytics", price="₹60,000+", description="A custom analytics setup built around your specific reporting needs, with ongoing data connections.", ideal_for="Established businesses needing deep reporting", timeline="6-10 weeks", features="Fully custom analytics build\nOngoing live data connections\nRole-based access and permissions\nCustom reporting views\nDedicated build and testing\nPriority support post-launch"),
 
                     # Ongoing Support
-                    PricingTier(name="Support · Basic", price="₹3,000/mo", description="Monthly monitoring and small content updates — keeping your site or automation running smoothly."),
-                    PricingTier(name="Support · Standard", price="₹7,000/mo", description="Regular updates, plus minor feature additions and priority response for issues."),
-                    PricingTier(name="Support · Priority", price="₹15,000/mo", description="Dedicated support with fast turnaround for changes, new features, and troubleshooting."),
+                    PricingTier(name="Support · Basic", price="₹3,000/mo", description="Monthly monitoring and small content updates — keeping your site or automation running smoothly.", ideal_for="Sites and automations already live", timeline="Ongoing, monthly", features="Monthly uptime monitoring\nSmall content updates\nBug fixes for existing features\nEmail support\nMonthly status check-in"),
+                    PricingTier(name="Support · Standard", price="₹7,000/mo", description="Regular updates, plus minor feature additions and priority response for issues.", ideal_for="Active, growing sites and tools", timeline="Ongoing, monthly", features="Everything in Basic\nRegular scheduled updates\nMinor feature additions\nPriority issue response\nQuarterly performance review"),
+                    PricingTier(name="Support · Priority", price="₹15,000/mo", description="Dedicated support with fast turnaround for changes, new features, and troubleshooting.", ideal_for="Businesses relying on always-on systems", timeline="Ongoing, monthly", features="Everything in Standard\nDedicated support contact\nFast turnaround on changes\nNew feature development time\nSame-day troubleshooting"),
                 ]
             )
 

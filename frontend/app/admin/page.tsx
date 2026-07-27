@@ -18,7 +18,7 @@ type Lead = {
 
 type CaseStudy = { id: number; title: string; slug: string; summary: string; content: string; published: boolean };
 type BlogPost = { id: number; title: string; slug: string; summary: string; content: string; published: boolean };
-type PricingTier = { id: number; name: string; price: string; description: string };
+type PricingTier = { id: number; name: string; price: string; description: string; features?: string; ideal_for?: string; timeline?: string };
 type Testimonial = { id: number; author_name: string; author_business?: string; quote: string; published: boolean };
 
 const emptyDoc = { title: '', slug: '', summary: '', content: '', published: true };
@@ -195,7 +195,14 @@ export default function AdminPage() {
     const res = await fetch(`${API_URL}/api/pricing/${id}`, {
       method: 'PUT',
       headers: authHeaders({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify({ name: draft.name, price: draft.price, description: draft.description }),
+      body: JSON.stringify({
+        name: draft.name,
+        price: draft.price,
+        description: draft.description,
+        features: draft.features,
+        ideal_for: draft.ideal_for,
+        timeline: draft.timeline,
+      }),
     });
     if (res.ok) setPricing((prev) => prev.map((p) => (p.id === id ? draft : p)));
   }
@@ -520,6 +527,25 @@ export default function AdminPage() {
                       onChange={(e) =>
                         setPricingDrafts({ ...pricingDrafts, [tier.id]: { ...draft, description: e.target.value } })
                       }
+                    />
+                    <input
+                      className={inputClass}
+                      placeholder="Ideal for (e.g. Freelancers, SMEs)"
+                      value={draft.ideal_for || ''}
+                      onChange={(e) => setPricingDrafts({ ...pricingDrafts, [tier.id]: { ...draft, ideal_for: e.target.value } })}
+                    />
+                    <input
+                      className={inputClass}
+                      placeholder="Timeline (e.g. 1-2 weeks)"
+                      value={draft.timeline || ''}
+                      onChange={(e) => setPricingDrafts({ ...pricingDrafts, [tier.id]: { ...draft, timeline: e.target.value } })}
+                    />
+                    <textarea
+                      className={inputClass}
+                      rows={4}
+                      placeholder="Feature checklist, one per line"
+                      value={draft.features || ''}
+                      onChange={(e) => setPricingDrafts({ ...pricingDrafts, [tier.id]: { ...draft, features: e.target.value } })}
                     />
                     <button
                       className="rounded-sm bg-accent px-4 py-2 text-xs font-semibold text-white hover:bg-accent-dark"

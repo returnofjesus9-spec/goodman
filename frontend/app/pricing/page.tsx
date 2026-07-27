@@ -16,6 +16,9 @@ type Tier = {
   name: string;
   description: string;
   price: string;
+  features?: string | null;
+  ideal_for?: string | null;
+  timeline?: string | null;
 };
 
 type Group = {
@@ -108,28 +111,55 @@ export default async function PricingPage() {
                       group.tiers.length >= 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-3'
                     }`}
                   >
-                    {group.tiers.map((tier) => (
-                      <RevealItem key={tier.id}>
-                        <article className="flex h-full flex-col bg-bg-surface p-8 md:p-10">
-                          <h3 className="text-lg font-semibold text-ink">{tier.name}</h3>
-                          <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-secondary">
-                            {tier.description}
-                          </p>
-                          <p className="mt-10 font-mono text-display-sm font-semibold text-ink">
-                            {tier.price}
-                          </p>
-                          <p className="mt-1 label text-ink-muted">Estimate</p>
-                          <Magnetic className="mt-7">
-                            
-                             <a href="https://wa.me/919777262734"
-                              className="block rounded-sm border border-line px-5 py-3 text-center text-sm font-semibold text-ink transition-colors hover:border-accent hover:text-accent-light"
-                            >
-                              Get a quote
-                            </a>
-                          </Magnetic>
-                        </article>
-                      </RevealItem>
-                    ))}
+                    {group.tiers.map((tier, i) => {
+                      const isBestValue = group.tiers.length === 3 && i === 1;
+                      const featureList = (tier.features ?? '')
+                        .split('\n')
+                        .map((f) => f.trim())
+                        .filter(Boolean);
+                      return (
+                        <RevealItem key={tier.id}>
+                          <article className={`relative flex h-full flex-col bg-bg-surface p-8 md:p-10 ${isBestValue ? 'ring-1 ring-inset ring-accent' : ''}`}>
+                            {isBestValue && (
+                              <span className="absolute right-6 top-6 rounded-full bg-accent px-3 py-1 text-[10px] font-semibold uppercase tracking-label text-white">
+                                Best Value
+                              </span>
+                            )}
+                            <h3 className="text-lg font-semibold text-ink">{tier.name}</h3>
+                            <p className="mt-3 text-sm leading-relaxed text-ink-secondary">
+                              {tier.description}
+                            </p>
+                            {tier.ideal_for && (
+                              <p className="mt-3 label text-accent-light">Ideal for {tier.ideal_for}</p>
+                            )}
+                            {featureList.length > 0 && (
+                              <ul className="mt-5 flex-1 space-y-2">
+                                {featureList.map((f) => (
+                                  <li key={f} className="flex items-start gap-2 text-sm text-ink-secondary">
+                                    <span className="mt-0.5 text-accent-light">✓</span>
+                                    <span>{f}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                            <p className="mt-10 font-mono text-display-sm font-semibold text-ink">
+                              {tier.price}
+                            </p>
+                            <p className="mt-1 label text-ink-muted">Estimate</p>
+                            {tier.timeline && (
+                              <p className="mt-1 text-xs text-ink-secondary">Delivery: {tier.timeline}</p>
+                            )}
+                            <Magnetic className="mt-7">
+                              <a href="https://wa.me/919777262734"
+                                className="block rounded-sm border border-line px-5 py-3 text-center text-sm font-semibold text-ink transition-colors hover:border-accent hover:text-accent-light"
+                              >
+                                Get a quote
+                              </a>
+                            </Magnetic>
+                          </article>
+                        </RevealItem>
+                      );
+                    })}
                   </RevealGroup>
                 </div>
               ))}
@@ -160,7 +190,74 @@ export default async function PricingPage() {
         </Reveal>
       </section>
 
+      {/* SCENE 05 — FAQ */}
+      <section className="relative border-t border-line bg-bg-void px-4 py-24 md:px-8 lg:px-12">
+        <div className="mx-auto max-w-4xl">
+          <Reveal>
+            <p className="label text-accent-light">Common questions</p>
+            <h2 className="mt-4 text-2xl font-semibold text-ink">Pricing, in plain terms</h2>
+          </Reveal>
+          <div className="mt-12 space-y-8">
+            {faqs.map((faq) => (
+              <Reveal key={faq.q}>
+                <div className="border-b border-line pb-8">
+                  <h3 className="text-base font-semibold text-ink">{faq.q}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-secondary">{faq.a}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SCENE 06 — CTA */}
+      <section className="relative border-t border-line bg-bg-deep px-4 py-24 md:px-8 lg:px-12">
+        <Reveal>
+          <div className="mx-auto flex max-w-4xl flex-col items-start gap-6 rounded-sm border border-line bg-bg-surface px-8 py-12 sm:px-12 sm:py-16">
+            <p className="label text-accent-light">Not sure which package fits?</p>
+            <h2 className="max-w-lg text-2xl font-semibold text-ink sm:text-3xl">
+              Book a free consultation and get a quote built around your business.
+            </h2>
+            <Magnetic>
+              <a
+                href="https://wa.me/919777262734"
+                className="inline-block rounded-sm bg-accent px-7 py-4 text-sm font-semibold text-white transition-colors hover:bg-accent-dark"
+              >
+                Book a free consultation
+              </a>
+            </Magnetic>
+          </div>
+        </Reveal>
+      </section>
+
       <SiteFooter />
     </main>
   );
 }
+
+const faqs = [
+  {
+    q: 'Are these prices final?',
+    a: 'No — they\u2019re starting estimates based on typical projects at each tier. Your exact price is confirmed upfront, before any work begins, based on your specific scope.',
+  },
+  {
+    q: 'What are the payment terms?',
+    a: 'Projects are billed in milestones — typically a deposit to begin, with the remainder split across delivery checkpoints. Ongoing support packages are billed monthly.',
+  },
+  {
+    q: 'How long does a typical project take?',
+    a: 'Most Starter-level work wraps in 1\u20132 weeks, Growth-level packages in 3\u20135 weeks, and larger Scale/Enterprise builds in 6\u201310 weeks, depending on scope and how quickly feedback comes back.',
+  },
+  {
+    q: 'Can I upgrade to a higher package later?',
+    a: 'Yes. Many clients start with a smaller package and add automations, dashboards, or support later. We\u2019ll credit relevant work already done where it applies.',
+  },
+  {
+    q: 'What if I need a redesign instead of a new build?',
+    a: 'Redesigns are scoped the same way as new builds, based on how much of the existing site, automation, or dashboard is being reworked \u2014 contact us for a specific quote.',
+  },
+  {
+    q: 'What support is included after launch?',
+    a: 'Every package includes a short post-launch support window. For ongoing help beyond that, our monthly Support packages cover monitoring, updates, and priority fixes.',
+  },
+];

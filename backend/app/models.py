@@ -88,5 +88,8 @@ class PricingTier(Base):
     name = Column(String(255), nullable=False)
     price = Column(String(255), nullable=False)
     description = Column(Text, nullable=False)
+    features = Column(Text, nullable=True)  # newline-separated checklist items
+    ideal_for = Column(String(255), nullable=True)
+    timeline = Column(String(100), nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
