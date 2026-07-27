@@ -78,7 +78,7 @@ export default async function PricingPage() {
                 project — actual cost depends on scope, number of pages, integrations, and
                 timeline. For a number that fits your business specifically,{' '}
                 
-                  href="https://wa.me/919777262734"
+                 <a href="https://wa.me/919777262734"
                   className="font-semibold text-ink underline decoration-line underline-offset-4 hover:text-accent-light"
                 >
                   contact us for a quote
